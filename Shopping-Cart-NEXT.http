@@ -1,6 +1,6 @@
 @Shopping_Cart_NEXT_HostAddress = http://localhost:5176
 
-GET {{Shopping_Cart_NEXT_HostAddress}}/weatherforecast/
+GET {{Shopping_Cart_NEXT_HostAddress}}/Shop/Category/
 Accept: application/json
 
 ###
