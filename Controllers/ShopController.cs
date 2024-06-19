@@ -63,5 +63,119 @@ namespace Shopping_Cart_NEXT.Controllers
             }
             return response;
         }
+
+        [EnableCors("MyPolicy")]
+        [HttpPost]
+        [Route("AddProduct")]
+        public Response AddProduct(Products products)
+        {
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ShoppingCon")?.ToString());
+            Response response = new Response();
+            if (products.Id > 0)
+            {
+                SqlCommand cmd = new SqlCommand("Insert into ShoppingCart(ProductID) VALUES('" + products.Id + "')", connection);
+                connection.Open();
+                int i = cmd.ExecuteNonQuery();
+                connection.Close();
+                if (i > 0)
+                {
+                    response.StatusCode = 200;
+                    response.StatusMessage = "Item added";
+                }
+                else
+                {
+                    response.StatusCode = 100;
+                    response.StatusMessage = "No item added";
+                }
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "No item found";
+
+            }
+            return response;
+
+        }
+
+        [EnableCors("MyPolicy")]
+        [HttpPost]
+        [Route("RemoveProduct")]
+        public Response RemoveProduct(Products products)
+        {
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ShoppingCon")?.ToString());
+            Response response = new Response();
+            if (products.Id > 0)
+            {
+                SqlCommand cmd = new SqlCommand("Delete from ShoppingCart where ProductId = ('" + products.Id + "')", connection);
+                connection.Open();
+                int i = cmd.ExecuteNonQuery();
+                connection.Close();
+                if (i > 0)
+                {
+                    response.StatusCode = 200;
+                    response.StatusMessage = "Item removed";
+                }
+                else
+                {
+                    response.StatusCode = 100;
+                    response.StatusMessage = "No item removed";
+                }
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "No item found";
+
+            }
+            return response;
+
+        }
+
+        [EnableCors("MyPolicy")]
+        [HttpGet]
+        [Route("ShoppingCart")]
+        public Response ShoppingCart()
+        {
+            List<Products> lstproducts = new List<Products>();
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ShoppingCon")?.ToString());
+            SqlDataAdapter da = new SqlDataAdapter("select P.ID, P.Name, P.Image, P.ActualPrice, P.DiscountedPrice from ShoppingCart C INNER JOIN Products P ON C.ProductID = P.Id;", connection);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            Response response = new Response();
+
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Products products = new Products();
+                    products.Id = Convert.ToInt32(dt.Rows[i]["Id"]);
+                    products.Name = Convert.ToString(dt.Rows[i]["Name"]);
+                    products.Image = Convert.ToString(dt.Rows[i]["Image"]);
+                    products.ActualPrice = Convert.ToDecimal(dt.Rows[i]["ActualPrice"]);
+                    products.DiscountedPrice = Convert.ToDecimal(dt.Rows[i]["DiscountedPrice"]);
+                    lstproducts.Add(products);
+                }
+                if (lstproducts.Count > 0)
+                {
+                    response.StatusCode = 200;
+                    response.StatusMessage = "Data found";
+                    response.listProducts = lstproducts;
+                }
+                else
+                {
+                    response.StatusCode = 100;
+                    response.StatusMessage = "No data found";
+                    response.listProducts = null;
+                }
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "No data found";
+                response.listProducts = null;
+            }
+            return response;
+        }
     }
 }
