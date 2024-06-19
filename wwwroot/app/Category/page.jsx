@@ -1,0 +1,51 @@
+// app/product-list/page.jsx
+import Link from 'next/link'
+import ProductCart from '../components/ProductCart'
+import { fetchData } from '../lib/fetchData'
+
+export default async function Category() {
+	let initialData = []
+	try {
+		initialData = await fetchData('http://localhost:5176/Shop/ProductsList')
+	} catch (error) {
+		console.error('Failed to fetch products list data:', error)
+	}
+
+	return (
+		<div>
+			<div className='banner'>
+				<div className='banner-layer'>
+					<h1 className='title-w3layouts'>Products list</h1>
+				</div>
+				<div className='wthreeproductdisplay'>
+					<div className='container'>
+						<div className='top-grid'>
+							{initialData.length > 0
+								? initialData.map((item, index) => (
+										<ProductCart
+											key={index}
+											index={index}
+											item={item}
+											handle='addItem'
+										/>
+								  ))
+								: 'No data'}
+							<div className='clear'></div>
+						</div>
+					</div>
+				</div>
+				<div className='wthreecartaits wthreecartaits2 cart cart box_1'>
+					<Link href='/ShoppingCart'>
+						<button className='w3view-cart'>
+							view cart
+							<span className='fa fa-cart-arrow-down' aria-hidden='true'></span>
+						</button>
+					</Link>
+				</div>
+				<div className='copyright text-center'>
+					<p>footer</p>
+				</div>
+			</div>
+		</div>
+	)
+}
