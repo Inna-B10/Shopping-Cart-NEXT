@@ -25,12 +25,21 @@ const Nav = () => (
 				<ActiveLink
 					className='nav-link'
 					activeClassName='active'
+					href='/ShoppingCart'
+					passHref>
+					ShoppingCart
+				</ActiveLink>
+			</li>
+			{/* <li>
+				<ActiveLink
+					className='nav-link'
+					activeClassName='active'
 					href='/Rings/[slug]'
 					passHref
 					as='/dynamic-route'>
 					Dynamic route
 				</ActiveLink>
-			</li>
+			</li> */}
 		</ul>
 	</nav>
 )

@@ -32,7 +32,7 @@ export default function Header() {
 		<header>
 			<Nav />
 			luxGleam
-			<MyNav />
+			{/* <MyNav /> */}
 		</header>
 	)
 }

@@ -15,7 +15,8 @@ namespace Shopping_Cart_App
                     {
                         policy.WithOrigins(
                                 "http://localhost:5176",
-                                "https://localhost:7283")
+                                "https://localhost:7283",
+                                "http://localhost:3000")
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                     });

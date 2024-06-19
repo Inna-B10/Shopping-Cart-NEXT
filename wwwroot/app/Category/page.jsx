@@ -1,4 +1,3 @@
-// app/product-list/page.jsx
 import Link from 'next/link'
 import ProductCart from '../components/ProductCart'
 import { fetchData } from '../lib/fetchData'
@@ -6,7 +5,7 @@ import { fetchData } from '../lib/fetchData'
 export default async function Category() {
 	let initialData = []
 	try {
-		initialData = await fetchData('http://localhost:5176/Shop/ProductsList')
+		initialData = await fetchData('http://localhost:5176/Shop/Category')
 	} catch (error) {
 		console.error('Failed to fetch products list data:', error)
 	}

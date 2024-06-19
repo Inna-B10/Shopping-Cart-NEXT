@@ -1,4 +1,3 @@
-// app/shopping-cart/page.jsx
 import ProductCart from '../components/ProductCart'
 import { fetchData } from '../lib/fetchData'
 

@@ -1,6 +1,6 @@
 export const fetchData = async url => {
 	console.log('Function fetchData called')
-	// const url = 'http://localhost:5176/Shop/Category'
+
 	try {
 		console.log('Before fetch') // Перед запросом
 		const res = await fetch(url)
@@ -16,8 +16,3 @@ export const fetchData = async url => {
 		throw error // Повторное выбрасывание ошибки
 	}
 }
-
-// Не забудьте вызвать fetchData
-// fetchData()
-// 	.then(products => console.log('Products:', products))
-// 	.catch(error => console.error('Fetch error:', error))
