@@ -1,12 +1,26 @@
+'use client'
+import { useEffect, useState } from 'react'
 import ProductCart from '../components/ProductCart'
 import { fetchData } from '../lib/fetchData'
 
-export default async function ShoppingCart() {
-	let initialData = []
-	try {
-		initialData = await fetchData('http://localhost:5176/Shop/ShoppingCart')
-	} catch (error) {
-		console.error('Failed to fetch shopping cart data:', error)
+export default function ShoppingCart() {
+	const [initialData, setInitialData] = useState()
+
+	useEffect(() => {
+		async function getData() {
+			try {
+				const data = await fetchData('http://localhost:5176/Shop/ShoppingCart')
+				setInitialData(data)
+				console.log(data)
+			} catch (error) {
+				console.error('Failed to fetch shopping cart data:', error)
+			}
+		}
+		getData()
+	}, [])
+
+	const handleUpdateCart = newData => {
+		setInitialData(newData)
 	}
 
 	return (
@@ -21,13 +35,14 @@ export default async function ShoppingCart() {
 				<div className='wthreeproductdisplay'>
 					<div className='container'>
 						<div className='top-grid'>
-							{initialData.length > 0
+							{initialData?.length > 0
 								? initialData.map((item, index) => (
 										<ProductCart
 											key={index}
 											index={index}
 											item={item}
 											handle='removeItem'
+											updateCart={handleUpdateCart}
 										/>
 								  ))
 								: 'No data'}
