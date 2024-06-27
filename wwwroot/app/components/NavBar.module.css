@@ -1,0 +1,7 @@
+.navMenu {
+  display: flex;
+}
+
+.navMenu span {
+  /* position: relative; */
+}
