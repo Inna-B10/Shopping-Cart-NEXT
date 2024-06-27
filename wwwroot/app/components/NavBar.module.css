@@ -1,5 +1,14 @@
 .navMenu {
   display: flex;
+  justify-content: space-between;
+}
+
+.navMenu > ul {
+  display: flex;
+}
+
+.searchInput {
+  text-align: center;
 }
 
 .navMenu span {

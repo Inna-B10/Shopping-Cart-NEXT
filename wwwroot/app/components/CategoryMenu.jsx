@@ -3,7 +3,7 @@ import styles from './CategoryMenu.module.css'
 
 const CategoryMenu = () => {
 	const categories = [
-		{ name: 'Gold rings', path: '/Gold-rings' },
+		{ name: 'Gold rings', path: '/Category' },
 		{ name: 'Silver rings', path: '/Silver-rings' },
 		{ name: 'Gold earrings', path: '/Gold-earrings' },
 		{ name: 'Silver earrings', path: '/Silver-earrings' },

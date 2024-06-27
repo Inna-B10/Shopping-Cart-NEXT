@@ -9,15 +9,37 @@ const NavBar = () => {
 
 	return (
 		<nav className={styles.navMenu}>
-			<Link href='/'>Home</Link>&nbsp;|&nbsp;
-			<span
-				onMouseEnter={() => setShowCategories(true)}
-				onMouseLeave={() => setShowCategories(false)}>
-				Categories
-				{showCategories && <CategoryMenu />}
-			</span>
-			&nbsp; |&nbsp;<Link href='/#contact'>Contact</Link>
-			&nbsp;|&nbsp;<Link href='/ShoppingCart'>Shopping cart</Link>
+			<ul>
+				<li>
+					<Link href='/'>Home</Link>
+				</li>
+				<li>
+					&nbsp;|&nbsp;
+					<span
+						onMouseEnter={() => setShowCategories(true)}
+						onMouseLeave={() => setShowCategories(false)}>
+						Categories
+						{showCategories && <CategoryMenu />}
+					</span>
+				</li>
+				<li>
+					&nbsp; |&nbsp;<Link href='/#contact'>Contact</Link>
+				</li>
+			</ul>
+			<div className={styles.searchInput}>
+				<input type='text' />
+			</div>
+			<ul>
+				<li>
+					<Link href='/Favorites'>Favorites</Link>
+				</li>
+				<li>
+					&nbsp;|&nbsp;<Link href='/ShoppingCart'>Shopping cart</Link>
+				</li>
+				<li>
+					&nbsp; |&nbsp;<Link href='/Account'>Account</Link>
+				</li>
+			</ul>
 		</nav>
 	)
 }
