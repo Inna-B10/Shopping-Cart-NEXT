@@ -7,7 +7,7 @@ export default function ButtonCart({ itemId, handle, updateCart }) {
 	const handleRemoveProduct = async id => {
 		try {
 			const response = await axios.post(
-				'http://localhost:5176/Shop/RemoveProduct',
+				'https://localhost:7283/Shop/RemoveProduct',
 				{ Id: id }
 			)
 			if (response.data.statusCode === 200) {
@@ -27,7 +27,7 @@ export default function ButtonCart({ itemId, handle, updateCart }) {
 	const handleAddProduct = async id => {
 		try {
 			const response = await axios.post(
-				'http://localhost:5176/Shop/AddProduct',
+				'https://localhost:7283/Shop/AddProduct',
 				{ Id: id }
 			)
 			if (response.data.statusCode === 200) {

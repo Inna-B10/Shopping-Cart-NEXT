@@ -9,9 +9,9 @@ export default function ShoppingCart() {
 	useEffect(() => {
 		async function getData() {
 			try {
-				const data = await fetchData('http://localhost:5176/Shop/ShoppingCart')
+				const data = await fetchData('https://localhost:7283/Shop/ShoppingCart')
 				setInitialData(data)
-				console.log(data)
+				//console.log(data)
 			} catch (error) {
 				console.error('Failed to fetch shopping cart data:', error)
 			}
