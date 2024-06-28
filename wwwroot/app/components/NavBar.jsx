@@ -9,12 +9,11 @@ const NavBar = () => {
 
 	return (
 		<nav className={styles.navMenu}>
-			<ul>
+			<ul className={`${styles.menuLinks} flex`}>
 				<li>
 					<Link href='/'>Home</Link>
 				</li>
 				<li>
-					&nbsp;|&nbsp;
 					<span
 						onMouseEnter={() => setShowCategories(true)}
 						onMouseLeave={() => setShowCategories(false)}>
@@ -23,21 +22,21 @@ const NavBar = () => {
 					</span>
 				</li>
 				<li>
-					&nbsp; |&nbsp;<Link href='/#contact'>Contact</Link>
+					<Link href='/#contact'>Contact</Link>
 				</li>
 			</ul>
-			<div className={styles.searchInput}>
-				<input type='text' />
+			<div className={styles.searchField}>
+				<input type='text' name='searchField' />
 			</div>
-			<ul>
+			<ul className={`${styles.menuLinks} flex`}>
 				<li>
 					<Link href='/Favorites'>Favorites</Link>
 				</li>
 				<li>
-					&nbsp;|&nbsp;<Link href='/ShoppingCart'>Shopping cart</Link>
+					<Link href='/ShoppingCart'>Shopping cart</Link>
 				</li>
 				<li>
-					&nbsp; |&nbsp;<Link href='/Account'>Account</Link>
+					<Link href='/Account'>Account</Link>
 				</li>
 			</ul>
 		</nav>

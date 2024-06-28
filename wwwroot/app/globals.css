@@ -91,6 +91,14 @@ ul {
   list-style: none;
 }
 
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

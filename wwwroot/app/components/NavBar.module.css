@@ -1,14 +1,25 @@
 .navMenu {
   display: flex;
   justify-content: space-between;
+  padding: 15px 40px;
+  background-color: #561b0b;
+  color: #fff;
 }
 
-.navMenu > ul {
-  display: flex;
+ul.userMenu > li:hover,
+ul.menuLinks > li:hover {
+  text-decoration: underline 2px;
+  text-underline-offset: 3px;
 }
 
-.searchInput {
-  text-align: center;
+ul.userMenu,
+ul.menuLinks {
+  gap: 10px;
+}
+
+
+.searchField {
+  /* text-align: center; */
 }
 
 .navMenu span {
