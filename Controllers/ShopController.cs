@@ -19,13 +19,60 @@ namespace Shopping_Cart_NEXT.Controllers
 
         [EnableCors("MyPolicy")]
         [HttpGet]
-        [Route("Category")]
+        [Route("Images")]
 
-        public Response GetAllProducts()
+        public Response GetImages()
         {
             List<Products> lstproducts = new List<Products>();
             SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ShoppingCon")?.ToString());
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Products;", connection);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Images;", connection);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            Response response = new Response();
+
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Products products = new Products();
+                    products.Id = Convert.ToInt32(dt.Rows[i]["Id"]);
+                    products.Name = Convert.ToString(dt.Rows[i]["Name"]);
+                    products.Image = Convert.ToString(dt.Rows[i]["Image"]);
+                    products.ActualPrice = Convert.ToDecimal(dt.Rows[i]["ActualPrice"]);
+                    products.DiscountedPrice = Convert.ToDecimal(dt.Rows[i]["DiscountedPrice"]);
+                    lstproducts.Add(products);
+                }
+                if (lstproducts.Count > 0)
+                {
+                    response.StatusCode = 200;
+                    response.StatusMessage = "Data found";
+                    response.listProducts = lstproducts;
+                }
+                else
+                {
+                    response.StatusCode = 100;
+                    response.StatusMessage = "No data found";
+                    response.listProducts = null;
+                }
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "No data found";
+                response.listProducts = null;
+            }
+            return response;
+        }
+
+        [EnableCors("MyPolicy")]
+        [HttpGet]
+        [Route("Category")]
+
+        public Response GetCategoryProducts()
+        {
+            List<Products> lstproducts = new List<Products>();
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ShoppingCon")?.ToString());
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Images;", connection);
             DataTable dt = new DataTable();
             da.Fill(dt);
             Response response = new Response();
@@ -139,7 +186,7 @@ namespace Shopping_Cart_NEXT.Controllers
         {
             List<Products> lstproducts = new List<Products>();
             SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ShoppingCon")?.ToString());
-            SqlDataAdapter da = new SqlDataAdapter("select P.ID, P.Name, P.Image, P.ActualPrice, P.DiscountedPrice from ShoppingCart C INNER JOIN Products P ON C.ProductID = P.Id;", connection);
+            SqlDataAdapter da = new SqlDataAdapter("select P.ID, P.Name, P.Image, P.ActualPrice, P.DiscountedPrice from ShoppingCart C INNER JOIN Images P ON C.ProductID = P.Id;", connection);
             DataTable dt = new DataTable();
             da.Fill(dt);
             Response response = new Response();

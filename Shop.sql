@@ -25,7 +25,22 @@
 --('Sunglasses', 'd6.jpg', 84.00, 36.00)
 
 
+CREATE TABLE Categories (
+    cat_id INT IDENTITY(1,1),
+    cat_name VARCHAR(255) NOT NULL,
+	constraint PK_cat_id PRIMARY KEY (cat_id)
+);
+
+
 use ShopDb
+
+--drop table Images
+
+insert into Categories (cat_name)
+values ('Earrings'), ('Necklaces'),('Bracelets'),('Anklets'),('Brooches'),('Pendants'),('Sets')
+
+
+
 
 select P.ID, P.Name, P.Image, P.ActualPrice, P.DiscountedPrice from ShoppingCart C
 INNER JOIN Products P

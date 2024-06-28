@@ -3,9 +3,9 @@ import styles from './CategoryMenu.module.css'
 
 const CategoryMenu = () => {
 	const categories = [
-		{ name: 'Gold rings', path: '/Category' },
-		{ name: 'Silver rings', path: '/Silver-rings' },
-		{ name: 'Gold earrings', path: '/Gold-earrings' },
+		{ name: 'Images', path: '/Images' },
+		{ name: 'Rings', path: '/Rings' },
+		{ name: 'Category', path: '/Category' },
 		{ name: 'Silver earrings', path: '/Silver-earrings' },
 	]
 
