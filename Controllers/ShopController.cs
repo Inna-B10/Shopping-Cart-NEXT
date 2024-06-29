@@ -112,33 +112,49 @@ namespace Shopping_Cart_NEXT.Controllers
         }
 
         [EnableCors("MyPolicy")]
-        [HttpPost]
-        [Route("AddProduct")]
+        [HttpPost("AddProduct")]
         public Response AddProduct(Products products)
         {
             SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ShoppingCon")?.ToString());
             Response response = new Response();
             if (products.Id > 0)
             {
-                SqlCommand cmd = new SqlCommand("Insert into ShoppingCart(ProductID) VALUES('" + products.Id + "')", connection);
-                connection.Open();
-                int i = cmd.ExecuteNonQuery();
-                connection.Close();
-                if (i > 0)
+                string sql = "INSERT INTO ShoppingCart(ProductID) VALUES(@ProductId)";
+
+                using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
-                    response.StatusCode = 200;
-                    response.StatusMessage = "Item added";
-                }
-                else
-                {
-                    response.StatusCode = 100;
-                    response.StatusMessage = "No item added";
+                    cmd.Parameters.AddWithValue("@ProductId", products.Id);
+
+                    try
+                    {
+                        connection.Open();
+                        int i = cmd.ExecuteNonQuery();
+                        if (i > 0)
+                        {
+                            response.StatusCode = 200;
+                            response.StatusMessage = "Item added";
+                        }
+                        else
+                        {
+                            response.StatusCode = 100;
+                            response.StatusMessage = "No item added";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        response.StatusCode = 500;
+                        response.StatusMessage = "Error: " + ex.Message;
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
                 }
             }
             else
             {
                 response.StatusCode = 100;
-                response.StatusMessage = "No item found";
+                response.StatusMessage = "Invalid product ID";
 
             }
             return response;
@@ -146,33 +162,49 @@ namespace Shopping_Cart_NEXT.Controllers
         }
 
         [EnableCors("MyPolicy")]
-        [HttpPost]
-        [Route("RemoveProduct")]
+        [HttpPost("RemoveProduct")]
         public Response RemoveProduct(Products products)
         {
             SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ShoppingCon")?.ToString());
             Response response = new Response();
             if (products.Id > 0)
             {
-                SqlCommand cmd = new SqlCommand("Delete from ShoppingCart where ProductId = ('" + products.Id + "')", connection);
-                connection.Open();
-                int i = cmd.ExecuteNonQuery();
-                connection.Close();
-                if (i > 0)
+                string sql = "Delete from ShoppingCart where ProductId = @ProductId";
+
+                using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
-                    response.StatusCode = 200;
-                    response.StatusMessage = "Item removed";
-                }
-                else
-                {
-                    response.StatusCode = 100;
-                    response.StatusMessage = "No item removed";
+                    cmd.Parameters.AddWithValue("@ProductId", products.Id);
+
+                    try
+                    {
+                        connection.Open();
+                        int i = cmd.ExecuteNonQuery();
+                        if (i > 0)
+                        {
+                            response.StatusCode = 200;
+                            response.StatusMessage = "Item removed";
+                        }
+                        else
+                        {
+                            response.StatusCode = 100;
+                            response.StatusMessage = "No item removed";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        response.StatusCode = 500;
+                        response.StatusMessage = "Error: " + ex.Message;
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
                 }
             }
             else
             {
                 response.StatusCode = 100;
-                response.StatusMessage = "No item found";
+                response.StatusMessage = "Invalid product ID";
 
             }
             return response;
@@ -180,8 +212,7 @@ namespace Shopping_Cart_NEXT.Controllers
         }
 
         [EnableCors("MyPolicy")]
-        [HttpGet]
-        [Route("ShoppingCart")]
+        [HttpGet("ShoppingCart")]
         public Response ShoppingCart()
         {
             List<Products> lstproducts = new List<Products>();
