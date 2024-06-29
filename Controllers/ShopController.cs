@@ -66,7 +66,7 @@ namespace Shopping_Cart_NEXT.Controllers
 
         [EnableCors("MyPolicy")]
         [HttpGet]
-        [Route("Category")]
+        [Route("CategoryProducts")]
 
         public Response GetCategoryProducts()
         {

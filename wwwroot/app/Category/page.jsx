@@ -5,7 +5,7 @@ import { fetchData } from '../lib/fetchData'
 export default async function Category() {
 	let initialData = []
 	try {
-		initialData = await fetchData('http://localhost:5176/Shop/Category')
+		initialData = await fetchData('http://localhost:5176/Shop/CategoryProducts')
 	} catch (error) {
 		console.error('Failed to fetch products list data:', error)
 	}
