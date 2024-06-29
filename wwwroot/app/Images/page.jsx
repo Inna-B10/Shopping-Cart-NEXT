@@ -6,6 +6,7 @@ export default async function Images() {
 	let initialData = []
 	try {
 		initialData = await fetchData('http://localhost:5176/Shop/Images')
+		console.log(initialData)
 	} catch (error) {
 		console.error('Failed to fetch products list data:', error)
 	}
@@ -19,16 +20,18 @@ export default async function Images() {
 				<div className='wthreeproductdisplay'>
 					<div className='container'>
 						<div className='top-grid'>
-							{initialData.length > 0
-								? initialData.map((item, index) => (
-										<ProductCart
-											key={index}
-											index={index}
-											item={item}
-											handle='addItem'
-										/>
-								  ))
-								: 'No data'}
+							{initialData
+								? initialData.length > 0
+									? initialData.map((item, index) => (
+											<ProductCart
+												key={index}
+												index={index}
+												item={item}
+												handle='addItem'
+											/>
+									  ))
+									: 'No data'
+								: 'initialData is empty'}
 							<div className='clear'></div>
 						</div>
 					</div>

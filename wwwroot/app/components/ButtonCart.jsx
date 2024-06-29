@@ -10,6 +10,7 @@ export default function ButtonCart({ itemId, handle, updateCart }) {
 				'http://localhost:5176/Shop/RemoveProduct',
 				{ Id: id }
 			)
+			console.log(response)
 			if (response.data.statusCode === 200) {
 				alert('Item removed')
 				if (updateCart) {

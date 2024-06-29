@@ -1,4 +1,7 @@
 
+using Shopping_Cart_NEXT.Services.Interfaces;
+using Shopping_Cart_NEXT.Services;
+
 namespace Shopping_Cart_App
 {
     public class Program
@@ -27,7 +30,10 @@ namespace Shopping_Cart_App
             builder.Services.AddControllers();
             builder.Services.AddRazorPages();
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            // Register the ProductService and its interface
+            builder.Services.AddScoped<IProductService, ProductService>();
+
+            // Add Swagger for API documentation
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -36,6 +42,7 @@ namespace Shopping_Cart_App
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
