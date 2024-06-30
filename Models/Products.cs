@@ -1,4 +1,4 @@
-﻿namespace Shopping_Cart_NEXT.Model
+﻿namespace Shopping_Cart_NEXT.Models
 {
     public class Products
     {

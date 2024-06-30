@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shopping_Cart_NEXT.Model;
+using Shopping_Cart_NEXT.Models;
 using Shopping_Cart_NEXT.Services;
 using Shopping_Cart_NEXT.Services.Interfaces;
 using System.Data;
@@ -17,10 +17,12 @@ namespace Shopping_Cart_NEXT.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly IProductService _productService;
-        public ShopController(IConfiguration configuration, IProductService productService)
+        private readonly ICategoryService _categoryService;
+        public ShopController(IConfiguration configuration, IProductService productService, ICategoryService categoryService)
         {
             _configuration = configuration;
             _productService = productService;
+            _categoryService = categoryService;
         }
 
         [EnableCors("MyPolicy")]
@@ -111,6 +113,30 @@ namespace Shopping_Cart_NEXT.Controllers
                 return StatusCode(response.StatusCode, response);
             }
 
+        }
+
+        [EnableCors("MyPolicy")]
+        [HttpGet("Categories")]
+        public Response GetCategories()
+        {
+            {
+                var categories = _categoryService.GetCategories();
+                Response response = new Response();
+
+                if (categories != null && categories.Count > 0)
+                {
+                    response.StatusCode = 200;
+                    response.StatusMessage = "Data found";
+                    response.listCategories = categories;
+                }
+                else
+                {
+                    response.StatusCode = 100;
+                    response.StatusMessage = "No data found";
+                    response.listCategories = null;
+                }
+                return response;
+            }
         }
     }
 }

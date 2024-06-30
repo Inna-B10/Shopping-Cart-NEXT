@@ -1,6 +1,9 @@
 
 using Shopping_Cart_NEXT.Services.Interfaces;
 using Shopping_Cart_NEXT.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Shopping_Cart_App
 {
@@ -32,6 +35,7 @@ namespace Shopping_Cart_App
 
             // Register the ProductService and its interface
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             // Add Swagger for API documentation
             builder.Services.AddEndpointsApiExplorer();

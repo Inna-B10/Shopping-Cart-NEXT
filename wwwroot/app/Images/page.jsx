@@ -5,7 +5,8 @@ import { fetchData } from '../lib/fetchData'
 export default async function Images() {
 	let initialData = []
 	try {
-		initialData = await fetchData('http://localhost:5176/Shop/Images')
+		const data = await fetchData('http://localhost:5176/Shop/Images')
+		initialData = data.listProducts
 		console.log(initialData)
 	} catch (error) {
 		console.error('Failed to fetch products list data:', error)

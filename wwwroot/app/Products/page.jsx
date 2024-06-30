@@ -2,10 +2,11 @@ import Link from 'next/link'
 import ProductCart from '../components/ProductCart'
 import { fetchData } from '../lib/fetchData'
 
-export default async function Category() {
+export default async function Products() {
 	let initialData = []
 	try {
-		initialData = await fetchData('http://localhost:5176/Shop/CategoryProducts')
+		const data = await fetchData('http://localhost:5176/Shop/CategoryProducts')
+		initialData = data.listProducts
 	} catch (error) {
 		console.error('Failed to fetch products list data:', error)
 	}

@@ -1,5 +1,5 @@
 export const fetchData = async url => {
-	// console.log('Function fetchData called')
+	console.log('Function fetchData called')
 
 	try {
 		// console.log('Before fetch') // Перед запросом
@@ -9,8 +9,8 @@ export const fetchData = async url => {
 			throw new Error(`Failed to fetch data from ${url}, status: ${res.status}`)
 		}
 		const data = await res.json()
-		// console.log('Data received', data.listProducts) // Получение данных
-		return data.listProducts
+		console.log('Data received', data) // Получение данных
+		return data
 	} catch (error) {
 		// console.error('Error fetching data:', error)
 		throw error // Повторное выбрасывание ошибки
