@@ -2,10 +2,17 @@
 {
     public class Products
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Image { get; set; }
-        public decimal ActualPrice { get; set; }
-        public decimal DiscountedPrice { get; set; }
+        public int p_id { get; set; }
+        public string? p_name { get; set; }
+        public int p_cat_id { get; set; }
+        public decimal p_price { get; set; }
+        public decimal p_price_discounted { get; set; }
+        public string? p_desc_short { get; set; }
+        public string? p_desc_full { get; set; }
+        public string? p_article_num { get; set; }
+        public string? p_tags {  get; set; }
+        public bool p_is_stone { get; set; }
+        public string? p_label { get; set; }
+
     }
 }

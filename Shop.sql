@@ -25,10 +25,25 @@
 -----------------------------------------------------------------
 
 
---кодировка utf8
+--изменение кодировки БД на utf8
 
 --ALTER DATABASE ShopDb
 --COLLATE Latin1_General_100_CI_AS_SC_UTF8;
+
+--изменение кодировки столбца на utf8
+--ALTER TABLE Categories
+--ALTER COLUMN cat_name VARCHAR(255) COLLATE Latin1_General_100_CI_AS_SC_UTF8;
+
+--проверка кодировки таблицы
+--SELECT 
+--    TABLE_NAME, 
+--    COLUMN_NAME, 
+--    COLLATION_NAME 
+--FROM 
+--    INFORMATION_SCHEMA.COLUMNS 
+--WHERE 
+--    TABLE_NAME = 'Categories';
+
 
 
 --CREATE TABLE Categories (
@@ -37,13 +52,12 @@
 --	constraint PK_cat_id PRIMARY KEY (cat_id)
 --);
 
+--ALTER TABLE Categories
+--ADD CONSTRAINT UQ_cat_name UNIQUE (cat_name);
 
 --insert into Categories (cat_name)
 --values ('Earrings'), ('Necklaces'),('Bracelets'),('Anklets'),('Brooches'),('Pendants'),('Sets')
 
-
-
-use ShopDb
 
 CREATE TABLE Products (
     prod_id INT IDENTITY(1,1),
@@ -51,7 +65,6 @@ CREATE TABLE Products (
     cat_id INT NOT NULL,
     prod_price DECIMAL(18,2) NOT NULL,
     prod_price_discounted DECIMAL(18,2) NULL,
-    prod_size INT NULL,
     prod_desc_short VARCHAR(255) NULL,
     prod_desc_full VARCHAR(MAX) NULL,
     prod_article_num VARCHAR(50) NULL,
@@ -63,24 +76,31 @@ CREATE TABLE Products (
 );
 
 -- Индексирование
-CREATE INDEX idx_prod_name ON Products(prod_name);
-CREATE INDEX idx_cat_id ON Products(cat_id);
-CREATE INDEX idx_prod_price ON Products(prod_price);
-CREATE INDEX idx_prod_article_num ON Products(prod_article_num);
+--CREATE INDEX idx_prod_name ON Products(prod_name);
+--CREATE INDEX idx_cat_id ON Products(cat_id);
+--CREATE INDEX idx_prod_price ON Products(prod_price);
+--CREATE INDEX idx_prod_article_num ON Products(prod_article_num);
 
 -- Уникальные ограничения
-ALTER TABLE Products
-ADD CONSTRAINT UQ_prod_article_num UNIQUE (prod_article_num);
+--ALTER TABLE Products
+--ADD CONSTRAINT UQ_prod_article_num UNIQUE (prod_article_num);
+
+--ALTER TABLE Products
+--ADD CONSTRAINT UQ_prod_name UNIQUE (prod_name);
 
 -- Ограничение на диапазон значений prod_price и prod_price_discount
-ALTER TABLE Products
-ADD CONSTRAINT CK_prod_price CHECK (prod_price >= 0);
+--ALTER TABLE Products
+--ADD CONSTRAINT CK_prod_price CHECK (prod_price >= 0);
 
-ALTER TABLE Products
-ADD CONSTRAINT CK_prod_price_discounted CHECK (prod_price_discounted >= 0);
+--ALTER TABLE Products
+--ADD CONSTRAINT CK_prod_price_discounted CHECK (prod_price_discounted >= 0);
 
+--составление меню категорий
+--select cat_name from Categories
+--union all
+--select prod_label from Products
 
-
+use ShopDb
 
 insert into Products(prod_name, cat_id,prod_price,prod_price_discounted,prod_desc_short,prod_desc_full,prod_article_num,prod_tags,prod_is_stone,prod_label)
 values('Clara', 1,4998,4248,'Diamantring i 375 hvitt gull 0,11 ct',
@@ -92,14 +112,16 @@ values('Nora', 1,3499,'Diamantring i 375 gult gull 0,09 ct',
 'Klassisk diamantring i 375 (9 karat) gult gull med tre skinnende diamanter på totalt 0,09 ct. To av diamantene er 0,025 ct og den midterste diamanten er 0,04 ct. Diamantene har 16/16 slip med brilliant form som betyr at det er 16 fasetter på overdelen og 16 fasetter på underdelen. Ringen finnes også i hvitt gull og er en av våre bestselgere blant konfirmasjonsgaver til henne. Dette er en tidløs og vakker ring. Ringen er 2 mm bred og er fin i kombinasjon med flere ringer.',
 '56471', 'gold', 1,'new')
 
-select * from Categories order by cat_name
+insert into Products(prod_name, cat_id,prod_price,prod_desc_short,prod_desc_full,prod_article_num,prod_tags,prod_is_stone,prod_label)
+values('Nora', 1,3499,'Diamantring i 375 gult gull 0,09 ct',
+'Klassisk diamantring i 375 (9 karat) gult gull med tre skinnende diamanter på totalt 0,09 ct. To av diamantene er 0,025 ct og den midterste diamanten er 0,04 ct. Diamantene har 16/16 slip med brilliant form som betyr at det er 16 fasetter på overdelen og 16 fasetter på underdelen. Ringen finnes også i hvitt gull og er en av våre bestselgere blant konfirmasjonsgaver til henne. Dette er en tidløs og vakker ring. Ringen er 2 mm bred og er fin i kombinasjon med flere ringer.',
+'56471', 'gold', 1,'new')
 
-
-
-
-
-
-
+SELECT p.*, c.cat_name 
+FROM Products p
+INNER JOIN 
+Categories c ON p.cat_id = c.cat_id
+WHERE p.cat_id = 1;
 
 
 
@@ -117,9 +139,13 @@ ON C.ProductID = P.Id;
 
 --delete from ShoppingCart where ProductID = 6
 
+--ALTER TABLE Products
+--DROP COLUMN prod_size;
+
 
 
 select * from Products
+select * from Categories
 select * from ShoppingCart
 
 drop table Products

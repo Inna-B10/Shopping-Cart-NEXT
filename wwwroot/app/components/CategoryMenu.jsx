@@ -40,13 +40,18 @@ export default function CategoryMenu() {
 					? initialData.map((item, index) => (
 							<li key={index}>
 								{item.cat_name.includes('%') ? (
-									<Link href={`discount-${item.cat_name.replace('%', '')}`}>
+									<Link
+										href={`../Products/Discount-${item.cat_name.replace(
+											'%',
+											''
+										)}`}>
 										Discount {item.cat_name}
 									</Link>
 								) : (
-									<Link href={item.cat_name}>{item.cat_name}</Link>
+									<Link href={`../Products/${item.cat_name}`}>
+										{item.cat_name}
+									</Link>
 								)}
-								{/* <Link href={catLink}>{item.cat_name}</Link> */}
 							</li>
 					  ))
 					: 'No data'

@@ -21,7 +21,7 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 			<div className='cart-grid' id={`cart-${index}`}>
 				<div className='img'>
 					{/* <img src={`./assets/images/${item.image}`} alt='img' /> */}
-					<img src={`./media/${item.image}`} alt='img' />
+					<img src={`../media/${item.image}`} alt='img' />
 				</div>
 				<div className='prod-name'>{item.name}</div>
 				<ul className='info'>

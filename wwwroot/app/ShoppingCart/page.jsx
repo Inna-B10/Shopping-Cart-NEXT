@@ -10,7 +10,7 @@ export default function ShoppingCart() {
 		async function getData() {
 			try {
 				const data = await fetchData('http://localhost:5176/Shop/ShoppingCart')
-				setInitialData(data.listProducts)
+				setInitialData(data.listImages)
 				//console.log(data)
 			} catch (error) {
 				console.error('Failed to fetch shopping cart data:', error)
