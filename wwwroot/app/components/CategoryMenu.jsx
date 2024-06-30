@@ -12,13 +12,14 @@ export default function CategoryMenu() {
 	]
 
 	const [initialData, setInitialData] = useState()
+	let catLink
 
 	useEffect(() => {
 		async function getData() {
 			try {
 				const data = await fetchData('http://localhost:5176/Shop/Categories')
 				setInitialData(data.listCategories)
-				console.log(data)
+				// console.log(data)
 			} catch (error) {
 				console.error('Failed to fetch shopping cart data:', error)
 			}
@@ -38,7 +39,14 @@ export default function CategoryMenu() {
 				? initialData.length > 0
 					? initialData.map((item, index) => (
 							<li key={index}>
-								<Link href={`/${item.cat_name}`}>{item.cat_name}</Link>
+								{item.cat_name.includes('%') ? (
+									<Link href={`discount-${item.cat_name.replace('%', '')}`}>
+										Discount {item.cat_name}
+									</Link>
+								) : (
+									<Link href={item.cat_name}>{item.cat_name}</Link>
+								)}
+								{/* <Link href={catLink}>{item.cat_name}</Link> */}
 							</li>
 					  ))
 					: 'No data'
