@@ -1,0 +1,86 @@
+.productCart {
+  border: 10px solid #fff;
+  background-color: #fff;
+  /* animation: animation-2832343 0.42s cubic-bezier(0.4, 0, 0.2, 1) 0s normal forwards; */
+}
+
+/* @keyframes animation-2832343 {
+  from {
+
+    top: 0%;
+    left: 0%;
+    opacity: 1;
+    z-index: 4;
+    transform: rotate(0deg);
+  }
+
+  to {
+
+    top: 0%;
+    left: 0%;
+    opacity: 1;
+    z-index: 6;
+    transform: rotate(0deg);
+    border-radius: 0px 0px 4px 4px;
+    background: linear-gradient(180deg, #fcfaf600 0%, #fcfaf6ff 5%);
+  }
+} */
+
+.productCart:hover {
+  background-size: cover;
+  transform: scale(1.01);
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+
+  .cartName,
+  .cartPrice,
+  .cartPriceRed,
+  .cartPriceThrough,
+  .cartDesc {
+    display: none;
+  }
+
+  .cartTop,
+  .cartBottom {
+    border: none;
+  }
+}
+
+.cartTop {
+  border: solid 1px #d0af51;
+  border-bottom: none;
+  position: relative;
+}
+
+.cartBottom {
+  border: solid 1px #d0af51;
+  border-top: none;
+}
+
+.cartName {
+  color: #270200;
+  padding: 10px;
+  background-image: url('/images/titleGold.png');
+  background-size: cover;
+}
+
+.cartDesc {
+  padding: 10px;
+}
+
+.priceBanner {
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.cartPrice {
+  font-size: medium;
+}
+
+.cartPriceRed {
+  padding-left: 10px;
+  color: #a10909;
+}
+
+.cartPriceThrough {
+  text-decoration: line-through;
+}

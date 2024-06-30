@@ -1,10 +1,9 @@
-import Link from 'next/link'
+// import Link from 'next/link'
 import ProductCart from '../../components/ProductCart'
 import { fetchData } from '../../lib/fetchData'
 
 export default async function Products({ params }) {
 	const { cat_name } = params
-	console.log(cat_name)
 	let initialData = []
 	try {
 		const data = await fetchData(
@@ -17,13 +16,13 @@ export default async function Products({ params }) {
 
 	return (
 		<div>
-			<div className='banner'>
-				<div className='banner-layer'>
-					<h1 className='title-w3layouts'>Products list</h1>
+			<div>
+				<div>
+					<h1>{cat_name}</h1>
 				</div>
-				<div className='wthreeproductdisplay'>
-					<div className='container'>
-						<div className='top-grid'>
+				<div>
+					<div>
+						<div className='flex'>
 							{initialData
 								? initialData.length > 0
 									? initialData.map((item, index) => (
@@ -34,22 +33,11 @@ export default async function Products({ params }) {
 												handle='addItem'
 											/>
 									  ))
-									: 'No data'
-								: 'initialData is empty'}
+									: 'Category is empty'
+								: 'No data'}
 							<div className='clear'></div>
 						</div>
 					</div>
-				</div>
-				<div className='wthreecartaits wthreecartaits2 cart cart box_1'>
-					<Link href='/ShoppingCart'>
-						<button className='w3view-cart'>
-							view cart
-							<span className='fa fa-cart-arrow-down' aria-hidden='true'></span>
-						</button>
-					</Link>
-				</div>
-				<div className='copyright text-center'>
-					<p>footer</p>
 				</div>
 			</div>
 		</div>

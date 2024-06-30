@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import ProductCart from '../components/ProductCart'
+import ImageCart from '../components/ImageCart'
 import { fetchData } from '../lib/fetchData'
 
 export default function ShoppingCart() {
@@ -37,7 +37,7 @@ export default function ShoppingCart() {
 						<div className='top-grid'>
 							{initialData?.length > 0
 								? initialData.map((item, index) => (
-										<ProductCart
+										<ImageCart
 											key={index}
 											index={index}
 											item={item}

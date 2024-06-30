@@ -7,7 +7,6 @@ export default function CategoryMenu() {
 	const categories = [
 		{ name: 'Images', path: '/Images' },
 		{ name: 'Rings', path: '/Rings' },
-		{ name: 'Products', path: '/Products' },
 		{ name: 'Silver earrings', path: '/Silver-earrings' },
 	]
 
