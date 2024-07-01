@@ -11,7 +11,6 @@ export default function CategoryMenu() {
 	]
 
 	const [initialData, setInitialData] = useState()
-	let catLink
 
 	useEffect(() => {
 		async function getData() {

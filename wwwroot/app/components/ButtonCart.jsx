@@ -1,7 +1,13 @@
 'use client'
-// import axios from 'axios'
 import axios, { AxiosError } from 'axios'
 import PropTypes from 'prop-types'
+import styles from './ButtonCart.module.css'
+
+ButtonCart.propTypes = {
+	itemId: PropTypes.number.isRequired,
+	handle: PropTypes.string.isRequired,
+	updateCart: PropTypes.func,
+}
 
 export default function ButtonCart({ itemId, handle, updateCart }) {
 	const handleRemoveProduct = async id => {
@@ -50,11 +56,7 @@ export default function ButtonCart({ itemId, handle, updateCart }) {
 	}
 
 	return (
-		<button
-			type='submit'
-			className='button w3l-cart'
-			data-id={`cart-${itemId}`}
-			onClick={handleClick}>
+		<button type='submit' className={styles.cartShopIcon} onClick={handleClick}>
 			<svg
 				width='27'
 				height='27'
@@ -70,10 +72,4 @@ export default function ButtonCart({ itemId, handle, updateCart }) {
 			{/* {handle === 'addItem' ? 'Add item' : 'Remove item'} */}
 		</button>
 	)
-}
-
-ButtonCart.propTypes = {
-	itemId: PropTypes.number.isRequired,
-	handle: PropTypes.string.isRequired,
-	updateCart: PropTypes.func,
 }

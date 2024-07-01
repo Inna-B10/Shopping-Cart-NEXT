@@ -40,28 +40,33 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 		fetch(hoverImgPath).then(res => {
 			if (res.ok) {
 				setHoverImage(hoverImgPath)
+			} else {
+				setHoverImage(mainImgPath)
 			}
 		})
 	}, [item.p_cat_id, item.p_name])
 
-	const handleMouseEnter = () => {
-		if (hoverImage) {
-			setCurrentImage(hoverImage)
-		}
-	}
-
-	const handleMouseLeave = () => {
-		setCurrentImage(mainImage)
-	}
+	// 	const handleMouseEnter = () => {
+	// 		{
+	// 			setCurrentImage(hoverImage)
+	// 		}
+	// 	}
+	//
+	// 	const handleMouseLeave = () => {
+	// 		setCurrentImage(mainImage)
+	// 	}
 	return (
 		<Fragment>
-			<div className={`flex column ${styles.productCart}`}>
-				<div className={styles.cartHover}>
+			<div
+				className={`flex column ${styles.productCart}`}
+				style={{ backgroundImage: `url(${hoverImage})` }}>
+				<div className={styles.cartWrap}>
 					<div className={`flex column ${styles.cartTop}`}>
 						<img
+							className={styles.cartImage}
 							src={currentImage}
-							onMouseEnter={handleMouseEnter}
-							onMouseLeave={handleMouseLeave}
+							// onMouseEnter={handleMouseEnter}
+							// onMouseLeave={handleMouseLeave}
 							alt='img'
 							width={280}
 							height={260}
@@ -85,16 +90,16 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 									<div className={styles.cartPrice}>${item.p_price},-</div>
 								)}
 							</div>
-							<div>
-								<ButtonCart
-									key={index}
-									itemId={item.p_id}
-									handle={handle}
-									updateCart={updateCart}
-								/>
-							</div>
 						</div>
 					</div>
+				</div>
+				<div>
+					<ButtonCart
+						key={index}
+						itemId={item.p_id}
+						handle={handle}
+						updateCart={updateCart}
+					/>
 				</div>
 			</div>
 		</Fragment>
