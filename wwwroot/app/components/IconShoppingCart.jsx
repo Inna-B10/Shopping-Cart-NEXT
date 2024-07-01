@@ -1,15 +1,15 @@
 'use client'
 import axios, { AxiosError } from 'axios'
 import PropTypes from 'prop-types'
-import styles from './ButtonCart.module.css'
+import styles from './IconShoppingCart.module.css'
 
-ButtonCart.propTypes = {
+IconShoppingCart.propTypes = {
 	itemId: PropTypes.number.isRequired,
 	handle: PropTypes.string.isRequired,
 	updateCart: PropTypes.func,
 }
 
-export default function ButtonCart({ itemId, handle, updateCart }) {
+export default function IconShoppingCart({ itemId, handle, updateCart }) {
 	const handleRemoveProduct = async id => {
 		try {
 			const response = await axios.post(

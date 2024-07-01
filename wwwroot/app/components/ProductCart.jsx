@@ -1,7 +1,9 @@
 'use client'
 import PropTypes from 'prop-types'
 import { Fragment, useEffect, useState } from 'react'
-import ButtonCart from './ButtonCart'
+import IconFavorites from './IconFavorites'
+import IconLabel from './IconLabel'
+import IconShoppingCart from './IconShoppingCart'
 import styles from './ProductCart.module.css'
 
 ProductCart.propTypes = {
@@ -94,12 +96,18 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 					</div>
 				</div>
 				<div>
-					<ButtonCart
+					<IconShoppingCart
 						key={index}
 						itemId={item.p_id}
 						handle={handle}
 						updateCart={updateCart}
 					/>
+				</div>
+				<div>
+					<IconFavorites />
+				</div>
+				<div>
+					<IconLabel />
 				</div>
 			</div>
 		</Fragment>
