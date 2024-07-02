@@ -1,7 +1,15 @@
+import { Cinzel_Decorative } from 'next/font/google'
 import Image from 'next/image'
 import ProductCart from '../../components/ProductCart'
 import { fetchData } from '../../lib/fetchData'
 import styles from './page.module.css'
+
+const cinzel = Cinzel_Decorative({
+	weight: ['400', '700'],
+	subsets: ['latin'],
+	variable: '--font-cinzel',
+	display: 'swap',
+})
 
 export default async function Products({ params }) {
 	const { cat_name } = params
@@ -18,7 +26,7 @@ export default async function Products({ params }) {
 	return (
 		<>
 			<div>
-				<h1 className={styles.catName}>{cat_name}</h1>
+				<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
 			</div>
 			<div className={styles.filters}>
 				<Image
@@ -29,18 +37,18 @@ export default async function Products({ params }) {
 				/>
 			</div>
 			<div className={`${styles.galleryWrapper} flex`}>
-				{initialData
-					? initialData.length > 0
-						? initialData.map((item, index) => (
-								<ProductCart
-									key={index}
-									index={index}
-									item={item}
-									handle='addItem'
-								/>
-						  ))
-						: 'Category is empty'
-					: 'No data'}
+				{initialData && initialData.length > 0 ? (
+					initialData.map((item, index) => (
+						<ProductCart
+							key={index}
+							index={index}
+							item={item}
+							handle='addItem'
+						/>
+					))
+				) : (
+					<p>{initialData ? 'Category is empty' : 'No data'}</p>
+				)}
 				<div className='clear'></div>
 			</div>
 		</>

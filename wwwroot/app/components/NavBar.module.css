@@ -1,12 +1,20 @@
 .navBar {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 40px;
+  width: 100%;
+  height: 3.2vw;
+  padding: 0.938rem 2.5rem;
   background-color: #561b0b;
   color: #fff;
   font-family: var(--font-prosto);
-  font-size: 20px;
-  line-height: 120%;
+  font-size: 1.25rem;
+}
+
+.siteMenu {
+  float: left;
+  line-height: 150%;
+}
+
+.userMenu {
+  float: right;
 }
 
 ul.userMenu,
@@ -42,9 +50,27 @@ ul.siteMenu > li:hover {
 }
 
 .searchField {
-  /* text-align: center; */
+  position: absolute;
+  left: calc(50% - 10vw);
 }
 
-.navMenu span {
-  /* position: relative; */
+.searchField input {
+  position: relative;
+  top: -5px;
+  width: 20vw;
+  padding-left: 2.188rem;
+  line-height: 200%;
+  border: none;
+  border-radius: 2px;
+}
+
+.searchField::before {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  content: url('/images/icons/search.svg');
+  width: 1.5 rem;
+  height: 1.5 rem;
+  display: block;
+  z-index: 1;
 }

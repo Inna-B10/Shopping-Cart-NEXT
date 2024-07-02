@@ -1,10 +1,5 @@
-import {
-	Cinzel_Decorative,
-	El_Messiri,
-	Marcellus,
-	Prosto_One,
-	Red_Hat_Text,
-} from 'next/font/google'
+// import { El_Messiri, Marcellus } from 'next/font/google'
+import { Marcellus } from 'next/font/google'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import './globals.css'
@@ -16,30 +11,12 @@ const marcellus = Marcellus({
 	display: 'swap',
 })
 
-const messiri = El_Messiri({
-	weight: ['400', '700'],
-	subsets: ['latin'],
-	variable: '--font-messiri',
-	display: 'swap',
-})
-const cinzel = Cinzel_Decorative({
-	weight: ['400', '700'],
-	subsets: ['latin'],
-	variable: '--font-cinzel',
-	display: 'swap',
-})
-const prosto = Prosto_One({
-	weight: ['400'],
-	subsets: ['latin'],
-	variable: '--font-prosto',
-	display: 'swap',
-})
-const redHat = Red_Hat_Text({
-	weight: ['400'],
-	subsets: ['latin'],
-	variable: '--font-redHat',
-	display: 'swap',
-})
+// const messiri = El_Messiri({
+// 	weight: ['400', '700'],
+// 	subsets: ['latin'],
+// 	variable: '--font-messiri',
+// 	display: 'swap',
+// })
 
 export const metadata = {
 	title: 'Create Next App',
@@ -50,7 +27,8 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang='en'>
 			<body
-				className={`${marcellus.variable} ${messiri.variable} ${prosto.variable} ${cinzel.variable} ${redHat.variable}`}>
+				// className={`${marcellus.variable} ${messiri.variable} ${prosto.variable}`}>
+				className={marcellus.variable}>
 				<Header />
 				{children}
 				<Footer />
