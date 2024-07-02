@@ -23,9 +23,9 @@ ul.siteMenu > li:hover {
 }
 
 .categoryMenu {
-  /* display: none; */
+  display: none;
   position: absolute;
-  top: 110%;
+  top: 100%;
   left: 0px;
   z-index: 10;
   background: linear-gradient(180deg, rgba(252, 250, 246, 0), #fcfaf6 6%);

@@ -8,10 +8,13 @@ export default async function CategoryMenu() {
 		{ name: 'Rings', path: '/Rings' },
 		{ name: 'Silver earrings', path: '/Silver-earrings' },
 	]
+
 	let categories = []
 	try {
-		const data = await fetchData('http://localhost:5176/Shop/Categories')
-		categories = await data.listCategories
+		const data = await fetchData('http://localhost:5176/Shop/Categories', {
+			next: { revalidate: 60 },
+		})
+		categories = data.listCategories || []
 	} catch (error) {
 		console.error('Error fetching categories:', error)
 	}
