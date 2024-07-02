@@ -27,7 +27,7 @@ ProductCart.propTypes = {
 }
 
 export default function ProductCart({ index, item, handle, updateCart }) {
-	console.log(item)
+	// console.log(item)
 	const [mainImage, setMainImage] = useState('')
 	const [hoverImage, setHoverImage] = useState('')
 	const [currentImage, setCurrentImage] = useState('')
@@ -77,21 +77,19 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 					</div>
 					<div className={`flex column ${styles.cartBottom}`}>
 						<div className={styles.cartDesc}>{item.p_desc_short}</div>
-						<div className={`flex ${styles.priceBanner}`}>
-							<div className='flex'>
-								{item.p_price_discounted ? (
-									<>
-										<div className={styles.cartPriceThrough}>
-											${item.p_price},-
-										</div>
-										<div className={styles.cartPriceRed}>
-											${item.p_price_discounted},-
-										</div>
-									</>
-								) : (
-									<div className={styles.cartPrice}>${item.p_price},-</div>
-								)}
-							</div>
+						<div className={styles.cartPrice}>
+							{item.p_price_discounted ? (
+								<>
+									<span className={styles.cartPriceThrough}>
+										${item.p_price},-
+									</span>
+									<span className={styles.cartPriceRed}>
+										${item.p_price_discounted},-
+									</span>
+								</>
+							) : (
+								`${item.p_price},-`
+							)}
 						</div>
 					</div>
 				</div>

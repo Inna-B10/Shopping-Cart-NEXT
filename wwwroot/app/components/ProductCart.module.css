@@ -1,7 +1,10 @@
 .productCart {
+  position: relative;
   width: 280px;
   /* height: 340px; */
-  position: relative;
+  font-family: var(--font-marcellus);
+  line-height: 120%;
+  color: #270200;
   border: 10px solid #fff;
   background-size: cover;
   background-position: center;
@@ -48,8 +51,8 @@
 }
 
 .cartTop {
-  border-bottom: none;
   position: relative;
+  border-bottom: none;
 }
 
 .cartImage {
@@ -65,7 +68,7 @@
   bottom: 0px;
   left: 0px;
   width: 100%;
-  color: #270200;
+  font-size: 20px;
   background-image: url('/images/titleGold.png');
   background-size: cover;
 }
@@ -77,15 +80,14 @@
 }
 
 .cartDesc {
-  font-size: small;
-}
-
-.priceBanner {
-  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 
 .cartPrice {
-  font-size: medium;
+  padding: 0 0 10px 10px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .cartPriceRed {

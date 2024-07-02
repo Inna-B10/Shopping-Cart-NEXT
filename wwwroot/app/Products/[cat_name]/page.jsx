@@ -1,6 +1,7 @@
-// import Link from 'next/link'
+import Image from 'next/image'
 import ProductCart from '../../components/ProductCart'
 import { fetchData } from '../../lib/fetchData'
+import styles from './page.module.css'
 
 export default async function Products({ params }) {
 	const { cat_name } = params
@@ -15,31 +16,33 @@ export default async function Products({ params }) {
 	}
 
 	return (
-		<div>
+		<>
 			<div>
-				<div>
-					<h1>{cat_name}</h1>
-				</div>
-				<div>
-					<div>
-						<div className='flex'>
-							{initialData
-								? initialData.length > 0
-									? initialData.map((item, index) => (
-											<ProductCart
-												key={index}
-												index={index}
-												item={item}
-												handle='addItem'
-											/>
-									  ))
-									: 'Category is empty'
-								: 'No data'}
-							<div className='clear'></div>
-						</div>
-					</div>
-				</div>
+				<h1 className={styles.catName}>{cat_name}</h1>
 			</div>
-		</div>
+			<div className={styles.filters}>
+				<Image
+					src='../../../images/icons/filters.svg'
+					width={38}
+					height={38}
+					alt='Filters icon'
+				/>
+			</div>
+			<div className={`${styles.galleryWrapper} flex`}>
+				{initialData
+					? initialData.length > 0
+						? initialData.map((item, index) => (
+								<ProductCart
+									key={index}
+									index={index}
+									item={item}
+									handle='addItem'
+								/>
+						  ))
+						: 'Category is empty'
+					: 'No data'}
+				<div className='clear'></div>
+			</div>
+		</>
 	)
 }

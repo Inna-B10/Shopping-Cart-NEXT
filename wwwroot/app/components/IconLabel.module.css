@@ -8,13 +8,12 @@
 }
 
 .labelText {
-  padding: 8px;
+  padding: 5px;
   text-align: center;
   color: #fff;
-  font-family: 'Red Hat Text';
+  font-family: var(--font-redHat);
   font-size: 10px;
   font-weight: 700;
-
-
-
+  line-height: 20px;
+  letter-spacing: 0.1em;
 }

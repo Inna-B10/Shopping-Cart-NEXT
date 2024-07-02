@@ -4,6 +4,9 @@
   padding: 15px 40px;
   background-color: #561b0b;
   color: #fff;
+  font-family: var(--font-prosto);
+  font-size: 20px;
+  line-height: 120%;
 }
 
 ul.userMenu,

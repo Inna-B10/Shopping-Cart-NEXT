@@ -1,0 +1,19 @@
+.catName {
+  font-size: 48px;
+  letter-spacing: 0.1em;
+  line-height: 120%;
+  text-transform: uppercase;
+  font-family: var(--font-cinzel);
+  color: #561b0b;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.filters {
+  padding: 40px;
+}
+
+.galleryWrapper {
+  padding: 20px 30px;
+  gap: 60px 30px;
+}
