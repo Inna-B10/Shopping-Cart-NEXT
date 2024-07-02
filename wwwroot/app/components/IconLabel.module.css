@@ -2,4 +2,19 @@
   position: absolute;
   top: 10px;
   left: 0px;
+  width: 3vw;
+  border-radius: 0 5px 5px 0;
+  background-color: #A10909;
+}
+
+.labelText {
+  padding: 8px;
+  text-align: center;
+  color: #fff;
+  font-family: 'Red Hat Text';
+  font-size: 10px;
+  font-weight: 700;
+
+
+
 }

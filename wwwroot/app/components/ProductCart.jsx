@@ -107,7 +107,7 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 					<IconFavorites />
 				</div>
 				<div>
-					<IconLabel />
+					<IconLabel label={item.p_label} />
 				</div>
 			</div>
 		</Fragment>
