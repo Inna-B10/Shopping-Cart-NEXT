@@ -1,4 +1,22 @@
 .catLinks {
-  position: absolute;
-  margin-left: 1rem;
+  padding: 1rem 0.5rem;
+  font-size: 18px;
+  color: #561b0b;
+  font-family: 'Prosto One';
+  line-height: 120%;
+}
+
+.catLinks li {
+  text-wrap: nowrap;
+  padding: 5px;
+}
+
+.catLinks li:hover:nth-child(even) {
+  text-decoration: underline;
+  color: #D0AF51;
+}
+
+.catLinks li:hover:nth-child(odd) {
+  text-decoration: underline;
+  color: #829B9B;
 }

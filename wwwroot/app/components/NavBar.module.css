@@ -1,4 +1,4 @@
-.navMenu {
+.navBar {
   display: flex;
   justify-content: space-between;
   padding: 15px 40px;
@@ -6,17 +6,37 @@
   color: #fff;
 }
 
-ul.userMenu > li:hover,
-ul.menuLinks > li:hover {
-  text-decoration: underline 2px;
-  text-underline-offset: 3px;
-}
-
 ul.userMenu,
-ul.menuLinks {
+ul.siteMenu {
   gap: 10px;
 }
 
+ul.userMenu > li:hover,
+ul.siteMenu > li:hover {
+  text-decoration: underline 2px;
+  text-underline-offset: 3px;
+  -webkit-text-decoration: underline 2px;
+}
+
+.siteMenu li {
+  position: relative;
+}
+
+.categoryMenu {
+  /* display: none; */
+  position: absolute;
+  top: 110%;
+  left: 0px;
+  z-index: 10;
+  background: linear-gradient(180deg, rgba(252, 250, 246, 0), #fcfaf6 6%);
+  border-radius: 4px 4px 0 0;
+}
+
+.siteMenu li:hover {
+  .categoryMenu {
+    display: block;
+  }
+}
 
 .searchField {
   /* text-align: center; */

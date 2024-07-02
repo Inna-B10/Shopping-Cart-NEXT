@@ -1,41 +1,32 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 import { fetchData } from '../lib/fetchData'
 import styles from './CategoryMenu.module.css'
 
-export default function CategoryMenu() {
-	const categories = [
+export default async function CategoryMenu() {
+	const initialData = [
 		{ name: 'Images', path: '/Images' },
 		{ name: 'Rings', path: '/Rings' },
 		{ name: 'Silver earrings', path: '/Silver-earrings' },
 	]
-
-	const [initialData, setInitialData] = useState()
-
-	useEffect(() => {
-		async function getData() {
-			try {
-				const data = await fetchData('http://localhost:5176/Shop/Categories')
-				setInitialData(data.listCategories)
-				// console.log(data)
-			} catch (error) {
-				console.error('Failed to fetch shopping cart data:', error)
-			}
-		}
-		getData()
-	}, [])
+	let categories = []
+	try {
+		const data = await fetchData('http://localhost:5176/Shop/Categories')
+		categories = await data.listCategories
+	} catch (error) {
+		console.error('Error fetching categories:', error)
+	}
 
 	return (
 		<ul className={styles.catLinks}>
-			{categories.map(category => (
+			{initialData.map(category => (
 				<li key={category.name}>
 					<Link href={category.path}>{category.name}</Link>
 				</li>
 			))}
 			<li>------------------</li>
-			{initialData
-				? initialData.length > 0
-					? initialData.map((item, index) => (
+			{categories
+				? categories.length > 0
+					? categories.map((item, index) => (
 							<li key={index}>
 								{item.cat_name.includes('%') ? (
 									<Link
