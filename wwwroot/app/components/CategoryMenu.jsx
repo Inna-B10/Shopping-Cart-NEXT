@@ -41,7 +41,8 @@ export default async function CategoryMenu() {
 									</Link>
 								) : (
 									<Link href={`../Products/${item.cat_name}`}>
-										{item.cat_name}
+										{item.cat_name.charAt(0).toUpperCase() +
+											item.cat_name.slice(1)}
 									</Link>
 								)}
 							</li>

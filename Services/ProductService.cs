@@ -42,7 +42,7 @@ namespace Shopping_Cart_NEXT.Services
             return products;
         }
 
-        public List<Products> GetProducts()
+        public List<Products> GetAllProducts()
         {
             DataTable dt = new DataTable();
 
@@ -53,6 +53,28 @@ namespace Shopping_Cart_NEXT.Services
 
                 using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+
+            return MapDataTableToProducts(dt);
+        }
+
+        public List<Products> GetProductsByCategory(string cat_name)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                string sql = "SELECT p.*, c.cat_name FROM Products p INNER JOIN Categories c ON p.cat_id = c.cat_id WHERE c.cat_name = @CategoryName or p.prod_label = @CategoryName;";
+
+                using (SqlCommand cmd = new SqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@CategoryName", cat_name);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);

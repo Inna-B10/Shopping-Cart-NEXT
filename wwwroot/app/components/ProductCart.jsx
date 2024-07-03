@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import PropTypes from 'prop-types'
 import { Fragment, useEffect, useState } from 'react'
 import IconFavorites from './IconFavorites'
@@ -31,10 +32,11 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 	const [mainImage, setMainImage] = useState('')
 	const [hoverImage, setHoverImage] = useState('')
 	const [currentImage, setCurrentImage] = useState('')
+	const [isHovered, setIsHovered] = useState(false)
 
 	useEffect(() => {
-		const mainImgPath = `../media/${item.p_cat_id}/${item.p_name}/main.webp`
-		const hoverImgPath = `../media/${item.p_cat_id}/${item.p_name}/hover.webp`
+		const mainImgPath = `/media/${item.p_cat_id}/${item.p_name}/main.webp`
+		const hoverImgPath = `/media/${item.p_cat_id}/${item.p_name}/hover.webp`
 
 		setMainImage(mainImgPath)
 		setCurrentImage(mainImgPath)
@@ -48,27 +50,29 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 		})
 	}, [item.p_cat_id, item.p_name])
 
-	// 	const handleMouseEnter = () => {
-	// 		{
-	// 			setCurrentImage(hoverImage)
-	// 		}
-	// 	}
-	//
-	// 	const handleMouseLeave = () => {
-	// 		setCurrentImage(mainImage)
-	// 	}
+	const handleMouseEnter = () => {
+		{
+			// setCurrentImage(hoverImage)
+			setIsHovered(true)
+		}
+	}
+
+	const handleMouseLeave = () => {
+		// setCurrentImage(mainImage)
+		setIsHovered(false)
+	}
 	return (
 		<Fragment>
 			<div
 				className={`flex column ${styles.productCart}`}
-				style={{ backgroundImage: `url(${hoverImage})` }}>
+				style={{ backgroundImage: `url(${hoverImage})` }}
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}>
 				<div className={styles.cartWrap}>
 					<div className={`flex column ${styles.cartTop}`}>
-						<img
+						<Image
 							className={styles.cartImage}
 							src={currentImage}
-							// onMouseEnter={handleMouseEnter}
-							// onMouseLeave={handleMouseLeave}
 							alt='img'
 							width={280}
 							height={260}
@@ -105,7 +109,7 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 					<IconFavorites />
 				</div>
 				<div>
-					<IconLabel label={item.p_label} />
+					<IconLabel label={item.p_label} isHovered={isHovered} />
 				</div>
 			</div>
 		</Fragment>

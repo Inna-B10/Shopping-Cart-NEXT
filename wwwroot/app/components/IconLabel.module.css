@@ -7,6 +7,10 @@
   background-color: #A10909;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .labelText {
   padding: 5px 0;
   text-align: center;

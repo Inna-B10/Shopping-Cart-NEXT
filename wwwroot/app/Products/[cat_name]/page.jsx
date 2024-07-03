@@ -12,11 +12,19 @@ const cinzel = Cinzel_Decorative({
 })
 
 export default async function Products({ params }) {
-	const { cat_name } = params
+	let { cat_name } = params
+	let queryName
+	if (cat_name && cat_name.includes('Discount-')) {
+		const nameArr = cat_name.split('-')
+		queryName = nameArr[1] + '%'
+		cat_name = cat_name + '%'
+	} else {
+		queryName = cat_name
+	}
 	let initialData = []
 	try {
 		const data = await fetchData(
-			`http://localhost:5176/Shop/Products?cat_name=${cat_name}`
+			`http://localhost:5176/Shop/Products?cat_name=${queryName}`
 		)
 		initialData = data.listProducts
 	} catch (error) {

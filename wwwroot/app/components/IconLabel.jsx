@@ -7,9 +7,10 @@ const redHat = Red_Hat_Text({
 	variable: '--font-redHat',
 	display: 'swap',
 })
-export default function IconLabel({ label }) {
+export default function IconLabel({ label, isHovered }) {
 	return (
-		<div className={styles.cartLabelIcon}>
+		<div
+			className={`${styles.cartLabelIcon} ${isHovered ? styles.hidden : ''}`}>
 			<div className={`${styles.labelText} ${redHat.variable}`}>{label}</div>
 		</div>
 	)

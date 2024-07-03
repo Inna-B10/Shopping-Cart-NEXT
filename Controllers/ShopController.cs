@@ -144,9 +144,9 @@ namespace Shopping_Cart_NEXT.Controllers
         [EnableCors("MyPolicy")]
         [HttpGet]
         [Route("Products")]
-        public Response GetProducts()
+        public Response GetProducts(string? cat_name = null)
         {
-            var products = _productService.GetProducts();
+            var products = string.IsNullOrEmpty(cat_name) ? _productService.GetAllProducts() : _productService.GetProductsByCategory(cat_name);
             Response response = new Response();
 
             if (products != null && products.Count > 0)
