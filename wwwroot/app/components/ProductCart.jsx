@@ -68,35 +68,40 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 				style={{ backgroundImage: `url(${hoverImage})` }}
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}>
-				<div className={styles.cartWrap}>
-					<div className={`flex column ${styles.cartTop}`}>
-						<Image
-							className={styles.cartImage}
-							src={currentImage}
-							alt='img'
-							width={280}
-							height={260}
-						/>
-						<div className={styles.cartName}>{item.p_name}</div>
-					</div>
-					<div className={`flex column ${styles.cartBottom}`}>
-						<div className={styles.cartDesc}>{item.p_desc_short}</div>
-						<div className={styles.cartPrice}>
-							{item.p_price_discounted ? (
-								<>
-									<span className={styles.cartPriceThrough}>
-										${item.p_price},-
-									</span>
-									<span className={styles.cartPriceRed}>
-										${item.p_price_discounted},-
-									</span>
-								</>
-							) : (
-								`${item.p_price},-`
-							)}
-						</div>
+				<div
+					className={`flex column ${styles.cartTop} ${
+						isHovered ? styles.hidden : styles.visible
+					}`}>
+					<Image
+						className={styles.cartImage}
+						src={currentImage}
+						alt='img'
+						width={280}
+						height={260}
+					/>
+					<div className={styles.cartName}>{item.p_name}</div>
+				</div>
+				<div
+					className={`flex column ${styles.cartBottom} ${
+						isHovered ? styles.hidden : styles.visible
+					}`}>
+					<div className={styles.cartDesc}>{item.p_desc_short}</div>
+					<div className={styles.cartPrice}>
+						{item.p_price_discounted ? (
+							<>
+								<span className={styles.cartPriceThrough}>
+									${item.p_price},-
+								</span>
+								<span className={styles.cartPriceRed}>
+									${item.p_price_discounted},-
+								</span>
+							</>
+						) : (
+							`${item.p_price},-`
+						)}
 					</div>
 				</div>
+
 				<div>
 					<IconShoppingCart
 						key={index}

@@ -9,40 +9,23 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  -webkit-animation: shadow-drop-none 1000ms cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+  animation: shadow-drop-none 1000ms cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 }
 
-.cartWrap {
-  animation: fadeIn 2243ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
+.hidden {
 
-.cartWrap:hover {
-  z-index: 1;
   animation: fadeOut 2243ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
+.visible {
+  animation: fadeIn 2243ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
 .productCart:hover {
-
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+  border: 10px solid #fff;
+  -webkit-animation: shadow-drop 1000ms cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+  animation: shadow-drop 1000ms cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 }
 
 .cartTop,
@@ -98,4 +81,74 @@
 
 .cartPriceThrough {
   text-decoration: line-through;
+}
+
+@-webkit-keyframes shadow-drop {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes shadow-drop {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@-webkit-keyframes shadow-drop-none {
+  0% {
+    -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+}
+
+@keyframes shadow-drop-none {
+
+  0% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
