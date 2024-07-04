@@ -1,11 +1,13 @@
 import Link from 'next/link'
-import ProductCart from '../components/ProductCart'
+import ImageCart from '../components/ImageCart'
 import { fetchData } from '../lib/fetchData'
 
-export default async function Category() {
+export default async function Images() {
 	let initialData = []
 	try {
-		initialData = await fetchData('http://localhost:5176/Shop/Category')
+		const data = await fetchData('http://localhost:5176/Shop/Images')
+		initialData = data.listImages
+		console.log(initialData)
 	} catch (error) {
 		console.error('Failed to fetch products list data:', error)
 	}
@@ -19,16 +21,18 @@ export default async function Category() {
 				<div className='wthreeproductdisplay'>
 					<div className='container'>
 						<div className='top-grid'>
-							{initialData.length > 0
-								? initialData.map((item, index) => (
-										<ProductCart
-											key={index}
-											index={index}
-											item={item}
-											handle='addItem'
-										/>
-								  ))
-								: 'No data'}
+							{initialData
+								? initialData.length > 0
+									? initialData.map((item, index) => (
+											<ImageCart
+												key={index}
+												index={index}
+												item={item}
+												handle='addItem'
+											/>
+									  ))
+									: 'No data'
+								: 'initialData is empty'}
 							<div className='clear'></div>
 						</div>
 					</div>

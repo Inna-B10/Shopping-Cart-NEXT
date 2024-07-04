@@ -1,15 +1,23 @@
 'use client'
-// import axios from 'axios'
 import axios, { AxiosError } from 'axios'
+import Image from 'next/image'
 import PropTypes from 'prop-types'
+import styles from './IconShoppingCart.module.css'
 
-export default function ButtonCart({ itemId, handle, updateCart }) {
+IconShoppingCart.propTypes = {
+	itemId: PropTypes.number.isRequired,
+	handle: PropTypes.string.isRequired,
+	updateCart: PropTypes.func,
+}
+
+export default function IconShoppingCart({ itemId, handle, updateCart }) {
 	const handleRemoveProduct = async id => {
 		try {
 			const response = await axios.post(
-				'https://localhost:7283/Shop/RemoveProduct',
+				'http://localhost:5176/Shop/RemoveProduct',
 				{ Id: id }
 			)
+			console.log(response)
 			if (response.data.statusCode === 200) {
 				alert('Item removed')
 				if (updateCart) {
@@ -27,7 +35,7 @@ export default function ButtonCart({ itemId, handle, updateCart }) {
 	const handleAddProduct = async id => {
 		try {
 			const response = await axios.post(
-				'https://localhost:7283/Shop/AddProduct',
+				'http://localhost:5176/Shop/AddProduct',
 				{ Id: id }
 			)
 			if (response.data.statusCode === 200) {
@@ -49,18 +57,15 @@ export default function ButtonCart({ itemId, handle, updateCart }) {
 	}
 
 	return (
-		<button
-			type='submit'
-			className='button w3l-cart'
-			data-id={`cart-${itemId}`}
-			onClick={handleClick}>
-			{handle === 'addItem' ? 'Add item' : 'Remove item'}
+		<button type='submit' className={styles.cartShopIcon} onClick={handleClick}>
+			<Image
+				src='../../images/icons/shopCart.svg'
+				width={27}
+				height={27}
+				alt='Shopping cart icon'
+			/>
+
+			{/* {handle === 'addItem' ? 'Add item' : 'Remove item'} */}
 		</button>
 	)
-}
-
-ButtonCart.propTypes = {
-	itemId: PropTypes.number.isRequired,
-	handle: PropTypes.string.isRequired,
-	updateCart: PropTypes.func,
 }

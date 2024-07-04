@@ -1,6 +1,6 @@
-﻿namespace Shopping_Cart_NEXT.Model
+﻿namespace Shopping_Cart_NEXT.Models
 {
-    public class Products
+    public class Images
     {
         public int Id { get; set; }
         public string? Name { get; set; }

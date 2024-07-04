@@ -1,9 +1,22 @@
-import { Inter } from 'next/font/google'
+// import { El_Messiri, Marcellus } from 'next/font/google'
+import { Marcellus } from 'next/font/google'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const marcellus = Marcellus({
+	weight: ['400'],
+	subsets: ['latin'],
+	variable: '--font-marcellus',
+	display: 'swap',
+})
+
+// const messiri = El_Messiri({
+// 	weight: ['400', '700'],
+// 	subsets: ['latin'],
+// 	variable: '--font-messiri',
+// 	display: 'swap',
+// })
 
 export const metadata = {
 	title: 'Create Next App',
@@ -13,7 +26,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang='en'>
-			<body className={inter.className}>
+			<body
+				// className={`${marcellus.variable} ${messiri.variable} ${prosto.variable}`}>
+				className={marcellus.variable}>
 				<Header />
 				{children}
 				<Footer />

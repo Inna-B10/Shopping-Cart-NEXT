@@ -1,23 +1,54 @@
 import Link from 'next/link'
+import { fetchData } from '../lib/fetchData'
 import styles from './CategoryMenu.module.css'
 
-const CategoryMenu = () => {
-	const categories = [
-		{ name: 'Gold rings', path: '/Gold-rings' },
-		{ name: 'Silver rings', path: '/Silver-rings' },
-		{ name: 'Gold earrings', path: '/Gold-earrings' },
+export default async function CategoryMenu() {
+	const initialData = [
+		{ name: 'Images', path: '/Images' },
+		{ name: 'Rings', path: '/Rings' },
 		{ name: 'Silver earrings', path: '/Silver-earrings' },
 	]
 
+	let categories = []
+	try {
+		const data = await fetchData('http://localhost:5176/Shop/Categories', {
+			next: { revalidate: 60 },
+		})
+		categories = data.listCategories || []
+	} catch (error) {
+		console.error('Error fetching categories:', error)
+	}
+
 	return (
 		<ul className={styles.catLinks}>
-			{categories.map(category => (
+			{initialData.map(category => (
 				<li key={category.name}>
 					<Link href={category.path}>{category.name}</Link>
 				</li>
 			))}
+			<li>------------------</li>
+			{categories
+				? categories.length > 0
+					? categories.map((item, index) => (
+							<li key={index}>
+								{item.cat_name.includes('%') ? (
+									<Link
+										href={`../Products/Discount-${item.cat_name.replace(
+											'%',
+											''
+										)}`}>
+										Discount {item.cat_name}
+									</Link>
+								) : (
+									<Link href={`../Products/${item.cat_name}`}>
+										{item.cat_name.charAt(0).toUpperCase() +
+											item.cat_name.slice(1)}
+									</Link>
+								)}
+							</li>
+					  ))
+					: 'No data'
+				: 'category list is empty'}
 		</ul>
 	)
 }
-
-export default CategoryMenu

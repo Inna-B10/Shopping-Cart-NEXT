@@ -1,0 +1,159 @@
+.productCart {
+  position: relative;
+  width: 17.5rem;
+  /* height: 340px; */
+  font-family: var(--font-marcellus);
+  line-height: 120%;
+  color: #270200;
+  border: 10px solid #fff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-animation: shadow-drop-none 1000ms cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+  animation: shadow-drop-none 1000ms cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+.hidden {
+
+  animation: fadeOut 2243ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.visible {
+  animation: fadeIn 2243ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.productCart:hover {
+  border: 10px solid #fff;
+  -webkit-animation: shadow-drop 1000ms cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+  animation: shadow-drop 1000ms cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+.cartTop,
+.cartBottom {
+  border: solid 1px #d0af51;
+  background-color: #fff;
+}
+
+.cartTop {
+  position: relative;
+  border-bottom: none;
+}
+
+.cartImage {
+  height: 260px;
+}
+
+.cartImage img {
+  height: auto;
+  width: 100%;
+}
+
+.cartBottom {
+  border-top: none;
+}
+
+.cartName {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  font-size: 1.25rem;
+  background-image: url('/images/titleGold.png');
+  background-size: cover;
+}
+
+.cartName,
+.priceBanner,
+.cartDesc {
+  padding: 10px;
+}
+
+.cartDesc {
+  margin-bottom: 10px;
+  font-size: 0.875rem;
+}
+
+.cartPrice {
+  padding: 0 0 10px 10px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.cartPriceRed {
+  padding-left: 10px;
+  color: #a10909;
+}
+
+.cartPriceThrough {
+  text-decoration: line-through;
+}
+
+@-webkit-keyframes shadow-drop {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes shadow-drop {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@-webkit-keyframes shadow-drop-none {
+  0% {
+    -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+}
+
+@keyframes shadow-drop-none {
+
+  0% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

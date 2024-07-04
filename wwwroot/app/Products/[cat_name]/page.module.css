@@ -1,0 +1,19 @@
+.catName {
+  font-size: 3rem;
+  letter-spacing: 0.2rem;
+  line-height: 120%;
+  text-transform: uppercase;
+  font-family: var(--font-cinzel);
+  color: #561b0b;
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.filters {
+  padding: 2.5rem;
+}
+
+.galleryWrapper {
+  padding: 1.25rem 1.875rem;
+  gap: 3.75rem 1.875rem;
+}
