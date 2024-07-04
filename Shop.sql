@@ -109,6 +109,50 @@
 --'56471', 'gold', 1,'new')
 
 
+-----------USERS-------------------------------------------------------
+--create table UsersAddress
+CREATE TABLE UsersAddress(
+address_id INT IDENTITY(1,1),
+user_id INT NOT NULL,
+user_street VARCHAR(255) NOT NULL,
+user_city VARCHAR(100) NOT NULL,
+user_post_code VARCHAR(100) NOT NULL,
+user_district VARCHAR(100) NULL,
+user_country VARCHAR(100) NOT NULL,
+
+CONSTRAINT PK_UsersAddress_id PRIMARY KEY (address_id)
+);
+
+--create table Users
+CREATE TABLE Users (
+    user_id INT IDENTITY(1,1),
+	user_level INT NOT NULL DEFAULT 1, /*-1=guest, 1=not validated, 2=user, 9=admin  */
+	user_email VARCHAR(255) NOT NULL,
+	user_password VARCHAR(255) NOT NULL,
+    user_Fname VARCHAR(255) NOT NULL,
+    user_Lname VARCHAR(255) NOT NULL,
+	user_joindate DATE NOT NULL DEFAULT GETDATE(),
+	user_activationkey VARCHAR(32) NOT NULL, /*for validation in the future*/
+	user_favorites varchar(max) NULL,
+	user_shop_cart varchar(max) NULL,
+	user_orders varchar(max) NULL,
+	user_address_id INT NULL,
+
+    CONSTRAINT PK_user_id PRIMARY KEY (user_id),
+    CONSTRAINT FK_user_address_id FOREIGN KEY (user_address_id) REFERENCES UsersAddress(address_id)
+);
+
+ALTER TABLE UsersAddress
+ADD CONSTRAINT FK_Users_id FOREIGN KEY (user_id) REFERENCES Users(user_id);
+
+
+
+
+
+
+
+
+
 use ShopDb
 
 --test to get categories+labels
@@ -140,4 +184,4 @@ select * from Products
 select * from Categories
 select * from ShoppingCart
 
-drop table Products
+drop table Users
