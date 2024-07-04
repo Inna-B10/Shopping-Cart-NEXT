@@ -40,6 +40,11 @@
 }
 
 .cartImage {
+  height: 260px;
+}
+
+.cartImage img {
+  height: auto;
   width: 100%;
 }
 

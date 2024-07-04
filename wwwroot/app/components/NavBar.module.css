@@ -62,6 +62,11 @@ ul.siteMenu > li:hover {
   line-height: 200%;
   border: none;
   border-radius: 2px;
+
+  &:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
 }
 
 .searchField::before {

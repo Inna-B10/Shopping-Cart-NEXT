@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState } from 'react'
 import IconFavorites from './IconFavorites'
 import IconLabel from './IconLabel'
 import IconShoppingCart from './IconShoppingCart'
+import LoadingSpinner from './LoadingSpinner'
 import styles from './ProductCart.module.css'
 
 ProductCart.propTypes = {
@@ -72,13 +73,13 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 					className={`flex column ${styles.cartTop} ${
 						isHovered ? styles.hidden : styles.visible
 					}`}>
-					<Image
-						className={styles.cartImage}
-						src={currentImage}
-						alt='img'
-						width={280}
-						height={260}
-					/>
+					<span className={styles.cartImage}>
+						{currentImage ? (
+							<Image src={currentImage} alt='img' width={280} height={260} />
+						) : (
+							<LoadingSpinner />
+						)}
+					</span>
 					<div className={styles.cartName}>{item.p_name}</div>
 				</div>
 				<div
