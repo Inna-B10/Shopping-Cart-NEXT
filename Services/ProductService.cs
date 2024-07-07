@@ -35,6 +35,7 @@ namespace Shopping_Cart_NEXT.Services
                     p_tags = Convert.ToString(row["prod_tags"]),
                     p_is_stone = Convert.ToBoolean(row["prod_is_stone"]),
                     p_label = Convert.ToString(row["prod_label"]),
+                    p_quantity = Convert.ToInt32(row["prod_quantity"]),
                 };
                 products.Add(product);
             }
