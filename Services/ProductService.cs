@@ -26,7 +26,7 @@ namespace Shopping_Cart_NEXT.Services
                 {
                     p_id = Convert.ToInt32(row["prod_id"]),
                     p_name = Convert.ToString(row["prod_name"]),
-                    p_cat_id = Convert.ToInt32(row["cat_id"]),
+                    p_cat_id = Convert.ToInt32(row["prod_cat_id"]),
                     p_price = row["prod_price"] != DBNull.Value ? Convert.ToDecimal(row["prod_price"]) : 0,
                     p_price_discounted = row["prod_price_discounted"] != DBNull.Value ? Convert.ToDecimal(row["prod_price_discounted"]) : 0,
                     p_desc_short = Convert.ToString(row["prod_desc_short"]),
@@ -70,7 +70,7 @@ namespace Shopping_Cart_NEXT.Services
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string sql = "SELECT p.*, c.cat_name FROM Products p INNER JOIN Categories c ON p.cat_id = c.cat_id WHERE c.cat_name = @CategoryName or p.prod_label = @CategoryName;";
+                string sql = "SELECT p.*, c.cat_name FROM Products p INNER JOIN Categories c ON p.prod_cat_id = c.cat_id WHERE c.cat_name = @CategoryName or p.prod_label = @CategoryName;";
 
                 using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
