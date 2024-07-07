@@ -55,7 +55,8 @@ export default async function Products({ params }) {
 						/>
 					))
 				) : (
-					<p>{initialData ? 'Category is empty' : 'No data'}</p>
+					// <p>{initialData ? 'Category is empty' : 'No data'}</p>
+					<p>No items in this category</p>
 				)}
 				<div className='clear'></div>
 			</div>
