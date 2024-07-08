@@ -39,34 +39,49 @@ const NavBar = () => {
 			</div>
 			<ul className={`${styles.userMenu} flex`}>
 				<li>
-					<Link href='/Favorites'>
-						<Image
-							src='../../images/icons/favUserNotLogged.svg'
-							width={32}
-							height={32}
-							alt='Favorites icon'
-						/>
-					</Link>
+					<button
+						type='submit'
+						// onClick={handleClick}
+					>
+						<Link href='/Favorites'>
+							<Image
+								src='../../images/icons/favUserNotLogged.svg'
+								width={32}
+								height={32}
+								alt='Favorites icon'
+							/>
+						</Link>
+					</button>
 				</li>
 				<li>
-					<Link href='/ShoppingCart'>
-						<Image
-							src='../../images/icons/bagUserNotLogged.svg'
-							width={32}
-							height={32}
-							alt='Shopping bag icon'
-						/>
-					</Link>
+					<button
+						type='submit'
+						// onClick={handleClick}
+					>
+						<Link href='/ShoppingCart'>
+							<Image
+								src='../../images/icons/bagUserNotLogged.svg'
+								width={32}
+								height={32}
+								alt='Shopping bag icon'
+							/>
+						</Link>
+					</button>
 				</li>
 				<li>
-					<Link href='/Account'>
-						<Image
-							src='../../images/icons/userNotLogged.svg'
-							width={32}
-							height={32}
-							alt='User account icon'
-						/>
-					</Link>
+					<button
+						type='submit'
+						// onClick={handleClick}
+					>
+						<Link href='/Account'>
+							<Image
+								src='../../images/icons/userNotLogged.svg'
+								width={32}
+								height={32}
+								alt='User account icon'
+							/>
+						</Link>
+					</button>
 				</li>
 			</ul>
 		</nav>
