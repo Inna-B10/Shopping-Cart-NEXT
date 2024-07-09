@@ -1,8 +1,11 @@
 // import { El_Messiri, Marcellus } from 'next/font/google'
+
 import { Marcellus } from 'next/font/google'
+import { cookies } from 'next/headers' // Importing cookies from next/headers
 import Footer from './components/Footer'
 import Header from './components/Header'
 import './globals.css'
+import { UserProvider } from './UserContext'
 
 const marcellus = Marcellus({
 	weight: ['400'],
@@ -24,14 +27,19 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+	// Getting cookies on the server side
+	const cookieStore = cookies()
+	const userLevel = cookieStore.get('user_level')?.value || '-1'
 	return (
 		<html lang='en'>
 			<body
 				// className={`${marcellus.variable} ${messiri.variable} ${prosto.variable}`}>
 				className={marcellus.variable}>
-				<Header />
-				{children}
-				<Footer />
+				<UserProvider initialUserLevel={userLevel}>
+					<Header />
+					{children}
+					<Footer />
+				</UserProvider>
 			</body>
 		</html>
 	)

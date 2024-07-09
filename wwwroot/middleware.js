@@ -1,21 +1,28 @@
+import cookie from 'cookie'
 import { NextResponse } from 'next/server'
 
-export function middleware(request) {
+export default function middleware(request) {
 	const response = NextResponse.next()
 
-	// Check if the cookie 'user_level' already exists
-	if (!request.cookies.get('user_level')) {
-		console.log('Setting user_level cookie')
-		// If it doesn't exist, set the cookie with value '-1'
-		response.cookies.set('user_level', '-1', { path: '/' })
-	} else {
-		console.log('user_level cookie already exists')
+	// Проверка, существует ли кука 'user_level'
+	const userLevelCookie = request.cookies.get('user_level')
+
+	if (!userLevelCookie) {
+		// Создание строки Set-Cookie
+		const serializedCookie = cookie.serialize('user_level', '-1', {
+			path: '/',
+			httpOnly: true, // Устанавливаем флаг HttpOnly для безопасности
+			sameSite: 'strict', // Устанавливаем флаг SameSite для безопасности
+		})
+
+		// Установка куки в заголовок ответа
+		response.headers.set('Set-Cookie', serializedCookie)
 	}
+	console.log('middleware:', userLevelCookie)
 
 	return response
 }
 
-// Specify the paths to include middleware (all paths in this case)
 export const config = {
 	matcher: '/:path*',
 }
