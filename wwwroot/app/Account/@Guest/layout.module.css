@@ -1,0 +1,50 @@
+.tabWrap {
+  width: 50%;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 6px;
+  /* box-shadow: 0px 0px 20px 0px #adadad; */
+}
+
+.tabsTitle {
+  /* gap: 10px; */
+  font-family: var(--font-marcellus);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.tabsTitle > li {
+  margin-left: -1px;
+  padding: 5px 15px;
+  /* border: 1px solid #977924; */
+  border-bottom: none;
+  box-shadow: 0px -2px 4px 1px #c4ab68e1;
+  border-radius: 6px 6px 0 0;
+
+  &:nth-child(1) {
+    /* border-radius: 6px 0px 0 0; */
+    /* border-right: none; */
+  }
+
+  &:nth-child(2) {
+    /* margin-left: -2px; */
+    /* border-left: none; */
+    /* border-radius: 0px 6px 0 0; */
+  }
+}
+
+
+.activeTab {
+  /* box-shadow: -2px -2px 4px 1px #9778249a; */
+  /* border-right: none; */
+  /* border-radius: 6px 6px 0 0 !important; */
+  /* transform: translatey(-5px); */
+  background-image: url('/images/titleGold.png');
+  background-size: contain;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .tabWrap {
+    width: 90vw;
+  }
+}

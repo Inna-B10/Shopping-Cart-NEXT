@@ -1,17 +1,30 @@
 'use client'
-import Link from 'next/link'
+import { useState } from 'react'
+import styles from './layout.module.css'
 
 export default function GuestLayout({ children, Login, Registration }) {
-	// console.log(Login)
+	const [activeTab, setActiveTab] = useState('login')
 	return (
 		<>
-			<div>
-				<Link href='/Login'>Login</Link>
-				<Link href='/Registration'>Registration</Link>
+			{/* <div>{Login}</div>
+			<div>{Registration}</div> */}
+
+			<div className={styles.tabWrap}>
+				<ul className={`flex ${styles.tabsTitle}`}>
+					<li
+						className={activeTab === 'login' ? styles.activeTab : ''}
+						onClick={() => setActiveTab('login')}>
+						Log in
+					</li>
+					<li
+						className={activeTab === 'registration' ? styles.activeTab : ''}
+						onClick={() => setActiveTab('registration')}>
+						Sign up
+					</li>
+				</ul>
+				{activeTab === 'login' && Login}
+				{activeTab === 'registration' && Registration}
 			</div>
-			<div>{children}</div>
-			<div>{Login}</div>
-			<div>{Registration}</div>
 		</>
 	)
 }

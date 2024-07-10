@@ -33,6 +33,10 @@ ul {
   list-style: none;
 }
 
+sup {
+  color: red;
+}
+
 .flex {
   display: flex;
 }
