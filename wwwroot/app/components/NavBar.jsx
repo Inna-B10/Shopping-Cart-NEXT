@@ -27,6 +27,9 @@ const NavBar = () => {
 				<li>
 					<Link href='/#contact'>Contact</Link>
 				</li>
+				<li>
+					<Link href='/Test'>Test</Link>
+				</li>
 			</ul>
 			<div className={styles.searchField}>
 				<input type='text' name='searchField' />

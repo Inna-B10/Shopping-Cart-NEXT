@@ -30,7 +30,7 @@ export default function LoginPage() {
 		//onSubmit({ email, password })
 		setEmail('')
 		setPassword('')
-		await setUserLevel('0')
+		await setUserLevel('-1')
 		console.log('Login details:', email, password, userLevel)
 	}
 
@@ -42,6 +42,7 @@ export default function LoginPage() {
 					Email:<sup>*</sup>
 				</span>
 				<input
+					required
 					type='text'
 					label='Email'
 					value={email}
@@ -51,6 +52,7 @@ export default function LoginPage() {
 					Password:<sup>*</sup>
 				</span>
 				<input
+					required
 					type='password'
 					label='Password'
 					value={password}

@@ -6,15 +6,12 @@ export default function GuestLayout({ children, Login, Registration }) {
 	const [activeTab, setActiveTab] = useState('login')
 	return (
 		<>
-			{/* <div>{Login}</div>
-			<div>{Registration}</div> */}
-
 			<div className={styles.tabWrap}>
 				<ul className={`flex ${styles.tabsTitle}`}>
 					<li
 						className={activeTab === 'login' ? styles.activeTab : ''}
 						onClick={() => setActiveTab('login')}>
-						Log in
+						Sign in
 					</li>
 					<li
 						className={activeTab === 'registration' ? styles.activeTab : ''}

@@ -24,6 +24,7 @@ export default function LoginPage({ onSubmit }) {
 					Email:<sup>*</sup>
 				</span>
 				<input
+					required
 					type='text'
 					label='Email'
 					value={email}
@@ -33,6 +34,7 @@ export default function LoginPage({ onSubmit }) {
 					Password:<sup>*</sup>
 				</span>
 				<input
+					required
 					type='password'
 					label='Password'
 					value={password}
