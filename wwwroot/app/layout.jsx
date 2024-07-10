@@ -29,13 +29,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	// Getting cookies on the server side
 	const cookieStore = cookies()
-	const userLevel = cookieStore.get('user_level')?.value || '-1'
+	const userLevelServer = cookieStore.get('user_level')?.value || '-1'
 	return (
 		<html lang='en'>
 			<body
 				// className={`${marcellus.variable} ${messiri.variable} ${prosto.variable}`}>
 				className={marcellus.variable}>
-				<UserProvider initialUserLevel={userLevel}>
+				<UserProvider initialUserLevel={userLevelServer}>
 					<Header />
 					{children}
 					<Footer />
