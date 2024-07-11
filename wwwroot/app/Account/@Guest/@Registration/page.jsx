@@ -38,12 +38,12 @@ export default function Registration() {
 				onClose={() => {
 					setIsSuccess(false), router.replace('/')
 				}}>
-				<p className={styles.modalText}>
+				<div className={styles.modalText}>
 					<h3>Registration successful! </h3>
 					<br />
 					<br />
 					Redirecting...
-				</p>
+				</div>
 			</Modal>
 			<form
 				className={`flex column ${styles.formWrap}`}
