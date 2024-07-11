@@ -49,6 +49,15 @@
   border-radius: 6px;
 }
 
+.modalText {
+  color: #270200;
+  text-align: center;
+
+  & h3 {
+    letter-spacing: 1px;
+  }
+}
+
 @media only screen and (max-device-width: 480px) {
   .formWrap input {
     width: 80vw;

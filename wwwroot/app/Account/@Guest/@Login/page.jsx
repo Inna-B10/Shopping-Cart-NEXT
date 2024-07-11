@@ -32,7 +32,12 @@ export default function LoginPage() {
 				onClose={() => {
 					setIsSuccess(false), router.replace('/')
 				}}>
-				<p>Login successful! Redirecting...</p>
+				<p className={styles.modalText}>
+					<h3>Login successful! </h3>
+					<br />
+					<br />
+					Redirecting...
+				</p>
 			</Modal>
 			<form className={`flex column ${styles.formWrap}`} onSubmit={handleLogin}>
 				<h3>Sign in to your account</h3>

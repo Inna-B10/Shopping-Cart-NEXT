@@ -1,5 +1,7 @@
 'use client'
+import Modal from '@/app/components/Modal'
 import { useUser } from '@/app/UserContext'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import styles from './page.module.css'
 
@@ -9,21 +11,43 @@ export default function Registration() {
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
 	const { userLevel, setUserLevel } = useUser()
+	const router = useRouter()
+	const [isSuccess, setIsSuccess] = useState(false)
 
-	const handleLogin = async event => {
+	const handleRegister = event => {
 		event.preventDefault()
 		//onSubmit({ email, password })
 		setEmail('')
 		setPassword('')
 		setFirstName('')
 		setLastName('')
-		await setUserLevel('0')
-		console.log('Registration:', email, password, userLevel)
+		setIsSuccess(true)
+	}
+
+	if (isSuccess) {
+		setTimeout(() => {
+			setUserLevel('0')
+			router.replace('/')
+		}, 2000)
 	}
 
 	return (
 		<>
-			<form className={`flex column ${styles.formWrap}`} onSubmit={handleLogin}>
+			<Modal
+				show={isSuccess}
+				onClose={() => {
+					setIsSuccess(false), router.replace('/')
+				}}>
+				<p className={styles.modalText}>
+					<h3>Registration successful! </h3>
+					<br />
+					<br />
+					Redirecting...
+				</p>
+			</Modal>
+			<form
+				className={`flex column ${styles.formWrap}`}
+				onSubmit={handleRegister}>
 				<h3>Create new account</h3>
 				<span>
 					Email:<sup>*</sup>
