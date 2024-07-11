@@ -1,8 +1,10 @@
 'use client'
 import { useState } from 'react'
+import LoginPage from './@Login/page'
+import Registration from './@Registration/page'
 import styles from './layout.module.css'
 
-export default function GuestLayout({ children, Login, Registration }) {
+export default function GuestLayout({ children }) {
 	const [activeTab, setActiveTab] = useState('login')
 	return (
 		<>
@@ -19,8 +21,8 @@ export default function GuestLayout({ children, Login, Registration }) {
 						Sign up
 					</li>
 				</ul>
-				{activeTab === 'login' && Login}
-				{activeTab === 'registration' && Registration}
+				{activeTab === 'login' && <LoginPage />}
+				{activeTab === 'registration' && <Registration />}
 			</div>
 		</>
 	)

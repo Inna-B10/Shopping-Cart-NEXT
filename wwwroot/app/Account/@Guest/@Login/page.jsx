@@ -1,23 +1,39 @@
 'use client'
 import { useUser } from '@/app/UserContext'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import Modal from '../../../components/Modal'
 import styles from './page.module.css'
 
-export default function LoginPage({ onSubmit }) {
-	const { userLevel, setUserLevel } = useUser()
+export default function LoginPage() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [isSuccess, setIsSuccess] = useState(false)
+	const router = useRouter()
+	const { userLevel, setUserLevel } = useUser()
 
 	const handleLogin = event => {
 		event.preventDefault()
 		setEmail('')
 		setPassword('')
-		// setUserLevel('1')
-		console.log(email, password, userLevel)
+		setIsSuccess(true)
+	}
+	if (isSuccess) {
+		setTimeout(() => {
+			setUserLevel('1')
+			router.replace('/')
+		}, 2000)
 	}
 
 	return (
 		<>
+			<Modal
+				show={isSuccess}
+				onClose={() => {
+					setIsSuccess(false), router.replace('/')
+				}}>
+				<p>Login successful! Redirecting...</p>
+			</Modal>
 			<form className={`flex column ${styles.formWrap}`} onSubmit={handleLogin}>
 				<h3>Sign in to your account</h3>
 				<span>

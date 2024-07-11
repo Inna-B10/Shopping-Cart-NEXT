@@ -31,7 +31,7 @@ export default function LoginPage() {
 		setEmail('')
 		setPassword('')
 		await setUserLevel('-1')
-		console.log('Login details:', email, password, userLevel)
+		console.log('Test details:', email, password, userLevel)
 	}
 
 	return (

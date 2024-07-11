@@ -4,11 +4,11 @@ import { useState } from 'react'
 import styles from './page.module.css'
 
 export default function Registration() {
-	const { userLevel, setUserLevel } = useUser()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
+	const { userLevel, setUserLevel } = useUser()
 
 	const handleLogin = async event => {
 		event.preventDefault()
@@ -18,7 +18,7 @@ export default function Registration() {
 		setFirstName('')
 		setLastName('')
 		await setUserLevel('0')
-		console.log('Login details:', email, password, userLevel)
+		console.log('Registration:', email, password, userLevel)
 	}
 
 	return (
