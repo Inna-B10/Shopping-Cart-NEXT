@@ -54,6 +54,7 @@ export default function Registration() {
 				</span>
 				<input
 					required
+					// type='email'
 					type='text'
 					label='Email'
 					value={email}

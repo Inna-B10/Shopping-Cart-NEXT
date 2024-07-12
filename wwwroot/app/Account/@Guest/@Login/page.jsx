@@ -46,6 +46,7 @@ export default function LoginPage() {
 				</span>
 				<input
 					required
+					// type='email'
 					type='text'
 					label='Email'
 					value={email}

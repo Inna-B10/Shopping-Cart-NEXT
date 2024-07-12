@@ -18,8 +18,6 @@ export default function middleware(request) {
 		// Установка куки в заголовок ответа
 		response.headers.set('Set-Cookie', serializedCookie)
 	}
-	console.log('middleware:', userLevelCookie)
-
 	return response
 }
 
