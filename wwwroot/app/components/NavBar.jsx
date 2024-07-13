@@ -2,6 +2,7 @@ import { Prosto_One } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 import CategoryMenu from './CategoryMenu'
+import IconUser from './icons/iconUser'
 import styles from './NavBar.module.css'
 
 const prosto = Prosto_One({
@@ -11,7 +12,7 @@ const prosto = Prosto_One({
 	display: 'swap',
 })
 
-const NavBar = () => {
+export default function NavBar() {
 	return (
 		<nav className={`${styles.navBar} ${prosto.variable}`}>
 			<ul className={`${styles.siteMenu} flex`}>
@@ -42,53 +43,29 @@ const NavBar = () => {
 			</div>
 			<ul className={`${styles.userMenu} flex`}>
 				<li>
-					<button
-						type='submit'
-						// onClick={handleClick}
-					>
-						<Link href='/Favorites'>
-							<Image
-								src='../../images/icons/favUserNotLogged.svg'
-								width={32}
-								height={32}
-								alt='Favorites icon'
-							/>
-						</Link>
-					</button>
+					<Link href='/Favorites'>
+						<Image
+							src='../../images/icons/favUser.svg'
+							width={32}
+							height={32}
+							alt='Favorites icon'
+						/>
+					</Link>
 				</li>
 				<li>
-					<button
-						type='submit'
-						// onClick={handleClick}
-					>
-						<Link href='/ShoppingCart'>
-							<Image
-								src='../../images/icons/bagUserNotLogged.svg'
-								width={32}
-								height={32}
-								alt='Shopping bag icon'
-							/>
-						</Link>
-					</button>
+					<Link href='/ShoppingCart'>
+						<Image
+							src='../../images/icons/bagUser.svg'
+							width={32}
+							height={32}
+							alt='Shopping bag icon'
+						/>
+					</Link>
 				</li>
 				<li>
-					<button
-						type='submit'
-						// onClick={handleClick}
-					>
-						<Link href='/Account'>
-							<Image
-								src='../../images/icons/userNotLogged.svg'
-								width={32}
-								height={32}
-								alt='User account icon'
-							/>
-						</Link>
-					</button>
+					<IconUser />
 				</li>
 			</ul>
 		</nav>
 	)
 }
-
-export default NavBar
