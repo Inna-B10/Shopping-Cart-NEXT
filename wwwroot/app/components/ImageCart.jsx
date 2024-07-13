@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { Fragment } from 'react'
-import ButtonCart from './IconShoppingCart'
+import ButtonCart from './icons/IconShoppingCart'
 
 ImageCart.propTypes = {
 	index: PropTypes.number.isRequired,
