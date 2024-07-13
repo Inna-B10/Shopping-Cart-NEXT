@@ -38,13 +38,13 @@ namespace Shopping_Cart_NEXT.Controllers
             if (products != null && products.Count > 0)
             {
                 response.StatusCode = 200;
-                response.StatusMessage = "Data found";
+                response.StatusMessage = "Images found";
                 response.listImages = products;
             }
             else
             {
-                response.StatusCode = 100;
-                response.StatusMessage = "No data found";
+                response.StatusCode = 204;
+                response.StatusMessage = "No images found";
                 response.listImages = null;
             }
             return response;
@@ -61,13 +61,13 @@ namespace Shopping_Cart_NEXT.Controllers
             if (products != null && products.Count > 0)
             {
                 response.StatusCode = 200;
-                response.StatusMessage = "Data found";
+                response.StatusMessage = "Products found";
                 response.listImages = products;
             }
             else
             {
-                response.StatusCode = 100;
-                response.StatusMessage = "No data found";
+                response.StatusCode = 204;
+                response.StatusMessage = "No products found";
                 response.listImages = null;
             }
             return response;
@@ -84,13 +84,13 @@ namespace Shopping_Cart_NEXT.Controllers
             if (products != null && products.Count > 0)
             {
                 response.StatusCode = 200;
-                response.StatusMessage = "Data found";
+                response.StatusMessage = "Products found";
                 response.listImages = products;
             }
             else
             {
-                response.StatusCode = 100;
-                response.StatusMessage = "No data found";
+                response.StatusCode = 204;
+                response.StatusMessage = "No products found";
                 response.listImages = null;
             }
             return response;
@@ -128,13 +128,13 @@ namespace Shopping_Cart_NEXT.Controllers
                 if (categories != null && categories.Count > 0)
                 {
                     response.StatusCode = 200;
-                    response.StatusMessage = "Data found";
+                    response.StatusMessage = "Categories found";
                     response.listCategories = categories;
                 }
                 else
                 {
-                    response.StatusCode = 100;
-                    response.StatusMessage = "No data found";
+                    response.StatusCode = 204;
+                    response.StatusMessage = "No categories found";
                     response.listCategories = null;
                 }
                 return response;
@@ -152,13 +152,13 @@ namespace Shopping_Cart_NEXT.Controllers
             if (products != null && products.Count > 0)
             {
                 response.StatusCode = 200;
-                response.StatusMessage = "Data found";
+                response.StatusMessage = "Products found";
                 response.listProducts = products;
             }
             else
             {
-                response.StatusCode = 100;
-                response.StatusMessage = "No data found";
+                response.StatusCode = 204;
+                response.StatusMessage = "No products found";
                 response.listProducts = null;
             }
             return response;

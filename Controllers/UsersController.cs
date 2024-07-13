@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Shopping_Cart_NEXT.Models;
 using Shopping_Cart_NEXT.Services;
 using Shopping_Cart_NEXT.Services.Interfaces;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Shopping_Cart_NEXT.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly IConfiguration _configuration;
@@ -33,7 +35,7 @@ namespace Shopping_Cart_NEXT.Controllers
         public async Task<IActionResult> Registration(Users user)
         {
             {
-                var response = await _userService.RegistrationAsync(user);
+                var response = await _userService.RegistrationAsync(user.user_email, user.user_password,user.user_Fname,user.user_Lname);
                 return StatusCode(response.StatusCode, response);
             }
         }

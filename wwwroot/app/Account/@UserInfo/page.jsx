@@ -3,7 +3,7 @@ import { useUser } from '../../UserContext'
 
 export default function UserInfo() {
 	const { userLevel, setUserLevel } = useUser()
-	const handleLogout = e => {
+	const handleLogout = event => {
 		event.preventDefault()
 		setUserLevel('-1')
 	}

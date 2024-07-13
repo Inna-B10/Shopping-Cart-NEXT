@@ -125,7 +125,7 @@ namespace Shopping_Cart_NEXT.Services
                             }
                             else
                             {
-                                response.StatusCode = 100;
+                                response.StatusCode = 204;
                                 response.StatusMessage = "No item added";
                             }
                         }
@@ -139,7 +139,7 @@ namespace Shopping_Cart_NEXT.Services
             }
             else
             {
-                response.StatusCode = 100;
+                response.StatusCode = 400;
                 response.StatusMessage = "Invalid product ID";
             }
 
@@ -171,7 +171,7 @@ namespace Shopping_Cart_NEXT.Services
                             }
                             else
                             {
-                                response.StatusCode = 100;
+                                response.StatusCode = 204;
                                 response.StatusMessage = "No item removed";
                             }
                         }
@@ -185,7 +185,7 @@ namespace Shopping_Cart_NEXT.Services
             }
             else
             {
-                response.StatusCode = 100;
+                response.StatusCode = 400;
                 response.StatusMessage = "Invalid product ID";
             }
 
