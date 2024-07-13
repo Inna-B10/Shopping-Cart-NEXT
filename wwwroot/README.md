@@ -22,12 +22,17 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Installed
 
-npm install axios
-npm install cors
-npm install cookie
+- npm install axios
+- npm install cors
+- npm install cookie
 
 ## TO DO
 
---change email input type
---add validation of email and password user's input
---add validation of email of new user
+- change email input type
+- add validation of email and password user's input
+- create confirmation email with link for new user
+- after registration/login:
+  - check cookies, if exist Favorites and/or ShoppingCart insert them to DB and delete from cookies
+  - change UserIcon to use first letters
+  - ?change FavoritesIcon, BugIcon, ShoppingCartIcon in userMenu and ProductCart
+- in ShoppingCart, when place order, check if user_level!=0
