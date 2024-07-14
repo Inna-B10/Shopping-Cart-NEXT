@@ -37,6 +37,7 @@ namespace Shopping_Cart_App
             builder.Services.AddScoped<IImagesService, ImagesService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             // Add Swagger for API documentation
             builder.Services.AddEndpointsApiExplorer();

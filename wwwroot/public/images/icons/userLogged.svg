@@ -1,8 +1,6 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Group 465">
-<circle id="Ellipse 3" cx="16" cy="16" r="14.5" stroke="white" stroke-width="3"/>
-<circle id="Ellipse 4" cx="16.0002" cy="13.1557" r="4.18889" fill="white" stroke="white" stroke-width="3"/>
-<path id="Ellipse 5" d="M27.3951 26.0251C25.8383 21.2443 21.5203 17.8066 16.4372 17.8066C11.3541 17.8066 7.03607 21.2443 5.47925 26.0251" stroke="white" stroke-width="3"/>
-<path id="Vector 3" d="M10.8767 19.9765L6.2439 25.4516L10.8767 29.6633L15.5096 30.9268L20.9848 29.6633L25.4071 26.9257L26.46 23.7669L23.0906 19.9765L15.5096 18.0811L10.8767 19.9765Z" fill="white"/>
-</g>
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="Group 465" transform="matrix(1.0000000000000002, 0, 0, 1.0000000000000002, 0, 0)">
+    <circle id="Ellipse 3" cx="16" cy="16" r="14.5" stroke="white" stroke-width="3" style=""/>
+  </g>
 </svg>

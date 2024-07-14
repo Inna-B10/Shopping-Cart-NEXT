@@ -2,9 +2,9 @@
 import Image from 'next/image'
 import PropTypes from 'prop-types'
 import { Fragment, useEffect, useState } from 'react'
-import IconFavorites from './IconFavorites'
-import IconLabel from './IconLabel'
-import IconShoppingCart from './IconShoppingCart'
+import IconFavorites from './icons/IconFavorites'
+import IconLabel from './icons/IconLabel'
+import IconShoppingCart from './icons/IconShoppingCart'
 import LoadingSpinner from './LoadingSpinner'
 import styles from './ProductCart.module.css'
 

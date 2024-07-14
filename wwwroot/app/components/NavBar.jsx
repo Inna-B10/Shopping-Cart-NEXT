@@ -2,6 +2,7 @@ import { Prosto_One } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 import CategoryMenu from './CategoryMenu'
+import IconUser from './icons/IconUser'
 import styles from './NavBar.module.css'
 
 const prosto = Prosto_One({
@@ -11,7 +12,7 @@ const prosto = Prosto_One({
 	display: 'swap',
 })
 
-const NavBar = () => {
+export default function NavBar() {
 	return (
 		<nav className={`${styles.navBar} ${prosto.variable}`}>
 			<ul className={`${styles.siteMenu} flex`}>
@@ -27,6 +28,9 @@ const NavBar = () => {
 				<li>
 					<Link href='/#contact'>Contact</Link>
 				</li>
+				<li>
+					<Link href='/Test'>Test</Link>
+				</li>
 			</ul>
 			<div className={styles.searchField}>
 				<input type='text' name='searchField' />
@@ -41,7 +45,7 @@ const NavBar = () => {
 				<li>
 					<Link href='/Favorites'>
 						<Image
-							src='../../images/icons/favUserNotLogged.svg'
+							src='../../images/icons/favUser.svg'
 							width={32}
 							height={32}
 							alt='Favorites icon'
@@ -51,7 +55,7 @@ const NavBar = () => {
 				<li>
 					<Link href='/ShoppingCart'>
 						<Image
-							src='../../images/icons/bagUserNotLogged.svg'
+							src='../../images/icons/bagUser.svg'
 							width={32}
 							height={32}
 							alt='Shopping bag icon'
@@ -59,18 +63,9 @@ const NavBar = () => {
 					</Link>
 				</li>
 				<li>
-					<Link href='/Account'>
-						<Image
-							src='../../images/icons/userNotLogged.svg'
-							width={32}
-							height={32}
-							alt='User account icon'
-						/>
-					</Link>
+					<IconUser />
 				</li>
 			</ul>
 		</nav>
 	)
 }
-
-export default NavBar

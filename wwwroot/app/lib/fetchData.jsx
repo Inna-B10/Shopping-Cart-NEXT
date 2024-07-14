@@ -8,7 +8,7 @@ export const fetchData = async (url, refresh) => {
 			throw new Error(`Failed to fetch data from ${url}, status: ${res.status}`)
 		}
 		const data = await res.json()
-		// console.log('Data received', data) // Получение данных
+		console.log('Data received', data) // Получение данных
 		return data
 	} catch (error) {
 		// console.error('Error fetching data:', error)

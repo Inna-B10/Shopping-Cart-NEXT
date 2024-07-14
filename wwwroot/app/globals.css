@@ -33,10 +33,23 @@ ul {
   list-style: none;
 }
 
+sup {
+  color: red;
+}
+
 .flex {
   display: flex;
 }
 
 .column {
   flex-direction: column;
+}
+
+.notFound {
+  text-align: center;
+
+  & > p {
+    line-height: 250%;
+    font-size: large;
+  }
 }
