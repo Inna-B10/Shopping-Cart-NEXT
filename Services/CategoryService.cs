@@ -39,7 +39,7 @@ namespace Shopping_Cart_NEXT.Services
             {
                 connection.Open();
                 string sql = "select cat_name from Categories union all select prod_label from Products";
-
+                connection.Close();
                 using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))

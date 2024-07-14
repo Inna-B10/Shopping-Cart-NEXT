@@ -4,20 +4,25 @@ import { NextResponse } from 'next/server'
 export default function middleware(request) {
 	const response = NextResponse.next()
 
-	// Проверка, существует ли кука 'user_level'
-	const userLevelCookie = request.cookies.get('user_level')
+	// Checking if the 'userId' cookie exists
+	const userIdCookie = request.cookies.get('userId')?.value
 
-	if (!userLevelCookie) {
-		// Создание строки Set-Cookie
-		const serializedCookie = cookie.serialize('user_level', '-1', {
+	if (
+		!userIdCookie ||
+		userIdCookie === 'null' ||
+		userIdCookie === 'undefined'
+	) {
+		// Creating a Set-Cookie line
+		const serializedCookie = cookie.serialize('userId', '-1', {
 			path: '/',
-			httpOnly: true, // Устанавливаем флаг HttpOnly для безопасности
-			sameSite: 'strict', // Устанавливаем флаг SameSite для безопасности
+			httpOnly: true, // флаг HttpOnly для безопасности
+			sameSite: 'strict', // флаг SameSite для безопасности
 		})
 
-		// Установка куки в заголовок ответа
+		// Setting a cookie in the reply header
 		response.headers.set('Set-Cookie', serializedCookie)
 	}
+
 	return response
 }
 

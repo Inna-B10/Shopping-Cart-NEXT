@@ -44,8 +44,8 @@ namespace Shopping_Cart_NEXT.Services
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string sql = "SELECT * FROM Images;"; 
-
+                string sql = "SELECT * FROM Images;";
+                connection.Close();
                 using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -65,8 +65,8 @@ namespace Shopping_Cart_NEXT.Services
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string sql = "SELECT * FROM Images;"; 
-
+                string sql = "SELECT * FROM Images;";
+                connection.Close();
                 using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -87,7 +87,7 @@ namespace Shopping_Cart_NEXT.Services
             {
                 connection.Open();
                 string sql = "select P.ID, P.Name, P.Image, P.ActualPrice, P.DiscountedPrice from ShoppingCart C INNER JOIN Images P ON C.ProductID = P.Id;"; // Измените SQL-запрос на подходящий для вашей таблицы
-
+                connection.Close();
                 using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -118,6 +118,7 @@ namespace Shopping_Cart_NEXT.Services
 
                             await connection.OpenAsync();
                             int i = await cmd.ExecuteNonQueryAsync();
+                            await connection.CloseAsync();  
                             if (i > 0)
                             {
                                 response.StatusCode = 200;
@@ -164,6 +165,7 @@ namespace Shopping_Cart_NEXT.Services
 
                             await connection.OpenAsync();
                             int i = await cmd.ExecuteNonQueryAsync();
+                            await connection.CloseAsync();
                             if (i > 0)
                             {
                                 response.StatusCode = 200;

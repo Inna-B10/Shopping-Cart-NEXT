@@ -22,7 +22,6 @@ ul.siteMenu {
   gap: 10px;
 }
 
-ul.userMenu > li:hover,
 ul.siteMenu > li:hover {
   text-decoration: underline 2px;
   text-underline-offset: 3px;

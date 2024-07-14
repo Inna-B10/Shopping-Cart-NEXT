@@ -5,28 +5,27 @@ import { useEffect, useState } from 'react'
 import { useUser } from './../UserContext'
 
 export default function AccountLayout({ Guest, UserInfo, children }) {
-	const { userLevel } = useUser()
+	const { userId } = useUser()
 	const router = useRouter()
 	const [isReady, setIsReady] = useState(false)
 
-	console.log('AccountLayout:', userLevel)
+	console.log('AccountLayout:', userId)
 
 	useEffect(() => {
-		if (userLevel !== undefined && userLevel !== null) {
+		if (userId !== undefined && userId !== null) {
 			setIsReady(true)
 		}
-	}, [userLevel])
+	}, [userId])
 
 	useEffect(() => {
-		if (userLevel === undefined || userLevel === null) {
+		if (userId === undefined || userId === null) {
 			middleware()
-			// router.replace('/')
 		}
-	}, [userLevel, router])
+	}, [userId, router])
 
 	if (!isReady) {
 		return <div>Loading...</div>
 	}
 
-	return <>{userLevel == '-1' ? Guest : UserInfo}</>
+	return <>{userId === '-1' ? Guest : UserInfo}</>
 }

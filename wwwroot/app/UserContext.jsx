@@ -1,6 +1,7 @@
 'use client'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { createContext, useContext, useEffect, useState } from 'react'
+import getUserData from './lib/getUserData'
 
 const UserContext = createContext()
 
@@ -8,46 +9,45 @@ export function useUser() {
 	return useContext(UserContext)
 }
 
-export function UserProvider({ initialUserLevel, children }) {
-	const [userLevel, setUserLevel] = useState(initialUserLevel || '-1')
-
-	// 	useEffect(() => {
-	// 		const cookieValue = getUserLevelFromCookie()
-	// 		setUserLevel(cookieValue || '-1')
-	// 	}, [initialUserLevel])
-	//
-	// 	const getUserLevelFromCookie = () => {
-	// 		const cookieObj = document.cookie.split('; ').reduce((prev, current) => {
-	// 			const [name, ...value] = current.split('=')
-	// 			prev[name] = decodeURIComponent(value.join('='))
-	// 			return prev
-	// 		}, {})
-	// 		console.log(cookieObj['user_level'])
-	// 		return cookieObj['user_level']
-	// 	}
+export function UserProvider({ initialUserId, children }) {
+	const [userId, setUserId] = useState(initialUserId || '-1')
+	const [userData, setUserData] = useState(null)
 
 	useEffect(() => {
-		if (initialUserLevel !== null && initialUserLevel !== undefined) {
-			setUserLevel(initialUserLevel)
+		if (initialUserId !== 'null' && initialUserId !== 'undefined') {
+			setUserId(initialUserId)
 		} else {
-			setUserLevel('-1')
+			setUserId('-1')
 		}
-	}, [initialUserLevel])
+	}, [initialUserId])
 
-	// useEffect(() => {
-	// 	console.log('User level on mount:', userLevel)
-	// 	console.log('initialUserLevel ', initialUserLevel)
-	// }, [userLevel, initialUserLevel])
+	useEffect(() => {
+		const fetchUserData = async () => {
+			console.log(userId)
+			if (userId !== '-1') {
+				try {
+					const data = await getUserData(userId)
+					setUserData(data)
+				} catch (error) {
+					console.error(error, AxiosError)
+				}
+			} else {
+				setUserData(null)
+			}
+		}
 
-	const setUserLevelCookie = async level => {
-		document.cookie = `user_level=${level}; path=/; max-age=${
+		fetchUserData()
+	}, [userId])
+
+	const setUserIdCookie = async id => {
+		document.cookie = `userId=${id}; path=/; max-age=${
 			60 * 60 * 24 * 7
 		}; SameSite=Strict`
 
 		try {
 			const response = await axios.post(
-				'/api/set-user-level',
-				{ userLevel: level },
+				'/api/set-user-id',
+				{ userId: id },
 				{
 					headers: {
 						'Content-Type': 'application/json',
@@ -56,18 +56,18 @@ export function UserProvider({ initialUserLevel, children }) {
 			)
 
 			if (response.status === 200 && response.data.success) {
-				setUserLevel(level)
+				setUserId(id)
 			} else {
-				console.error('Failed to set user level cookie on server')
+				console.error(error, AxiosError)
 			}
 		} catch (error) {
-			console.error('Failed to set user level cookie on server', error)
+			console.error(error, AxiosError)
 		}
 	}
 
 	return (
 		<UserContext.Provider
-			value={{ userLevel, setUserLevel: setUserLevelCookie }}>
+			value={{ userId, userData, setUserId: setUserIdCookie }}>
 			{children}
 		</UserContext.Provider>
 	)

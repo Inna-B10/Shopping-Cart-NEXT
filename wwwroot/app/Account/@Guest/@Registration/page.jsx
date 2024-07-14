@@ -1,7 +1,7 @@
 'use client'
 import Modal from '@/app/components/Modal'
 import { useUser } from '@/app/UserContext'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import styles from './page.module.css'
@@ -11,11 +11,12 @@ export default function Registration() {
 	const [password, setPassword] = useState('')
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
-	const { userLevel, setUserLevel } = useUser()
+	const { userId, setUserId } = useUser()
 	const router = useRouter()
 	const [isSuccess, setIsSuccess] = useState(false)
 	const [modalText, setModalText] = useState(null)
 	const [modalShow, setModalShow] = useState(false)
+	const [newUserId, setNewUserId] = useState(null)
 
 	const handleRegister = async event => {
 		event.preventDefault()
@@ -31,6 +32,7 @@ export default function Registration() {
 			)
 			console.log(response)
 			if (response.data.statusCode === 201) {
+				setNewUserId(response.data.userId)
 				setModalShow(true)
 				setModalText(
 					<>
@@ -73,7 +75,6 @@ export default function Registration() {
 				)
 			}
 			console.error(error, AxiosError)
-			// console.error('AxiosError:', error)
 		}
 	}
 	const handleCloseModal = () => {
@@ -81,10 +82,10 @@ export default function Registration() {
 		if (isSuccess) {
 			// TODO
 			//*[ ] check cookies: if exist Favorites and/or ShoppingCart insert them into DB and delete from cookies
-			//*[ ] change userIcon
 			//*[ ]  change email input type
 			setIsSuccess(false)
-			setUserLevel('0')
+			console.log(newUserId)
+			setUserId(newUserId)
 			router.replace('/')
 		}
 	}

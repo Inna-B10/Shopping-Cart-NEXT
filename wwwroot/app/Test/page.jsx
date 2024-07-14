@@ -21,7 +21,7 @@ import { useUser } from './../UserContext'
 import styles from './page.module.css'
 
 export default function LoginPage() {
-	const { userLevel, setUserLevel } = useUser()
+	const { userId, setUserId } = useUser()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
@@ -30,8 +30,8 @@ export default function LoginPage() {
 		//onSubmit({ email, password })
 		setEmail('')
 		setPassword('')
-		await setUserLevel('-1')
-		console.log('Test details:', email, password, userLevel)
+		await setUserId('-1')
+		console.log('Test details:', email, password, userId)
 	}
 
 	return (

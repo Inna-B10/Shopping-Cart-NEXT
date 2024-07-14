@@ -15,7 +15,6 @@ namespace Shopping_Cart_NEXT.Models
         [Required]
         public string user_Lname { get; set; }
         public DateTime user_joindate { get; set; } = DateTime.Now;
-        //public string user_activationkey { get; set; }
         public int? user_address_id { get; set; }
 
     }

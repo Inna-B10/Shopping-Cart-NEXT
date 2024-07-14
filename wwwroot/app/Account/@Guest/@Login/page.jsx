@@ -1,5 +1,6 @@
 'use client'
 import { useUser } from '@/app/UserContext'
+import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import Modal from '../../../components/Modal'
@@ -10,34 +11,84 @@ export default function LoginPage() {
 	const [password, setPassword] = useState('')
 	const [isSuccess, setIsSuccess] = useState(false)
 	const router = useRouter()
-	const { userLevel, setUserLevel } = useUser()
+	const { userId, setUserId, userData } = useUser()
+	const [modalText, setModalText] = useState(null)
+	const [modalShow, setModalShow] = useState(false)
+	const [newUserId, setNewUserId] = useState(null)
 
-	const handleLogin = event => {
+	const handleLogin = async event => {
 		event.preventDefault()
-		setEmail('')
-		setPassword('')
-		setIsSuccess(true)
+
+		try {
+			const response = await axios.post(
+				`http://localhost:5176/Users/Login?userEmail=${email}&userPassword=${password}`
+			)
+			console.log(response)
+			if (response.data.statusCode === 200) {
+				setNewUserId(response.data.userId)
+				setModalShow(true)
+				setModalText(
+					<>
+						<h3>Login successful!</h3>
+					</>
+				)
+				setEmail('')
+				setPassword('')
+				setIsSuccess(true)
+			} else if (response.data.statusCode === 204) {
+				setEmail('')
+				setPassword('')
+				setModalShow(true)
+				setModalText(
+					<h3>
+						The login information provided is incorrect.
+						<br />
+						Please try again.
+					</h3>
+				)
+				console.error('Error:', response.data.statusMessage)
+			} else {
+				setEmail('')
+				setPassword('')
+				setModalShow(true)
+				setModalText(
+					<h3>
+						Login error.
+						<br />
+						Please try again.
+					</h3>
+				)
+				console.error('Error: ', error)
+			}
+		} catch (error) {
+			setModalShow(true)
+			setModalText(
+				<h3>
+					Login error.
+					<br />
+					Please try again.
+				</h3>
+			)
+			console.error(error, AxiosError)
+		}
 	}
-	if (isSuccess) {
-		setTimeout(() => {
-			setUserLevel('1')
+	const handleCloseModal = () => {
+		setModalShow(false)
+		if (isSuccess) {
+			// TODO
+			//*[ ] check cookies: if exist Favorites and/or ShoppingCart insert them into DB and delete from cookies
+			//*[ ]  change email input type
+			setIsSuccess(false)
+			console.log(newUserId)
+			setUserId(newUserId)
 			router.replace('/')
-		}, 2000)
+		}
 	}
 
 	return (
 		<>
-			<Modal
-				show={isSuccess}
-				onClose={() => {
-					setIsSuccess(false), router.replace('/')
-				}}>
-				<div className={styles.modalText}>
-					<h3>Login successful! </h3>
-					<br />
-					<br />
-					Redirecting...
-				</div>
+			<Modal show={modalShow} onClose={handleCloseModal}>
+				<div className={styles.modalText}>{modalText}</div>
 			</Modal>
 			<form className={`flex column ${styles.formWrap}`} onSubmit={handleLogin}>
 				<h3>Sign in to your account</h3>
