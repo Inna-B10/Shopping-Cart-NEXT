@@ -21,7 +21,7 @@ namespace Shopping_Cart_NEXT.Controllers
             _configuration = configuration;
             _userService = userService;
         }
-
+//-------------------------------------Login------------------------------------------------------------------------
         [EnableCors("MyPolicy")]
         [HttpPost]
         [Route("GetUserData")]
@@ -65,6 +65,35 @@ namespace Shopping_Cart_NEXT.Controllers
                 var response = await _userService.LoginAsync(userEmail, userPassword);
                 return StatusCode(response.StatusCode, response);
             }
+        }
+//----------------------------------------Shopping cart--------------------------------------------------------------
+        [EnableCors("MyPolicy")]
+        [HttpPost]
+        [Route("GetShopCart")]
+        public async Task<IActionResult> GetShoppingCart(int userId)
+        {
+            var response = await _userService.GetShoppingCartAsync(userId);
+            return StatusCode(response.StatusCode, response);
+        }
+        [EnableCors("MyPolicy")]
+        [HttpPost]
+        [Route("AddProduct")]
+        public async Task<IActionResult> AddProduct(int userId, int prodId)
+        {
+            var response = await _userService.AddProductAsync(userId,prodId);
+            return StatusCode(response.StatusCode, response);
+        }
+
+        [EnableCors("MyPolicy")]
+        [HttpPost]
+        [Route("RemoveProduct")]
+        public async Task<IActionResult> RemoveProduct(int userId, int prodId)
+        {
+            {
+                var response = await _userService.RemoveProductAsync(userId, prodId);
+                return StatusCode(response.StatusCode, response);
+            }
+
         }
     }
 }

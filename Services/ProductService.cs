@@ -51,7 +51,7 @@ namespace Shopping_Cart_NEXT.Services
             {
                 connection.Open();
                 string sql = "SELECT * FROM Products;";
-
+                connection.Close();
                 using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -72,7 +72,7 @@ namespace Shopping_Cart_NEXT.Services
             {
                 connection.Open();
                 string sql = "SELECT p.*, c.cat_name FROM Products p INNER JOIN Categories c ON p.prod_cat_id = c.cat_id WHERE c.cat_name = @CategoryName or p.prod_label = @CategoryName;";
-
+                connection.Close();
                 using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
                     cmd.Parameters.AddWithValue("@CategoryName", cat_name);

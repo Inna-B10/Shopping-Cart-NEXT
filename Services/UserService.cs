@@ -224,5 +224,167 @@ namespace Shopping_Cart_NEXT.Services
             return response;
 
         }
+//-------------------------------------Shopping cart----------------------------------------------------------------
+        public async Task<Response> GetShoppingCartAsync(int userId)
+        {
+            Response response = new Response();
+            DataTable dt = new DataTable();
+            
+            string sql = "SELECT p.*, sc.sc_prod_quantity FROM Products p INNER JOIN ShoppingCarts sc ON p.prod_id = sc.sc_prod_id WHERE sc.sc_user_id = @UserId;";
+            
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        await connection.OpenAsync();
+
+                        using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                        {
+                            dt.Load(reader);
+                        }
+                    }
+                    response.StatusCode = 200; // Assuming 200 for success
+                    response.StatusMessage = "Shopping cart retrieved successfully.";
+                    response.listProducts = MapDataTableToProducts(dt);
+                }
+                catch (Exception ex)
+                {
+                    // Handle the exception (log it, rethrow it, etc.)
+                    response.StatusCode = 500; // Assuming 500 for server error
+                    response.StatusMessage = "An error occurred while retrieving the shopping cart: " + ex.Message;
+                    response.listProducts = new List<Products>(); // Return an empty list in case of an error
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            return response;
+        }
+        private List<Products> MapDataTableToProducts(DataTable dt)
+        {
+            List<Products> products = new List<Products>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Products product = new Products
+                {
+                    p_id = Convert.ToInt32(row["prod_id"]),
+                    p_name = Convert.ToString(row["prod_name"]),
+                    p_cat_id = Convert.ToInt32(row["prod_cat_id"]),
+                    p_price = row["prod_price"] != DBNull.Value ? Convert.ToDecimal(row["prod_price"]) : 0,
+                    p_price_discounted = row["prod_price_discounted"] != DBNull.Value ? Convert.ToDecimal(row["prod_price_discounted"]) : 0,
+                    p_desc_short = Convert.ToString(row["prod_desc_short"]),
+                    p_desc_full = Convert.ToString(row["prod_desc_full"]),
+                    p_article_num = Convert.ToString(row["prod_article_num"]),
+                    p_tags = Convert.ToString(row["prod_tags"]),
+                    p_is_stone = Convert.ToBoolean(row["prod_is_stone"]),
+                    p_label = Convert.ToString(row["prod_label"]),
+                    p_quantity = Convert.ToInt32(row["prod_quantity"]),
+                    sc_prod_quantity = Convert.ToInt32(row["sc_prod_quantity"]),
+                };
+                products.Add(product);
+            }
+
+            return products;
+        }
+        public async Task<Response> AddProductAsync(int userId, int prodId)
+        {
+            Response response = new Response();
+
+            if (userId > -1 && prodId > 0)
+            {
+                string sql = "INSERT INTO ShoppingCarts(sc_user_id, sc_prod_id) VALUES(@UserId, @ProdId)";
+
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(_connectionString))
+                    {
+                        using (SqlCommand cmd = new SqlCommand(sql, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@UserId", userId);
+                            cmd.Parameters.AddWithValue("@ProdId", prodId);
+
+                            await connection.OpenAsync();
+                            int i = await cmd.ExecuteNonQueryAsync();
+                            await connection.CloseAsync();
+                            if (i > 0)
+                            {
+                                response.StatusCode = 200;
+                                response.StatusMessage = "Item added";
+                            }
+                            else
+                            {
+                                response.StatusCode = 204;
+                                response.StatusMessage = "No item added";
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    response.StatusCode = 500;
+                    response.StatusMessage = "Error: " + ex.Message;
+                }
+            }
+            else
+            {
+                response.StatusCode = 400;
+                response.StatusMessage = "Invalid product ID";
+            }
+
+            return response;
+        }
+
+        public async Task<Response> RemoveProductAsync(int userId, int prodId)
+        {
+            Response response = new Response();
+
+            if (userId > -1 && prodId > 0)
+            {
+                string sql = "DELETE FROM ShoppingCarts WHERE sc_user_id = @UserId AND sc_prod_id = @ProdId";
+
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(_connectionString))
+                    {
+                        using (SqlCommand cmd = new SqlCommand(sql, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@UserId", userId);
+                            cmd.Parameters.AddWithValue("@ProdId", prodId);
+
+                            await connection.OpenAsync();
+                            int i = await cmd.ExecuteNonQueryAsync();
+                            await connection.CloseAsync();
+                            if (i > 0)
+                            {
+                                response.StatusCode = 200;
+                                response.StatusMessage = "Item removed";
+                            }
+                            else
+                            {
+                                response.StatusCode = 204;
+                                response.StatusMessage = "No item removed";
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    response.StatusCode = 500;
+                    response.StatusMessage = "Error: " + ex.Message;
+                }
+            }
+            else
+            {
+                response.StatusCode = 400;
+                response.StatusMessage = "Invalid product ID";
+            }
+
+            return response;
+        }
     }
 }

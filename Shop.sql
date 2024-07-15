@@ -139,8 +139,7 @@ CREATE TABLE ShoppingCarts(
 sc_id int identity(1,1),
 sc_user_id INT NOT NULL,
 sc_prod_id int not null,
-sc_prod_quantity int not null,
-sc_prod_inStock bit not null,
+sc_prod_quantity int not null DEFAULT 1,
 
 CONSTRAINT PK_sc_id PRIMARY KEY (sc_id)
 );
@@ -222,6 +221,16 @@ INNER JOIN
 Categories c ON p.prod_cat_id = c.cat_id
 WHERE c.cat_name = 'new' or p.prod_label = 'new';
 
+--test to add item to ShoppingCarts
+insert into ShoppingCarts(sc_user_id,sc_prod_id)
+values(1,2);
+
+--test to get items from ShoppingCarts whis user_id
+select p.*, sc.sc_prod_quantity 
+from Products p
+inner join
+ShoppingCarts sc on p.prod_id = sc.sc_prod_id
+where sc.sc_user_id = 1
 -----------------------------------------------------------------------------------------
 
 delete from ShoppingCart where ProductID = 6
@@ -262,3 +271,5 @@ DROP CONSTRAINT FK_fav_user_id;
 
 ALTER TABLE Favorites
 DROP CONSTRAINT FK_fav_prod_id;
+
+delete from Users where user_id>2

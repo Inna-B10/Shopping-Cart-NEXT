@@ -95,7 +95,7 @@ namespace Shopping_Cart_NEXT.Controllers
             }
             return response;
         }
-
+//----------------------------------------------------------------------------------------------------------------
         [EnableCors("MyPolicy")]
         [HttpPost]
         [Route("AddProduct")]
@@ -116,7 +116,7 @@ namespace Shopping_Cart_NEXT.Controllers
             }
 
         }
-
+//------------------------------------------------------------------------------------------------------
         [EnableCors("MyPolicy")]
         [HttpGet("Categories")]
         public Response GetCategories()
