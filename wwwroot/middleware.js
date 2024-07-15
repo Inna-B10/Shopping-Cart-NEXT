@@ -16,11 +16,28 @@ export default function middleware(request) {
 		const serializedCookie = cookie.serialize('userId', '-1', {
 			path: '/',
 			maxAge: 60 * 60 * 24 * 7, //1 week
-			httpOnly: true, // флаг HttpOnly для безопасности
-			sameSite: 'strict', // флаг SameSite для безопасности
+			httpOnly: true,
+			sameSite: 'strict',
 		})
 
 		// Setting a cookie in the reply header
+		response.headers.set('Set-Cookie', serializedCookie)
+	}
+
+	// Checking if the 'cartItems' cookie exists
+	const cartItemsCookie = request.cookies.get('cartItems')?.value
+
+	if (
+		!cartItemsCookie ||
+		cartItemsCookie === 'null' ||
+		cartItemsCookie === 'undefined'
+	) {
+		const serializedCookie = cookie.serialize('cartItems', '[]', {
+			path: '/',
+			maxAge: 60 * 60 * 24 * 7,
+			httpOnly: true,
+			sameSite: 'strict',
+		})
 		response.headers.set('Set-Cookie', serializedCookie)
 	}
 

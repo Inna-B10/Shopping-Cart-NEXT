@@ -68,13 +68,54 @@ namespace Shopping_Cart_NEXT.Controllers
         }
 //----------------------------------------Shopping cart--------------------------------------------------------------
         [EnableCors("MyPolicy")]
+        //[HttpPost]
+        //[Route("GetShopCart")]
+        //public async Task<IActionResult> GetShoppingCart(int userId)
+        //{
+        //    var response = await _userService.GetShoppingCartAsync(userId);
+        //    return StatusCode(response.StatusCode, response);
+        //}
+
         [HttpPost]
-        [Route("GetShopCart")]
-        public async Task<IActionResult> GetShoppingCart(int userId)
+        [Route("GetShoppingCart")]
+        public async Task<IActionResult> GetShoppingCart(int userId = -1, string? productIds = null)
         {
-            var response = await _userService.GetShoppingCartAsync(userId);
-            return StatusCode(response.StatusCode, response);
+            if (userId > -1)
+            {
+                //int userId = request.userId;
+                var response = await _userService.GetShoppingCartAsync(userId);
+                return StatusCode(response.StatusCode, response);
+            }
+            else if (productIds != null)
+            {
+                //List<int> prodIds = productIds.ToObject<List<int>>();
+                List<int> productIdList = productIds.Split(',').Select(id => int.Parse(id)).ToList();
+                var response = await _userService.GetProductsByIdsAsync(productIdList);
+                return StatusCode(response.StatusCode, response);
+            }
+            else if(userId == -1 && productIds == null)
+            {
+                Response response = new Response();
+                {
+                    response.StatusCode = 200;
+                    response.StatusMessage = "Shopping cart is empty";
+                    response.listProducts = new List<Products>();
+                }
+                return StatusCode(response.StatusCode, response);
+            }
+            else
+            {
+                Response response = new Response();
+                {
+                    response.StatusCode = 400;
+                    response.StatusMessage = "Invalid request data";
+                }
+                return StatusCode(response.StatusCode, response); 
+            }
         }
+
+
+
         [EnableCors("MyPolicy")]
         [HttpPost]
         [Route("AddProduct")]

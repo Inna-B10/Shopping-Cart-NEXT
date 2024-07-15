@@ -18,8 +18,6 @@ export default function IconUser() {
 	const [userIcon, setUserIcon] = useState(null)
 
 	useEffect(() => {
-		console.log('UserData in IconUser:', userData, userId)
-
 		// Check if userData exists and has the necessary fields
 		if (!userData || userId == '-1') {
 			setUserIcon(

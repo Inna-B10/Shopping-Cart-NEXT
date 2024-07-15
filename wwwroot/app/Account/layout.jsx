@@ -9,8 +9,6 @@ export default function AccountLayout({ Guest, UserInfo, children }) {
 	const router = useRouter()
 	const [isReady, setIsReady] = useState(false)
 
-	console.log('AccountLayout:', userId)
-
 	useEffect(() => {
 		if (userId !== undefined && userId !== null) {
 			setIsReady(true)

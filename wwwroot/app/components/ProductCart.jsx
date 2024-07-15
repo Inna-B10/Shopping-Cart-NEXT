@@ -29,7 +29,6 @@ ProductCart.propTypes = {
 }
 
 export default function ProductCart({ index, item, handle, updateCart }) {
-	// console.log(item)
 	const [mainImage, setMainImage] = useState('')
 	const [hoverImage, setHoverImage] = useState('')
 	const [currentImage, setCurrentImage] = useState('')

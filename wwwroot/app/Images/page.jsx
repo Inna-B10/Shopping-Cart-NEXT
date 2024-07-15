@@ -7,7 +7,6 @@ export default async function Images() {
 	try {
 		const data = await fetchData('http://localhost:5176/Shop/Images')
 		initialData = data.listImages
-		console.log(initialData)
 	} catch (error) {
 		console.error('Failed to fetch products list data:', error)
 	}

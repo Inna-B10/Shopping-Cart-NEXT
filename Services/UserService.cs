@@ -224,7 +224,8 @@ namespace Shopping_Cart_NEXT.Services
             return response;
 
         }
-//-------------------------------------Shopping cart----------------------------------------------------------------
+        //-------------------------------------Shopping cart----------------------------------------------------------------
+        //ShoppingCart for logged in user (with user_id)
         public async Task<Response> GetShoppingCartAsync(int userId)
         {
             Response response = new Response();
@@ -264,6 +265,56 @@ namespace Shopping_Cart_NEXT.Services
             }
             return response;
         }
+
+        //ShoppingCart for guest (when user_id=-1)
+        public async Task<Response> GetProductsByIdsAsync(List<int> productIdList) 
+        {
+            Response response = new Response();
+            DataTable dt = new DataTable();
+
+            //string sql = "SELECT * FROM Products WHERE prod_id IN ({string.Join(\",\", productIdList)})";
+
+            // Формируем параметры запроса
+            var parameters = productIdList.Select((id, index) => new SqlParameter($"@id{index}", id)).ToArray();
+
+            // Создаем строку запроса с использованием параметров
+            string sql = $"SELECT * FROM Products WHERE prod_id IN ({string.Join(",", parameters.Select(p => p.ParameterName))})";
+
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, connection))
+                    {
+
+                        //cmd.Parameters.AddWithValue("@ProductIds",  string.Join(",", productIdList));
+                        cmd.Parameters.AddRange(parameters);
+                        await connection.OpenAsync();
+
+                        using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                        {
+                            dt.Load(reader);
+                        }
+                    }
+                    response.StatusCode = 200;
+                    response.StatusMessage = "Products retrieved successfully.";
+                    response.listProducts = MapDataTableToProducts(dt);
+                }
+                catch (Exception ex)
+                {                    
+                    response.StatusCode = 500; // Assuming 500 for server error
+                    response.StatusMessage = "An error occurred while retrieving the products: " + ex.Message;
+                    response.listProducts = new List<Products>(); // Return an empty list in case of an error
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            return response;
+        }
+
         private List<Products> MapDataTableToProducts(DataTable dt)
         {
             List<Products> products = new List<Products>();
@@ -284,7 +335,7 @@ namespace Shopping_Cart_NEXT.Services
                     p_is_stone = Convert.ToBoolean(row["prod_is_stone"]),
                     p_label = Convert.ToString(row["prod_label"]),
                     p_quantity = Convert.ToInt32(row["prod_quantity"]),
-                    sc_prod_quantity = Convert.ToInt32(row["sc_prod_quantity"]),
+                    sc_prod_quantity = dt.Columns.Contains("sc_prod_quantity") ? Convert.ToInt32(row["sc_prod_quantity"]) : 0
                 };
                 products.Add(product);
             }

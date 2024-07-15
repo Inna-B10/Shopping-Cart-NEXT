@@ -23,7 +23,6 @@ export default function LoginPage() {
 			const response = await axios.post(
 				`http://localhost:5176/Users/Login?userEmail=${email}&userPassword=${password}`
 			)
-			console.log(response)
 			if (response.data.statusCode === 200) {
 				setNewUserId(response.data.userId)
 				setModalShow(true)
@@ -79,7 +78,6 @@ export default function LoginPage() {
 			//*[ ] check cookies: if exist Favorites and/or ShoppingCart insert them into DB and delete from cookies
 			//*[ ]  change email input type
 			setIsSuccess(false)
-			console.log(newUserId)
 			setUserId(newUserId)
 			router.replace('/')
 		}

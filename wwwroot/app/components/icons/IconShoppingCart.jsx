@@ -4,7 +4,6 @@ import axios, { AxiosError } from 'axios'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
-import { getCookie, setCookie } from '../../lib/cookieUtils'
 import styles from './IconShoppingCart.module.css'
 
 IconShoppingCart.propTypes = {
@@ -14,7 +13,7 @@ IconShoppingCart.propTypes = {
 }
 
 export default function IconShoppingCart({ itemId, handle, updateCart }) {
-	const { userId } = useUser()
+	const { userId, cartItems, setCartItems } = useUser()
 	const [isInCart, setIsInCart] = useState(false)
 
 	useEffect(() => {
@@ -22,41 +21,36 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 			if (userId !== '-1') {
 				try {
 					const response = await axios.post(
-						`http://localhost:5176/Users/GetShopCart?userId=${userId}`
+						`http://localhost:5176/Users/GetShoppingCart?userId=${userId}`
 					)
 					const cartItems = response.data.listProducts
-					setIsInCart(cartItems.some(item => item.p_id === itemId)) //?item.?id
+					setIsInCart(cartItems.some(item => item.p_id === itemId))
 				} catch (error) {
 					console.error(error, AxiosError)
 				}
 			} else {
-				const cartItems = JSON.parse(getCookie('shopCart') || '[]')
-				console.log(cartItems)
-				setIsInCart(cartItems.some(item => item.prodId === itemId)) //?id
+				setIsInCart(cartItems.some(item => item.prodId === itemId))
 			}
 		}
-
 		checkCartStatus()
-	}, [itemId, userId])
+	}, [itemId, userId, cartItems])
 
 	const handleRemoveProduct = async prodId => {
 		if (userId !== '-1') {
 			try {
 				const response = await axios.post(
 					`http://localhost:5176/Users/RemoveProduct?userId=${userId}&prodId=${prodId}`
-					//  http://localhost:5176/Users/RemoveProduct?userId=1&prodId=2
-					// 'http://localhost:5176/Users/RemoveProduct',
-					// { userId: userId, prodId: prodId }
 				)
-				console.log(response)
 				if (response.data.statusCode === 200) {
-					alert('Item removed')
 					setIsInCart(false)
 					if (updateCart) {
-						updateCart(
-							prevData => prevData.filter(item => item.p_id !== prodId) //?id
+						updateCart(prevData =>
+							prevData.filter(item => item.p_id !== prodId)
 						)
 					}
+					const updatedCart = cartItems.filter(item => item.prodId !== prodId)
+					setCartItems(updatedCart)
+					alert('Item removed')
 				} else {
 					alert('No item removed')
 					console.log(AxiosError)
@@ -65,11 +59,10 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 				console.error(error, AxiosError)
 			}
 		} else {
-			const cartItems = JSON.parse(getCookie('shopCart') || '[]')
-			const updatedCart = cartItems.filter(item => item.prodId !== prodId) //?id
-			setCookie('shopCart', JSON.stringify(updatedCart))
-			alert('Item removed from cart')
+			const updatedCart = cartItems.filter(item => item.prodId !== prodId)
+			setCartItems(updatedCart)
 			setIsInCart(false)
+			alert('Item removed from cart')
 		}
 	}
 
@@ -78,25 +71,24 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 			try {
 				const response = await axios.post(
 					`http://localhost:5176/Users/AddProduct?userId=${userId}&prodId=${prodId}`
-					//http://localhost:5176/Users/AddProduct?userId=1&prodId=2
-					// 'http://localhost:5176/Users/AddProduct',
-					// { userId: userId, prodId: prodId }
 				)
 				if (response.data.statusCode === 200) {
-					alert('Item added')
 					setIsInCart(true)
+					const updatedCart = [...cartItems, { prodId: prodId }]
+					setCartItems(updatedCart)
+					alert('Item added')
 				} else {
 					alert('No item added')
+					console.log(AxiosError)
 				}
 			} catch (error) {
-				console.error(error)
+				console.error(error, AxiosError)
 			}
 		} else {
-			const cartItems = JSON.parse(getCookie('shopCart') || '[]')
-			cartItems.push({ prodId })
-			setCookie('shopCart', JSON.stringify(cartItems))
-			alert('Item added to cart')
+			const updatedCart = [...cartItems, { prodId: prodId }]
+			setCartItems(updatedCart)
 			setIsInCart(true)
+			alert('Item added to cart')
 		}
 	}
 	const handleClick = () => {
