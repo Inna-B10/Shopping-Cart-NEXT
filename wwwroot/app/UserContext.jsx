@@ -41,7 +41,7 @@ export function UserProvider({ initialUserId, children }) {
 
 	const setUserIdCookie = async id => {
 		document.cookie = `userId=${id}; path=/; max-age=${
-			60 * 60 * 24 * 7
+			60 * 60 * 24 * 7 //1 week
 		}; SameSite=Strict`
 
 		try {

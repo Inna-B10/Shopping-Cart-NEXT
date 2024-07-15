@@ -15,6 +15,7 @@ export default function middleware(request) {
 		// Creating a Set-Cookie line
 		const serializedCookie = cookie.serialize('userId', '-1', {
 			path: '/',
+			maxAge: 60 * 60 * 24 * 7, //1 week
 			httpOnly: true, // флаг HttpOnly для безопасности
 			sameSite: 'strict', // флаг SameSite для безопасности
 		})

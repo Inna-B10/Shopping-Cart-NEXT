@@ -8,6 +8,7 @@ export async function POST(request) {
 		path: '/',
 		httpOnly: true,
 		sameSite: 'strict',
+		maxAge: 60 * 60 * 24 * 7, //1 week
 	})
 
 	const response = NextResponse.json({ success: true })

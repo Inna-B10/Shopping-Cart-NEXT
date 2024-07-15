@@ -35,7 +35,7 @@ export default function LoginPage() {
 				setEmail('')
 				setPassword('')
 				setIsSuccess(true)
-			} else if (response.data.statusCode === 204) {
+			} else if (response.status === 204) {
 				setEmail('')
 				setPassword('')
 				setModalShow(true)
@@ -46,7 +46,7 @@ export default function LoginPage() {
 						Please try again.
 					</h3>
 				)
-				console.error('Error:', response.data.statusMessage)
+				console.error('Error 204:', AxiosError)
 			} else {
 				setEmail('')
 				setPassword('')
@@ -58,15 +58,15 @@ export default function LoginPage() {
 						Please try again.
 					</h3>
 				)
-				console.error('Error: ', error)
+				console.error(error, AxiosError)
 			}
 		} catch (error) {
 			setModalShow(true)
 			setModalText(
 				<h3>
-					Login error.
+					Login/connection error.
 					<br />
-					Please try again.
+					Please try again later.
 				</h3>
 			)
 			console.error(error, AxiosError)

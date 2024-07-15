@@ -38,3 +38,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - [ ] change ShoppingCartIcon when add/delete item from SC
 - [ ] in ShoppingCart, when place order, check if user_level!=0
 - [ ] coding userPassword with MD5 or scrypt/bcrypt
+- [ ] add "Reset password" function
