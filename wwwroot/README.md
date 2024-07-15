@@ -35,7 +35,9 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
   - [ ] check cookies, if exist Favorites and/or ShoppingCart insert them to DB and delete from cookies
   - [x] change UserIcon to use first letters
   - [ ] change FavoritesIcon, ShoppingCartIcon in ProductCart
+  - [ ] change alert message to modal
 - [ ] change ShoppingCartIcon when add/delete item from SC
 - [ ] in ShoppingCart, when place order, check if user_level!=0
 - [ ] coding userPassword with MD5 or scrypt/bcrypt
 - [ ] add "Reset password" function
+- [ ] уникальный индикатор для куки пользователя, чтобы они не путались с куками другого гостя (или пользователя)
