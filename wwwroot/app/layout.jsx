@@ -1,7 +1,7 @@
 // import { El_Messiri, Marcellus } from 'next/font/google'
 
 import { Marcellus } from 'next/font/google'
-import { cookies } from 'next/headers' // Importing cookies from next/headers
+import { cookies } from 'next/headers'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import './globals.css'
@@ -30,12 +30,14 @@ export default function RootLayout({ children }) {
 	// Getting cookies on the server side
 	const cookieStore = cookies()
 	const userId = cookieStore.get('userId')?.value || '-1'
+	const cartItems = cookieStore.get('cartItems')?.value || '[]'
+
 	return (
 		<html lang='en'>
 			<body
 				// className={`${marcellus.variable} ${messiri.variable} ${prosto.variable}`}>
 				className={marcellus.variable}>
-				<UserProvider initialUserId={userId}>
+				<UserProvider initialUserId={userId} initialCartItems={cartItems}>
 					<Header />
 					{children}
 					<Footer />

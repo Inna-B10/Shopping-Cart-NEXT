@@ -9,9 +9,10 @@ export function useUser() {
 	return useContext(UserContext)
 }
 
-export function UserProvider({ initialUserId, children }) {
+export function UserProvider({ initialUserId, initialCartItems, children }) {
 	const [userId, setUserId] = useState(initialUserId || '-1')
 	const [userData, setUserData] = useState(null)
+	const [cartItems, setCartItems] = useState(JSON.parse(initialCartItems) || [])
 
 	useEffect(() => {
 		if (initialUserId !== 'null' && initialUserId !== 'undefined') {
@@ -23,7 +24,6 @@ export function UserProvider({ initialUserId, children }) {
 
 	useEffect(() => {
 		const fetchUserData = async () => {
-			console.log(userId)
 			if (userId !== '-1') {
 				try {
 					const data = await getUserData(userId)
@@ -35,14 +35,17 @@ export function UserProvider({ initialUserId, children }) {
 				setUserData(null)
 			}
 		}
-
 		fetchUserData()
 	}, [userId])
 
-	const setUserIdCookie = async id => {
-		document.cookie = `userId=${id}; path=/; max-age=${
-			60 * 60 * 24 * 7
+	const setCookie = (name, value, days) => {
+		document.cookie = `${name}=${value}; path=/; max-age=${
+			days * 24 * 60 * 60
 		}; SameSite=Strict`
+	}
+
+	const setUserIdCookie = async id => {
+		setCookie('userId', id, 7)
 
 		try {
 			const response = await axios.post(
@@ -58,7 +61,32 @@ export function UserProvider({ initialUserId, children }) {
 			if (response.status === 200 && response.data.success) {
 				setUserId(id)
 			} else {
-				console.error(error, AxiosError)
+				// console.error(error, AxiosError)
+				console.error(response.data.error)
+			}
+		} catch (error) {
+			console.error(error, AxiosError)
+		}
+	}
+
+	const setCartItemsCookie = async items => {
+		setCookie('cartItems', JSON.stringify(items), 7)
+		try {
+			const response = await axios.post(
+				'/api/set-cart-items',
+				{ cartItems: items },
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+			)
+
+			if (response.status === 200 && response.data.success) {
+				setCartItems(items)
+			} else {
+				// console.error(error, AxiosError)
+				console.error(response.data.error)
 			}
 		} catch (error) {
 			console.error(error, AxiosError)
@@ -67,7 +95,13 @@ export function UserProvider({ initialUserId, children }) {
 
 	return (
 		<UserContext.Provider
-			value={{ userId, userData, setUserId: setUserIdCookie }}>
+			value={{
+				userId,
+				userData,
+				cartItems,
+				setUserId: setUserIdCookie,
+				setCartItems: setCartItemsCookie,
+			}}>
 			{children}
 		</UserContext.Provider>
 	)

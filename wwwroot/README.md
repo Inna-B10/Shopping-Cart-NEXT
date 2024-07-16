@@ -31,10 +31,18 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - [ ] change email input type
 - [ ] add validation of email and password user's input
 - [ ] create confirmation email with link for new user
+- [ ] add "Reset password" function
 - [ ] after registration/login:
   - [ ] check cookies, if exist Favorites and/or ShoppingCart insert them to DB and delete from cookies
   - [x] change UserIcon to use first letters
   - [ ] change FavoritesIcon, ShoppingCartIcon in ProductCart
-- [ ] change ShoppingCartIcon when add/delete item from SC
+  - [ ] change alert message to modal
+- [x] change ShoppingCartIcon when add/delete item from SC
 - [ ] in ShoppingCart, when place order, check if user_level!=0
 - [ ] coding userPassword with MD5 or scrypt/bcrypt
+
+- [ ] уникальный индикатор для куки пользователя, чтобы они не путались с куками другого гостя (или пользователя)
+- [ ] check if category exists
+- [ ] favorites
+- [ ] user info page
+- [ ] orders

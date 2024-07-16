@@ -9,6 +9,7 @@ export default function Header() {
 			<Image
 				className={styles.logoImg}
 				src='/images/logo.png'
+				priority={true}
 				width={382}
 				height={53}
 				alt='Logo'

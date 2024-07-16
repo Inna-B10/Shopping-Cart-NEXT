@@ -30,7 +30,6 @@ export default function Registration() {
 					user_Lname: lastName,
 				}
 			)
-			console.log(response)
 			if (response.data.statusCode === 201) {
 				setNewUserId(response.data.userId)
 				setModalShow(true)
@@ -84,7 +83,6 @@ export default function Registration() {
 			//*[ ] check cookies: if exist Favorites and/or ShoppingCart insert them into DB and delete from cookies
 			//*[ ]  change email input type
 			setIsSuccess(false)
-			console.log(newUserId)
 			setUserId(newUserId)
 			router.replace('/')
 		}

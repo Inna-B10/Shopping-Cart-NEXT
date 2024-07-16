@@ -4,9 +4,6 @@ import { useUser } from '../../UserContext'
 export default function UserInfo() {
 	const { userId, setUserId, userData } = useUser()
 
-	console.log('userId:', userId)
-	console.log('userData', userData)
-
 	const handleLogout = event => {
 		event.preventDefault()
 		setUserId('-1')
