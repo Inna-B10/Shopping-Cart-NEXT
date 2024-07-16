@@ -30,14 +30,21 @@ export default function ShoppingCart() {
 		setInitialData(newData)
 	}
 
+	if (!initialData) {
+		return (
+			<>
+				<h1>Account</h1>
+				<p>No connection to database. Please, try again later.</p>
+			</>
+		)
+	}
+
 	return (
 		<>
-			<div>
-				<h1>Shopping cart</h1>
-			</div>
+			<h1>Shopping cart</h1>
 
 			<div>
-				{initialData?.length > 0 ? (
+				{initialData.length > 0 ? (
 					initialData.map((item, index) => (
 						<ProductCart
 							key={index}
@@ -48,11 +55,7 @@ export default function ShoppingCart() {
 						/>
 					))
 				) : (
-					<p>
-						{initialData
-							? 'Shopping cart is empty'
-							: 'Could not connect to get data. Please, try again later.'}
-					</p>
+					<p>Shopping cart is empty</p>
 				)}
 			</div>
 		</>

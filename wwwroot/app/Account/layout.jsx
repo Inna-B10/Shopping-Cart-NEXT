@@ -22,7 +22,12 @@ export default function AccountLayout({ Guest, UserInfo, children }) {
 	}, [userId, router])
 
 	if (!isReady) {
-		return <div>Loading...</div>
+		return (
+			<>
+				<h1>Account</h1>
+				<p>No connection to database. Please, try again later.</p>
+			</>
+		)
 	}
 
 	return <>{userId === '-1' ? Guest : UserInfo}</>

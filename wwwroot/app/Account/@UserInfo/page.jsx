@@ -10,7 +10,12 @@ export default function UserInfo() {
 	}
 
 	if (!userData) {
-		return <p>Loading...</p>
+		return (
+			<>
+				<h1>Account</h1>
+				<p>No connection to database. Please, try again later.</p>
+			</>
+		)
 	}
 
 	return (

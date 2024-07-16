@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import IconFavorites from './icons/IconFavorites'
 import IconLabel from './icons/IconLabel'
 import IconShoppingCart from './icons/IconShoppingCart'
@@ -62,7 +62,7 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 		setIsHovered(false)
 	}
 	return (
-		<Fragment>
+		<>
 			<div
 				className={`flex column ${styles.productCart}`}
 				style={{ backgroundImage: `url(${hoverImage})` }}
@@ -117,6 +117,6 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 					<IconLabel label={item.p_label} isHovered={isHovered} />
 				</div>
 			</div>
-		</Fragment>
+		</>
 	)
 }
