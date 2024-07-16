@@ -2,29 +2,6 @@
 COLLATE Norwegian_100_CI_AI_SC_UTF8;
 use ShopDb
 
-create table Images(
-ID int Identity(1,1) Primary Key,
-Name varchar(100),
-Image varchar(100),
-ActualPrice decimal(18,2),
-DiscountedPrice decimal(18,2))
-
-
-insert into Images values
-('Red shoes', 'd5.jpg', 115.00, 60.00),
-('Watch', 'd1.jpg', 195.00, 95.00),
-('Jeans', 'd8.jpg', 95.00, 40.00),
-('Smartphone', 'd4.jpg', 195.00, 95.00),
-('Shirt', 'd7.jpg', 95.00, 40.00),
-('Sneakers', 'd2.jpg', 65.00, 25.00),
-('Iron', 'd3.jpg', 95.00, 50.00),
-('Sunglasses', 'd6.jpg', 84.00, 36.00)
-
-create table ShoppingCart(
-ID int Identity(1,1) Primary Key,
-ProductID int)
-
------------------------------------------------------------------------------------------------
 --Create table Categories
 CREATE TABLE Categories (
   cat_id INT IDENTITY(1,1),
@@ -204,10 +181,6 @@ values(9,'admin','admin','admin','admin');
 
 ------------------------------------------------------------------------------------------------------
 --TEST QUERIES
---test to get items in ShoppingCart
-select P.ID, P.Name, P.Image, P.ActualPrice, P.DiscountedPrice from ShoppingCart C
-INNER JOIN Images P
-ON C.ProductID = P.Id;
 
 --test to get categories+labels
 select cat_name from Categories
@@ -223,7 +196,7 @@ WHERE c.cat_name = 'new' or p.prod_label = 'new';
 
 --test to add item to ShoppingCarts
 insert into ShoppingCarts(sc_user_id,sc_prod_id)
-values(1,2);
+values(1,1);
 
 --test to get items from ShoppingCarts whis user_id
 select p.*, sc.sc_prod_quantity 
@@ -231,9 +204,9 @@ from Products p
 inner join
 ShoppingCarts sc on p.prod_id = sc.sc_prod_id
 where sc.sc_user_id = 1
+
 -----------------------------------------------------------------------------------------
 
-delete from ShoppingCart where ProductID = 6
 
 ALTER TABLE Products
 DROP COLUMN prod_size;
@@ -243,14 +216,18 @@ ADD prod_quantity INT NOT NULL DEFAULT 0;
 
 select * from Products
 select * from Users
-select * from ShoppingCart
 select * from ShoppingCarts
 select * from Categories
 select * from Favorites
-select * from Images
 select * from UsersAddress
 
-drop table UsersAddress
+drop table Users
+
+delete from Users where user_id>2
+
+SELECT * FROM Products WHERE prod_id IN (2,1)
+
+SELECT p.*, c.cat_name FROM Products p INNER JOIN Categories c ON p.prod_cat_id = c.cat_id WHERE c.cat_name = "Silver-earrings";
 
 -------------------------------------------------------------------------------
 
@@ -271,5 +248,3 @@ DROP CONSTRAINT FK_fav_user_id;
 
 ALTER TABLE Favorites
 DROP CONSTRAINT FK_fav_prod_id;
-
-delete from Users where user_id>2

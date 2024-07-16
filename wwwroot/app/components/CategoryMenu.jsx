@@ -3,13 +3,8 @@ import { fetchData } from '../lib/fetchData'
 import styles from './CategoryMenu.module.css'
 
 export default async function CategoryMenu() {
-	const initialData = [
-		{ name: 'Images', path: '/Images' },
-		{ name: 'Rings', path: '/Rings' },
-		{ name: 'Silver earrings', path: '/Silver-earrings' },
-	]
-
 	let categories = []
+
 	try {
 		const data = await fetchData('http://localhost:5176/Shop/Categories', {
 			next: { revalidate: 60 },
@@ -21,12 +16,6 @@ export default async function CategoryMenu() {
 
 	return (
 		<ul className={styles.catLinks}>
-			{initialData.map(category => (
-				<li key={category.name}>
-					<Link href={category.path}>{category.name}</Link>
-				</li>
-			))}
-			<li>------------------</li>
 			{categories
 				? categories.length > 0
 					? categories.map((item, index) => (
