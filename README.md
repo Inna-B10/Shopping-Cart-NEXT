@@ -40,16 +40,17 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 - [ ] check cookies, if exist Favorites and/or ShoppingCart ask to insert them to DB and delete from cookies
 - [x] changing of the UserIcon to user's first letters
-- [ ] changing of the FavoritesIcon, ShoppingCartIcon in ProductCart
+- [x] changing of the FavoritesIcon, ShoppingCartIcon in ProductCart
 
 #### global:
 
 - [ ] change alert messages to modal
 - [x] changing of the ShoppingCartIcon when add/delete item from SC (users + guests)
+- [ ] display badge on icons Bag и Favorites in user menu
 
 - [ ] ?в куках для гостя хранить количество товара(доступно только в корзине)
 - [ ] check if category exists
-- [ ] favorites
+- [x] favorites
 - [ ] user info page
 
 #### orders/ShoppingCart:
