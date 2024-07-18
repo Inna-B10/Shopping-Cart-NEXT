@@ -33,9 +33,7 @@ export default async function Products({ params }) {
 
 	return (
 		<>
-			<div>
-				<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
-			</div>
+			<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
 			<div className={styles.filters}>
 				<Image
 					src='../../../images/icons/filters.svg'

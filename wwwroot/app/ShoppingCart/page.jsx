@@ -1,8 +1,18 @@
 'use client'
 import { useUser } from '@/app/UserContext'
 import axios, { AxiosError } from 'axios'
+import { El_Messiri } from 'next/font/google'
 import { useEffect, useState } from 'react'
+import LoadingSpinner from '../components/LoadingSpinner'
 import ProductCart from '../components/ProductCart'
+import styles from './page.module.css'
+
+const messiri = El_Messiri({
+	weight: ['400', '700'],
+	subsets: ['latin'],
+	variable: '--font-messiri',
+	display: 'swap',
+})
 
 export default function ShoppingCart() {
 	const { userId, cartItems } = useUser()
@@ -32,18 +42,22 @@ export default function ShoppingCart() {
 
 	if (!initialData) {
 		return (
-			<>
-				<h1>Account</h1>
-				<p>No connection to database. Please, try again later.</p>
-			</>
+			<div className={`${styles.galleryWrapper} flex column`}>
+				<h2 className={`${styles.title} ${messiri.variable}`}>Shopping cart</h2>
+				<div className={styles.spinner}>
+					<LoadingSpinner />
+				</div>
+				<p>
+					No connection to database. Please refresh the page or try again later.
+				</p>
+			</div>
 		)
 	}
 
 	return (
 		<>
-			<h1>Shopping cart</h1>
-
-			<div>
+			<h2 className={`${styles.title} ${messiri.variable}`}>Shopping cart</h2>
+			<div className={`${styles.galleryWrapper} flex column`}>
 				{initialData.length > 0 ? (
 					initialData.map((item, index) => (
 						<ProductCart

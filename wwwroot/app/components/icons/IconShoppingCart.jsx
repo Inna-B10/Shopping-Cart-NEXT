@@ -48,8 +48,8 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 							prevData.filter(item => item.p_id !== prodId)
 						)
 					}
-					const updatedCart = cartItems.filter(item => item.prodId !== prodId)
-					setCartItems(updatedCart)
+					// const updatedCart = cartItems.filter(item => item.prodId !== prodId)
+					// setCartItems(updatedCart)
 					alert('Item removed')
 				} else {
 					alert('No item removed')
@@ -74,8 +74,8 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 				)
 				if (response.data.statusCode === 200) {
 					setIsInCart(true)
-					const updatedCart = [...cartItems, { prodId: prodId }]
-					setCartItems(updatedCart)
+					// const updatedCart = [...cartItems, { prodId: prodId }]
+					// setCartItems(updatedCart)
 					alert('Item added')
 				} else {
 					alert('No item added')
@@ -110,6 +110,7 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 				width={27}
 				height={27}
 				alt='Shopping cart icon'
+				title={isInCart ? 'Remove from shopping cart' : 'Add to shopping cart'}
 			/>
 
 			{/* {handle === 'addItem' ? 'Add item' : 'Remove item'} */}
