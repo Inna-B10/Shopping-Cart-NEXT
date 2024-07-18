@@ -1,7 +1,15 @@
 'use client'
 import axios, { AxiosError } from 'axios'
+import PropTypes from 'prop-types'
 import { createContext, useContext, useEffect, useState } from 'react'
 import getUserData from './lib/getUserData'
+
+UserProvider.propTypes = {
+	initialUserId: PropTypes.string,
+	initialCartItems: PropTypes.string,
+	initialFavorites: PropTypes.string,
+	children: PropTypes.node.isRequired,
+}
 
 const UserContext = createContext()
 

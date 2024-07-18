@@ -2,6 +2,7 @@
 
 import { Marcellus } from 'next/font/google'
 import { cookies } from 'next/headers'
+import PropTypes from 'prop-types'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import './globals.css'
@@ -20,6 +21,10 @@ const marcellus = Marcellus({
 // 	variable: '--font-messiri',
 // 	display: 'swap',
 // })
+
+RootLayout.propTypes = {
+	children: PropTypes.node.isRequired,
+}
 
 export const metadata = {
 	title: 'Create Next App',

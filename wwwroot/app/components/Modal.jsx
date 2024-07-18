@@ -1,6 +1,13 @@
 'use client'
+import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import styles from './Modal.module.css'
+
+Modal.propTypes = {
+	show: PropTypes.bool.isRequired,
+	onClose: PropTypes.func.isRequired,
+	children: PropTypes.node.isRequired,
+}
 
 export default function Modal({ show, onClose, children }) {
 	useEffect(() => {

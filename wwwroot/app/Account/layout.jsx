@@ -1,8 +1,15 @@
 'use client'
 import middleware from '@/middleware'
 import { useRouter } from 'next/navigation'
+import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { useUser } from './../UserContext'
+
+AccountLayout.propTypes = {
+	Guest: PropTypes.node.isRequired,
+	UserInfo: PropTypes.node.isRequired,
+	children: PropTypes.node,
+}
 
 export default function AccountLayout({ Guest, UserInfo, children }) {
 	const { userId } = useUser()

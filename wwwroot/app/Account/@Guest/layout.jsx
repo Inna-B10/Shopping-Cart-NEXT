@@ -1,8 +1,13 @@
 'use client'
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 import LoginPage from './@Login/page'
 import Registration from './@Registration/page'
 import styles from './layout.module.css'
+
+GuestLayout.propTypes = {
+	children: PropTypes.node.isRequired,
+}
 
 export default function GuestLayout({ children }) {
 	const [activeTab, setActiveTab] = useState('login')
