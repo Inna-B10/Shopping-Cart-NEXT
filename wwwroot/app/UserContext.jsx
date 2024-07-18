@@ -9,10 +9,16 @@ export function useUser() {
 	return useContext(UserContext)
 }
 
-export function UserProvider({ initialUserId, initialCartItems, children }) {
+export function UserProvider({
+	initialUserId,
+	initialCartItems,
+	initialFavorites,
+	children,
+}) {
 	const [userId, setUserId] = useState(initialUserId || '-1')
 	const [userData, setUserData] = useState(null)
 	const [cartItems, setCartItems] = useState(JSON.parse(initialCartItems) || [])
+	const [favItems, setFavItems] = useState(JSON.parse(initialFavorites) || [])
 
 	useEffect(() => {
 		if (initialUserId !== 'null' && initialUserId !== 'undefined') {
@@ -92,6 +98,29 @@ export function UserProvider({ initialUserId, initialCartItems, children }) {
 			console.error(error, AxiosError)
 		}
 	}
+	const setFavoritesCookie = async items => {
+		setCookie('favItems', JSON.stringify(items), 7)
+		try {
+			const response = await axios.post(
+				'/api/set_fav-cookies',
+				{ favItems: items },
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+			)
+
+			if (response.status === 200 && response.data.success) {
+				setFavItems(items)
+			} else {
+				// console.error(error, AxiosError)
+				console.error(response.data.error)
+			}
+		} catch (error) {
+			console.error(error, AxiosError)
+		}
+	}
 
 	return (
 		<UserContext.Provider
@@ -99,8 +128,10 @@ export function UserProvider({ initialUserId, initialCartItems, children }) {
 				userId,
 				userData,
 				cartItems,
+				favItems,
 				setUserId: setUserIdCookie,
 				setCartItems: setCartItemsCookie,
+				setFavItems: setFavoritesCookie,
 			}}>
 			{children}
 		</UserContext.Provider>

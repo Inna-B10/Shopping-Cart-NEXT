@@ -31,13 +31,17 @@ export default function RootLayout({ children }) {
 	const cookieStore = cookies()
 	const userId = cookieStore.get('userId')?.value || '-1'
 	const cartItems = cookieStore.get('cartItems')?.value || '[]'
+	const favItems = cookieStore.get('favItems')?.value || '[]'
 
 	return (
 		<html lang='en'>
 			<body
 				// className={`${marcellus.variable} ${messiri.variable} ${prosto.variable}`}>
 				className={marcellus.variable}>
-				<UserProvider initialUserId={userId} initialCartItems={cartItems}>
+				<UserProvider
+					initialUserId={userId}
+					initialCartItems={cartItems}
+					initialFavorites={favItems}>
 					<Header />
 					{children}
 					<Footer />

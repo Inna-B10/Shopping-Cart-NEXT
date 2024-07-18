@@ -34,7 +34,20 @@ export default function middleware(request) {
 	) {
 		const serializedCookie = cookie.serialize('cartItems', '[]', {
 			path: '/',
-			maxAge: 60 * 60 * 24 * 7,
+			// maxAge: 60 * 60 * 24 * 7,
+			httpOnly: true,
+			sameSite: 'strict',
+		})
+		response.headers.set('Set-Cookie', serializedCookie)
+	}
+
+	// Checking if the 'favItems' cookie exists
+	const favItems = request.cookies.get('favItems')?.value
+
+	if (!favItems || favItems === 'null' || favItems === 'undefined') {
+		const serializedCookie = cookie.serialize('favItems', '[]', {
+			path: '/',
+			// maxAge: 60 * 60 * 24 * 7,
 			httpOnly: true,
 			sameSite: 'strict',
 		})

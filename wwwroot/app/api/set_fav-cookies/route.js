@@ -2,11 +2,11 @@ import cookie from 'cookie'
 import { NextResponse } from 'next/server'
 
 export async function POST(request) {
-	const { cartItems } = await request.json()
+	const { favItems } = await request.json()
 
 	const serializedCookie = cookie.serialize(
-		'cartItems',
-		JSON.stringify(cartItems),
+		'favItems',
+		JSON.stringify(favItems),
 		{
 			path: '/',
 			httpOnly: true,

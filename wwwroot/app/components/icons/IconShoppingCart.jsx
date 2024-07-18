@@ -8,11 +8,10 @@ import styles from './IconShoppingCart.module.css'
 
 IconShoppingCart.propTypes = {
 	itemId: PropTypes.number.isRequired,
-	handle: PropTypes.string.isRequired,
 	updateCart: PropTypes.func,
 }
 
-export default function IconShoppingCart({ itemId, handle, updateCart }) {
+export default function IconShoppingCart({ itemId, updateCart }) {
 	const { userId, cartItems, setCartItems } = useUser()
 	const [isInCart, setIsInCart] = useState(false)
 
@@ -21,7 +20,7 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 			if (userId !== '-1') {
 				try {
 					const response = await axios.post(
-						`http://localhost:5176/Users/GetShoppingCart?userId=${userId}`
+						`http://localhost:5176/Users/GetUserProducts?table=shoppingCart&userId=${userId}`
 					)
 					const cartItems = response.data.listProducts
 					setIsInCart(cartItems.some(item => item.p_id === itemId))
@@ -39,7 +38,7 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 		if (userId !== '-1') {
 			try {
 				const response = await axios.post(
-					`http://localhost:5176/Users/RemoveProduct?userId=${userId}&prodId=${prodId}`
+					`http://localhost:5176/Users/RemoveProduct?table=shoppingCart&userId=${userId}&prodId=${prodId}`
 				)
 				if (response.data.statusCode === 200) {
 					setIsInCart(false)
@@ -48,6 +47,7 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 							prevData.filter(item => item.p_id !== prodId)
 						)
 					}
+					//remove cookie for logged in user
 					// const updatedCart = cartItems.filter(item => item.prodId !== prodId)
 					// setCartItems(updatedCart)
 					alert('Item removed')
@@ -70,10 +70,11 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 		if (userId !== '-1') {
 			try {
 				const response = await axios.post(
-					`http://localhost:5176/Users/AddProduct?userId=${userId}&prodId=${prodId}`
+					`http://localhost:5176/Users/AddProduct?table=shoppingCart&userId=${userId}&prodId=${prodId}`
 				)
 				if (response.data.statusCode === 200) {
 					setIsInCart(true)
+					//add cookie for logged in user
 					// const updatedCart = [...cartItems, { prodId: prodId }]
 					// setCartItems(updatedCart)
 					alert('Item added')
@@ -112,8 +113,6 @@ export default function IconShoppingCart({ itemId, handle, updateCart }) {
 				alt='Shopping cart icon'
 				title={isInCart ? 'Remove from shopping cart' : 'Add to shopping cart'}
 			/>
-
-			{/* {handle === 'addItem' ? 'Add item' : 'Remove item'} */}
 		</button>
 	)
 }

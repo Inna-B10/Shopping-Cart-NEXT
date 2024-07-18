@@ -45,12 +45,7 @@ export default async function Products({ params }) {
 			<div className={`${styles.galleryWrapper} flex`}>
 				{initialData && initialData.length > 0 ? (
 					initialData.map((item, index) => (
-						<ProductCart
-							key={index}
-							index={index}
-							item={item}
-							handle='addItem'
-						/>
+						<ProductCart key={index} index={index} item={item} />
 					))
 				) : (
 					<p>

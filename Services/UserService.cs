@@ -226,43 +226,52 @@ namespace Shopping_Cart_NEXT.Services
         }
         //-------------------------------------Shopping cart----------------------------------------------------------------
         //ShoppingCart for logged in user (with user_id)
-        public async Task<Response> GetShoppingCartAsync(int userId)
+        public async Task<Response> GetUserProductsAsync(string table, int userId)
         {
             Response response = new Response();
             DataTable dt = new DataTable();
-            
-            string sql = "SELECT p.*, sc.sc_prod_quantity FROM Products p INNER JOIN ShoppingCarts sc ON p.prod_id = sc.sc_prod_id WHERE sc.sc_user_id = @UserId;";
-            
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                try
-                {
-                    using (SqlCommand cmd = new SqlCommand(sql, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@UserId", userId);
-                        await connection.OpenAsync();
+            string sql;
 
-                        using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                        {
-                            dt.Load(reader);
-                        }
-                    }
-                    response.StatusCode = 200; // Assuming 200 for success
-                    response.StatusMessage = "Shopping cart retrieved successfully.";
-                    response.listProducts = MapDataTableToProducts(dt);
-                }
-                catch (Exception ex)
-                {
-                    // Handle the exception (log it, rethrow it, etc.)
-                    response.StatusCode = 500; // Assuming 500 for server error
-                    response.StatusMessage = "An error occurred while retrieving the shopping cart: " + ex.Message;
-                    response.listProducts = new List<Products>(); // Return an empty list in case of an error
-                }
-                finally
-                {
-                    connection.Close();
-                }
+            if (table == "shoppingCart")
+           { 
+                sql = "SELECT p.*, sc.sc_prod_quantity FROM Products p INNER JOIN ShoppingCarts sc ON p.prod_id = sc.sc_prod_id WHERE sc.sc_user_id = @UserId;";
+           }
+           else if (table == "favorites")
+           {
+                sql = "SELECT p.* FROM Products p INNER JOIN Favorites f ON p.prod_id = f.fav_prod_id WHERE f.fav_user_id = @UserId;";
+           }
+            else
+            {
+                response.StatusCode = 400; // Bad Request
+                response.StatusMessage = "Invalid table type.";
+                return response;
             }
+
+            try
+            {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    await connection.OpenAsync();
+
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        dt.Load(reader);
+                    }
+                }
+                response.StatusCode = 200; // Assuming 200 for success
+                response.StatusMessage = "Products list retrieved successfully.";
+                response.listProducts = MapDataTableToProducts(dt);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (log it, rethrow it, etc.)
+                response.StatusCode = 500; // Internal Server Error
+            response.StatusMessage = "An error occurred while retrieving the Products list: " + ex.Message;
+                response.listProducts = new List<Products>(); // Return an empty list in case of an error
+            }
+            
             return response;
         }
 
@@ -271,8 +280,6 @@ namespace Shopping_Cart_NEXT.Services
         {
             Response response = new Response();
             DataTable dt = new DataTable();
-
-            //string sql = "SELECT * FROM Products WHERE prod_id IN ({string.Join(\",\", productIdList)})";
 
             // Формируем параметры запроса
             var parameters = productIdList.Select((id, index) => new SqlParameter($"@id{index}", id)).ToArray();
@@ -342,13 +349,28 @@ namespace Shopping_Cart_NEXT.Services
 
             return products;
         }
-        public async Task<Response> AddProductAsync(int userId, int prodId)
+        public async Task<Response> AddProductAsync(string table, int userId, int prodId)
         {
             Response response = new Response();
 
-            if (userId > -1 && prodId > 0)
+            if (prodId > 0)
             {
-                string sql = "INSERT INTO ShoppingCarts(sc_user_id, sc_prod_id) VALUES(@UserId, @ProdId)";
+                string sql;
+
+                if (table == "shoppingCart")
+                {
+                    sql = "INSERT INTO ShoppingCarts(sc_user_id, sc_prod_id) VALUES(@UserId, @ProdId)";
+                }
+                else if (table == "favorites")
+                {
+                    sql = "INSERT INTO Favorites(fav_user_id, fav_prod_id) VALUES(@UserId, @ProdId)";
+                }
+                else
+                {
+                    response.StatusCode = 400; // Bad Request
+                    response.StatusMessage = "Invalid table type.";
+                    return response;
+                }
 
                 try
                 {
@@ -390,13 +412,27 @@ namespace Shopping_Cart_NEXT.Services
             return response;
         }
 
-        public async Task<Response> RemoveProductAsync(int userId, int prodId)
+        public async Task<Response> RemoveProductAsync(string table, int userId, int prodId)
         {
             Response response = new Response();
 
-            if (userId > -1 && prodId > 0)
+            if (prodId > 0)
             {
-                string sql = "DELETE FROM ShoppingCarts WHERE sc_user_id = @UserId AND sc_prod_id = @ProdId";
+                string sql;
+                if (table == "shoppingCart")
+                {
+                    sql = "DELETE FROM ShoppingCarts WHERE sc_user_id = @UserId AND sc_prod_id = @ProdId";
+                }
+                else if (table == "favorites")
+                {
+                    sql = "DELETE FROM Favorites WHERE fav_user_id = @UserId AND fav_prod_id = @ProdId";
+                }
+                else
+                {
+                    response.StatusCode = 400; // Bad Request
+                    response.StatusMessage = "Invalid table type.";
+                    return response;
+                }
 
                 try
                 {
