@@ -1,24 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Online jewelry shop: Next.js + C# + SQL server
 
-## Getting Started
+- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-First, run the development server:
+- Used [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Used app routing
 
 ## Installed
 
@@ -47,16 +33,18 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 - [x] changing of the ShoppingCartIcon when add/delete item from SC (users + guests)
 - [x] changing of the FavoritesIcon when add/delete item from Fav.list (users + guests)
-- [x] favorites
+- [x] favorites page
+- [x] check if category exists
 - [ ] change alert messages to modal
 - [ ] display badge on icons Bag и Favorites in user menu
 
 - [ ] ?в куках для гостя хранить количество товара(доступно только в корзине)
-- [ ] check if category exists
 - [ ] user info page
 - [ ] ?display only products with quantity>0 or display "out of stock"
+- [ ] product details page
 
 #### orders/ShoppingCart:
 
 - [ ] in ShoppingCart, when place order, check if user_level != 0
 - [ ] в ShoppingCart проверять наличие и количество товара
+- [ ] button for quantity
