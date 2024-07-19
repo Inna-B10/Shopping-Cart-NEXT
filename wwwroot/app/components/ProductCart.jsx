@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import IconFavorites from './icons/IconFavorites'
 import IconLabel from './icons/IconLabel'
 import IconShoppingCart from './icons/IconShoppingCart'
@@ -24,11 +24,17 @@ ProductCart.propTypes = {
 		p_label: PropTypes.string,
 		p_cat_name: PropTypes.string,
 	}).isRequired,
-	handle: PropTypes.string.isRequired,
+
 	updateCart: PropTypes.func,
+	updateFavList: PropTypes.func,
 }
 
-export default function ProductCart({ index, item, handle, updateCart }) {
+export default function ProductCart({
+	index,
+	item,
+	updateCart,
+	updateFavList,
+}) {
 	const [mainImage, setMainImage] = useState('')
 	const [hoverImage, setHoverImage] = useState('')
 	const [currentImage, setCurrentImage] = useState('')
@@ -52,17 +58,15 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 
 	const handleMouseEnter = () => {
 		{
-			// setCurrentImage(hoverImage)
 			setIsHovered(true)
 		}
 	}
 
 	const handleMouseLeave = () => {
-		// setCurrentImage(mainImage)
 		setIsHovered(false)
 	}
 	return (
-		<Fragment>
+		<>
 			<div
 				className={`flex column ${styles.productCart}`}
 				style={{ backgroundImage: `url(${hoverImage})` }}
@@ -106,17 +110,20 @@ export default function ProductCart({ index, item, handle, updateCart }) {
 					<IconShoppingCart
 						key={index}
 						itemId={item.p_id}
-						handle={handle}
 						updateCart={updateCart}
 					/>
 				</div>
 				<div>
-					<IconFavorites />
+					<IconFavorites
+						key={index}
+						itemId={item.p_id}
+						updateFavList={updateFavList}
+					/>
 				</div>
 				<div>
 					<IconLabel label={item.p_label} isHovered={isHovered} />
 				</div>
 			</div>
-		</Fragment>
+		</>
 	)
 }

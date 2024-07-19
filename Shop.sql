@@ -127,7 +127,7 @@ CREATE INDEX idx_sc_prod_id ON ShoppingCarts(sc_prod_id);
 
 --create table Favorites
 CREATE TABLE Favorites (
-    fav_id varchar(32) not null,
+    fav_id int identity(1,1),
     fav_user_id INT not null,
     fav_prod_id INT not null,
     

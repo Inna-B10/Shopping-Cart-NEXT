@@ -14,8 +14,8 @@ const messiri = El_Messiri({
 	display: 'swap',
 })
 
-export default function ShoppingCart() {
-	const { userId, cartItems } = useUser()
+export default function FavoritesPage() {
+	const { userId, favItems } = useUser()
 	const [initialData, setInitialData] = useState()
 
 	useEffect(() => {
@@ -24,9 +24,9 @@ export default function ShoppingCart() {
 				const request =
 					userId !== '-1'
 						? 'userId=' + userId
-						: 'productIds=' + cartItems.map(item => item.prodId)
+						: 'productIds=' + favItems.map(item => item.prodId)
 				const response = await axios.post(
-					'http://localhost:5176/Users/GetUserProducts?table=shoppingCart&' +
+					'http://localhost:5176/Users/GetUserProducts?table=favorites&' +
 						request
 				)
 				setInitialData(response.data.listProducts)
@@ -35,16 +35,12 @@ export default function ShoppingCart() {
 			}
 		}
 		getData()
-	}, [userId, cartItems])
-
-	const handleUpdateCart = newData => {
-		setInitialData(newData)
-	}
+	}, [userId, favItems])
 
 	if (!initialData) {
 		return (
 			<div className={`${styles.galleryWrapper} flex column`}>
-				<h2 className={`${styles.title} ${messiri.variable}`}>Shopping cart</h2>
+				<h2 className={`${styles.title} ${messiri.variable}`}>Favorites</h2>
 				<div className={styles.spinner}>
 					<LoadingSpinner />
 				</div>
@@ -55,21 +51,24 @@ export default function ShoppingCart() {
 		)
 	}
 
+	const handleUpdateFavList = newData => {
+		setInitialData(newData)
+	}
 	return (
 		<>
-			<h2 className={`${styles.title} ${messiri.variable}`}>Shopping cart</h2>
-			<div className={`${styles.galleryWrapper} flex column`}>
+			<h2 className={`${styles.title} ${messiri.variable}`}>Favorites</h2>
+			<div className={`${styles.galleryWrapper} flex`}>
 				{initialData.length > 0 ? (
 					initialData.map((item, index) => (
 						<ProductCart
 							key={index}
 							index={index}
 							item={item}
-							updateCart={handleUpdateCart}
+							updateFavList={handleUpdateFavList}
 						/>
 					))
 				) : (
-					<p>Your shopping cart is empty</p>
+					<p>Your list of favorites is empty</p>
 				)}
 			</div>
 		</>

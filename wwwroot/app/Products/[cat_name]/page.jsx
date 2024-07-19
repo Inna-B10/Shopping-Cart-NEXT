@@ -1,5 +1,6 @@
 import { Cinzel_Decorative } from 'next/font/google'
 import Image from 'next/image'
+import PropTypes from 'prop-types'
 import ProductCart from '../../components/ProductCart'
 import { fetchData } from '../../lib/fetchData'
 import styles from './page.module.css'
@@ -10,6 +11,12 @@ const cinzel = Cinzel_Decorative({
 	variable: '--font-cinzel',
 	display: 'swap',
 })
+
+Products.propTypes = {
+	params: PropTypes.shape({
+		cat_name: PropTypes.string,
+	}),
+}
 
 export default async function Products({ params }) {
 	let { cat_name } = params
@@ -33,9 +40,7 @@ export default async function Products({ params }) {
 
 	return (
 		<>
-			<div>
-				<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
-			</div>
+			<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
 			<div className={styles.filters}>
 				<Image
 					src='../../../images/icons/filters.svg'
@@ -47,12 +52,7 @@ export default async function Products({ params }) {
 			<div className={`${styles.galleryWrapper} flex`}>
 				{initialData && initialData.length > 0 ? (
 					initialData.map((item, index) => (
-						<ProductCart
-							key={index}
-							index={index}
-							item={item}
-							handle='addItem'
-						/>
+						<ProductCart key={index} index={index} item={item} />
 					))
 				) : (
 					<p>

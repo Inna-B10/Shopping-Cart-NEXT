@@ -1,4 +1,9 @@
 import axios, { AxiosError } from 'axios'
+import PropTypes from 'prop-types'
+
+getUserData.propTypes = {
+	userId: PropTypes.number.isRequired,
+}
 
 export default async function getUserData(userId) {
 	try {
