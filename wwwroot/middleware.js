@@ -1,58 +1,57 @@
 import cookie from 'cookie'
 import { NextResponse } from 'next/server'
 
-export default function middleware(request) {
+async function fetchCategories() {
+	try {
+		const res = await fetch('http://localhost:5176/Shop/Categories')
+		if (!res.ok) {
+			throw new Error('Network response was not ok')
+		}
+		const data = await res.json()
+		return data.listCategories.map(category => category.cat_name)
+	} catch (error) {
+		console.error('Error fetching categories:', error)
+		return []
+	}
+}
+
+export default async function middleware(request) {
 	const response = NextResponse.next()
 
-	// Checking if the 'userId' cookie exists
-	const userIdCookie = request.cookies.get('userId')?.value
+	// Fetch categories
+	const validCategories = await fetchCategories()
 
-	if (
-		!userIdCookie ||
-		userIdCookie === 'null' ||
-		userIdCookie === 'undefined'
-	) {
-		// Creating a Set-Cookie line
-		const serializedCookie = cookie.serialize('userId', '-1', {
-			path: '/',
-			maxAge: 60 * 60 * 24 * 7, //1 week
-			httpOnly: true,
-			sameSite: 'strict',
-		})
+	// Parse URL and check for category existence
+	const url = new URL(request.url)
+	const pathSegments = url.pathname.split('/')
 
-		// Setting a cookie in the reply header
-		response.headers.set('Set-Cookie', serializedCookie)
+	if (pathSegments[1] === 'Products' && pathSegments[2]) {
+		const category = decodeURIComponent(pathSegments[2])
+
+		// If category does not exist, redirect to home
+		if (!validCategories.includes(category)) {
+			return NextResponse.redirect(new URL('/', request.url))
+		}
 	}
 
-	// Checking if the 'cartItems' cookie exists
-	const cartItemsCookie = request.cookies.get('cartItems')?.value
-
-	if (
-		!cartItemsCookie ||
-		cartItemsCookie === 'null' ||
-		cartItemsCookie === 'undefined'
-	) {
-		const serializedCookie = cookie.serialize('cartItems', '[]', {
-			path: '/',
-			// maxAge: 60 * 60 * 24 * 7,
-			httpOnly: true,
-			sameSite: 'strict',
-		})
-		response.headers.set('Set-Cookie', serializedCookie)
+	// Set a cookie if it doesn't exist or is invalid
+	const setCookieIfInvalid = (name, defaultValue) => {
+		const cookieValue = request.cookies.get(name)?.value
+		if (!cookieValue || cookieValue === 'null' || cookieValue === 'undefined') {
+			const serializedCookie = cookie.serialize(name, defaultValue, {
+				path: '/',
+				maxAge: 60 * 60 * 24 * 7, // 1 week
+				httpOnly: true,
+				sameSite: 'strict',
+			})
+			response.headers.set('Set-Cookie', serializedCookie)
+		}
 	}
 
-	// Checking if the 'favItems' cookie exists
-	const favItems = request.cookies.get('favItems')?.value
-
-	if (!favItems || favItems === 'null' || favItems === 'undefined') {
-		const serializedCookie = cookie.serialize('favItems', '[]', {
-			path: '/',
-			// maxAge: 60 * 60 * 24 * 7,
-			httpOnly: true,
-			sameSite: 'strict',
-		})
-		response.headers.set('Set-Cookie', serializedCookie)
-	}
+	// Setting cookies if they are invalid
+	setCookieIfInvalid('userId', '-1')
+	setCookieIfInvalid('cartItems', '[]')
+	setCookieIfInvalid('favItems', '[]')
 
 	return response
 }
