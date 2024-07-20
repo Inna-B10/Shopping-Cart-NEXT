@@ -1,0 +1,81 @@
+.subcatTitle {
+  width: 100%;
+  padding: 1rem 1rem 0.5rem;
+  background-size: cover;
+  color: #561B0B;
+  font-family: var(--font-messiri);
+  text-transform: uppercase;
+  line-height: 100%;
+  font-size: calc(1rem + 1.5vw);
+  font-weight: 700;
+}
+
+.subCatSilver {
+  margin-top: 1.25rem;
+}
+
+.imgGold > img,
+.imgSilver > img {
+  width: 100%;
+  height: auto;
+}
+
+.imgSilver {
+  border: 1px solid #DEDBDB;
+  border-bottom: none;
+}
+
+.imgGold {
+  border: 1px solid #E5C77F;
+  border-bottom: none;
+}
+
+.ribbonSilver {
+  background-image: url('/images/ribbonSilver.png');
+  border: 1px solid #DEDBDB;
+  border-top: none;
+}
+
+.ribbonGold {
+  background-image: url('/images/ribbonGold.png');
+  border: 1px solid #E5C77F;
+  border-top: none;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .subcatTitle {
+    text-align: center;
+    line-height: 120%;
+  }
+}
+
+@media only screen and (min-device-width: 481px) {
+
+  .subCatSilver,
+  .subCatGold {
+    width: 100%;
+    height: auto;
+  }
+
+  .subCatSilver {
+    margin-top: calc(1.25rem + 2vw);
+  }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+  .subcatTitle {
+    font-size: calc(1rem + 0.5vw);
+  }
+}
+
+@media only screen and (min-device-width: 1024px) {
+  .subCatSilver {
+    margin-top: calc(2rem + 3vw);
+  }
+
+  .subCatSilver,
+  .subCatGold {
+    width: 35vw;
+    height: auto;
+  }
+}

@@ -1,5 +1,5 @@
 import { Cinzel_Decorative, El_Messiri } from 'next/font/google'
-import Image from 'next/image'
+import SubCatCart from './components/SubCatCart'
 import styles from './page.module.css'
 
 const cinzel = Cinzel_Decorative({
@@ -25,8 +25,8 @@ export default function Home() {
 			<section id='rings' className={`${styles.ctgWrap} flex column`}>
 				<div className={styles.ctgUpper}>
 					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>Rings</h2>
-					<p>
-						When choosing between gold and silver rings, it's important to
+					<p className={styles.ctgDesc}>
+						When choosing between gold and silver rings, it is important to
 						consider the benefits of each type. Gold rings are known for their
 						timeless elegance and durability, while silver rings are valued for
 						their affordability and versatility. Both options have their unique
@@ -34,40 +34,31 @@ export default function Home() {
 					</p>
 				</div>
 				<div className={`${styles.ctgBottom} flex`}>
-					<div className={styles.subCatSilver}>
-						<figure className={styles.imgSilver}>
-							<Image
-								src={'/media/1/silver.png'}
-								width={500}
-								height={400}
-								alt='Silver Rings'
-								quality={100}
-							/>
-						</figure>
-						<h3
-							className={`${styles.ribbonSilver} ${styles.subcatTitle} ${messiri.variable}`}>
-							Silver rings
-						</h3>
-					</div>
-					<div>
-						<figure className={styles.imgGold}>
-							<Image
-								src={'/media/1/gold.png'}
-								width={500}
-								height={400}
-								alt='Gold Rings'
-								quality={100}
-							/>
-						</figure>
-						<h3
-							className={`${styles.ribbonGold} ${styles.subcatTitle} ${messiri.variable}`}>
-							Gold rings
-						</h3>
-					</div>
+					<SubCatCart
+						src={'/media/1/silver.png'}
+						cat_name='Silver rings'
+						color='silver'
+					/>
+					<SubCatCart
+						src={'/media/1/gold.png'}
+						cat_name='Gold Rings'
+						color='gold'
+					/>
 				</div>
 			</section>
-			<section id='discount'>
-				<div>sale 15%</div>
+			<section className={`${styles.discountWrap} flex`}>
+				<div className={styles.discLeft}>
+					<div className={`${styles.discPrice} ${messiri.variable} flex`}>
+						-15%
+					</div>
+				</div>
+				<div className={`${styles.discRight} flex column`}>
+					<h3 className={styles.discTitle}>Sale</h3>
+					<p className={styles.discDesc}>
+						Please take the time to browse through our selection of high-quality
+						jewelry, now available at a considerable 15% discount.
+					</p>
+				</div>
 			</section>
 			<section id='earrings'>
 				<h2>Earrings</h2>
