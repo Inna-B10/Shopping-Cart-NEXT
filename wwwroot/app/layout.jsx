@@ -3,8 +3,8 @@
 import { Marcellus } from 'next/font/google'
 import { cookies } from 'next/headers'
 import PropTypes from 'prop-types'
-import Footer from './components/Footer'
-import Header from './components/Header'
+import Footer from './components/markup/Footer'
+import Header from './components/markup/Header'
 import './globals.css'
 import { UserProvider } from './UserContext'
 
