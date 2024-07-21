@@ -53,13 +53,13 @@
 
 .galleryTitle {
   text-align: center;
-  font-size: 28px;
+  font-size: 1.4rem;
   color: #561b0b;
   line-height: 120%;
 }
 
 .ctgWrap {
-  padding-bottom: 10vh;
+  padding: 0vh 0 8vh 0;
   background-color: #FCFAF6;
 }
 
@@ -69,10 +69,10 @@
 }
 
 .ctgTitle {
-  padding: 6vh 0;
+  padding: 4vh 0;
   text-transform: uppercase;
   font-family: var(--font-cinzel);
-  font-size: calc(1.5rem + 2vw);
+  font-size: 2.5rem;
   font-weight: 700;
   line-height: 120%;
   letter-spacing: 5px;
@@ -82,7 +82,7 @@
 .ctgDesc {
   color: #270200;
   line-height: 120%;
-  font-size: calc(1rem + 0.3vw);
+  font-size: 1rem;
 }
 
 .ctgBottom {
@@ -96,9 +96,17 @@
   background-color: #270200;
 }
 
+.disc15 {
+  background-image: url('/images/discount15.jpg');
+}
+
+.disc25 {
+  background-image: url('/images/discount25.jpg');
+}
+
 .discLeft {
   width: 50%;
-  background-image: url('/images/discount15.jpg');
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -116,13 +124,13 @@
   background: #A20909;
   color: #FFF;
   font-family: var(--font-messiri);
-  font-size: calc(1rem + 2vw);
+  font-size: 1.6rem;
   font-weight: 700;
 
 }
 
 .discRight {
-  padding: 1.25rem;
+  padding: 2rem;
   gap: 1.25rem;
   width: 50%;
 
@@ -133,17 +141,17 @@
 
 .discTitle {
   line-height: 150%;
-  font-size: calc(1.5rem + 1.5vw);
+  font-size: 1.8rem;
 }
 
 .discDesc {
-  padding: 0 2vw 7vh;
-  font-size: calc(1rem + 0.3vw);
+  padding: 0 2vw;
+  font-size: 1rem;
 }
 
 @media only screen and (max-device-width: 480px) {
   .ctgWrap {
-    padding-bottom: 6vh;
+    padding: 0vh 0 6vh 0;
   }
 
   .ctgTitle {
@@ -171,7 +179,7 @@
   }
 
   .discLeft {
-    height: 14rem;
+    height: 19rem;
   }
 }
 
@@ -180,12 +188,14 @@
     min-height: 45vh;
   }
 
-  .discRight {
-    gap: 2.5rem;
-  }
-
   .ctgBottom {
     width: 90%;
+  }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+  .ctgWrap {
+    padding-top: 2vh;
   }
 }
 
@@ -195,12 +205,39 @@
   }
 }
 
+@media only screen and (min-device-width: 769px) {
+  .ctgWrap {
+    padding: 5vh 0 10vh 0;
+  }
+
+  .discRight {
+    gap: 2.5rem;
+  }
+}
+
 @media only screen and (min-device-width: 1024px) {
   .discLeft {
     height: 30rem;
   }
 
+  .ctgDesc,
+  .discDesc {
+    font-size: 1.125rem;
+  }
+
+  .discPrice {
+    font-size: 2rem;
+  }
+
+  .discTitle {
+    font-size: 2.5rem;
+  }
+
   .ctgBottom {
     gap: calc(1rem + 5vw);
+  }
+
+  .ctgTitle {
+    padding: 6vh 0;
   }
 }

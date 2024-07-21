@@ -6,7 +6,7 @@
   font-family: var(--font-messiri);
   text-transform: uppercase;
   line-height: 100%;
-  font-size: calc(1rem + 1.5vw);
+  font-size: 1.125rem;
   font-weight: 700;
 }
 
@@ -62,20 +62,18 @@
   }
 }
 
-@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
-  .subcatTitle {
-    font-size: calc(1rem + 0.5vw);
-  }
-}
-
 @media only screen and (min-device-width: 1024px) {
   .subCatSilver {
     margin-top: calc(2rem + 3vw);
   }
 
+  .subcatTitle {
+    font-size: calc(1.5rem + 0.2vw);
+  }
+
   .subCatSilver,
   .subCatGold {
-    width: 35vw;
+    width: 30vw;
     height: auto;
   }
 }
