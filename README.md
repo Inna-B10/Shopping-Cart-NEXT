@@ -35,9 +35,13 @@
 - [x] changing of the FavoritesIcon when add/delete item from Fav.list (users + guests)
 - [x] favorites page
 - [x] check if category exists
+- [x] button toTop
 - [ ] home page
+  - [x] subCategories
+  - [x] text
   - [ ] contact form
   - [ ] ?gallery on main page
+- [ ] navBar CSS @media
 - [ ] header img/video
 - [ ] footer
 - [ ] user info page
@@ -50,10 +54,10 @@
 - [ ] @media
 - [ ] search function
 - [ ] filters
-- [ ] button toTop
 
 #### orders/ShoppingCart:
 
 - [ ] in ShoppingCart, when place order, check if user_level != 0
 - [ ] в ShoppingCart проверять наличие и количество товара
-- [ ] button for quantity -[ ] registration if user is guest
+- [ ] button for quantity
+- [ ] registration/login if user is guest
