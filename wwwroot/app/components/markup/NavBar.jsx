@@ -1,8 +1,8 @@
 import { Prosto_One } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
+import IconUser from '../icons/IconUser'
 import CategoryMenu from './CategoryMenu'
-import IconUser from './icons/IconUser'
 import styles from './NavBar.module.css'
 
 const prosto = Prosto_One({

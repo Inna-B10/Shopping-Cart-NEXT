@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { fetchData } from '../lib/fetchData'
+import { fetchData } from '../../lib/fetchData'
 import styles from './CategoryMenu.module.css'
 
 export default async function CategoryMenu() {

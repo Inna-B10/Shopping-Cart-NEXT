@@ -35,16 +35,29 @@
 - [x] changing of the FavoritesIcon when add/delete item from Fav.list (users + guests)
 - [x] favorites page
 - [x] check if category exists
+- [x] button toTop
+- [ ] home page
+  - [x] subCategories
+  - [x] text
+  - [ ] contact form
+  - [ ] ?gallery on main page
+- [ ] navBar CSS @media
+- [ ] header img/video
+- [ ] footer
+- [ ] user info page
+- [ ] product details page
 - [ ] change alert messages to modal
 - [ ] display badge on icons Bag и Favorites in user menu
 
 - [ ] ?в куках для гостя хранить количество товара(доступно только в корзине)
-- [ ] user info page
 - [ ] ?display only products with quantity>0 or display "out of stock"
-- [ ] product details page
+- [ ] @media
+- [ ] search function
+- [ ] filters
 
 #### orders/ShoppingCart:
 
 - [ ] in ShoppingCart, when place order, check if user_level != 0
 - [ ] в ShoppingCart проверять наличие и количество товара
 - [ ] button for quantity
+- [ ] registration/login if user is guest

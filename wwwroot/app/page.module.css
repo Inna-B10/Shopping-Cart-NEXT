@@ -41,3 +41,265 @@
 }
 
 /*********************************************************************/
+.galleryWrap {
+  width: 100%;
+  background-color: #fff;
+  padding: 40px 0;
+}
+
+.gallery {
+  height: 300px;
+}
+
+.galleryTitle {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #561b0b;
+  line-height: 120%;
+}
+
+.ctgWrap {
+  padding: 0vh 0 8vh 0;
+  background-color: #FCFAF6;
+}
+
+.ctgUpper {
+  width: 100%;
+  padding: 0 6vw 6vh;
+}
+
+.ctgTitle {
+  padding: 4vh 0;
+  text-transform: uppercase;
+  font-family: var(--font-cinzel);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 3px;
+  color: #A10909;
+}
+
+.ctgDesc {
+  color: #270200;
+  line-height: 120%;
+  font-size: 1rem;
+}
+
+.ctgBottom {
+  margin: 1.25rem auto;
+  gap: calc(1rem + 3vw);
+  justify-content: center;
+}
+
+.discountWrap {
+  width: 100%;
+  background-color: #270200;
+}
+
+.disc15 {
+  background-image: url('/images/discount15.jpg');
+}
+
+.disc25 {
+  background-image: url('/images/discount25.jpg');
+}
+
+.discLeft,
+.discRight {
+  width: 50%;
+}
+
+.discLeft {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.discPrice {
+  width: 8vw;
+  height: 8vw;
+  margin-left: calc(1rem + 1vw);
+  margin-top: calc(1rem + 1vh);
+  padding: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #A20909;
+  color: #FFF;
+  font-family: var(--font-messiri);
+  font-size: 1.6rem;
+  font-weight: 700;
+
+}
+
+.discRight {
+  padding: 2rem;
+  gap: 1.25rem;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+}
+
+.discTitle {
+  line-height: 150%;
+  font-size: 1.8rem;
+}
+
+.discDesc {
+  padding: 0 2vw;
+  font-size: 1rem;
+}
+
+.triple {
+  position: relative;
+  justify-content: space-evenly;
+}
+
+.triple,
+.ctgTitleTriple {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.ctgDescTriple {
+  width: 65vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.tripleLeft,
+.tripleMiddle,
+.tripleRight {
+  width: 30%;
+  justify-content: center;
+}
+
+.tripleLeft {
+  align-items: end;
+  margin-top: 25vh;
+}
+
+.tripleMiddle {
+  align-items: center;
+  margin-top: 10vh;
+}
+
+.tripleRight {
+  align-items: start;
+  margin-top: 10vh;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .ctgWrap {
+    padding: 0vh 0 6vh 0;
+  }
+
+  .ctgTitle {
+    padding: 3vh 0;
+    text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .ctgBottom {
+    width: 90%;
+    gap: 2.5rem;
+  }
+
+  .ctgUpper {
+    padding: 1.5rem;
+  }
+
+  .ctgBottom,
+  .triple,
+  .discountWrap {
+    flex-direction: column;
+  }
+
+  .discLeft {
+    height: 19rem;
+  }
+
+  .ctgDescTriple,
+  .discLeft,
+  .discRight,
+  .tripleLeft,
+  .tripleMiddle,
+  .tripleRight {
+    width: 100%;
+  }
+
+  .tripleLeft {
+    margin-top: 5vh;
+  }
+
+  .ctgDescTriple {
+    position: relative;
+  }
+}
+
+@media only screen and (min-device-width: 481px) {
+
+  .discLeft {
+    min-height: 45vh;
+  }
+
+  .ctgBottom {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+  .ctgWrap {
+    padding-top: 2vh;
+  }
+}
+
+@media only screen and (max-device-width: 768px) {
+  .ctgBottom {
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-device-width: 769px) {
+  .ctgWrap {
+    padding: 5vh 0 10vh 0;
+  }
+
+  .discRight {
+    gap: 2.5rem;
+  }
+}
+
+@media only screen and (min-device-width: 1024px) {
+  .discLeft {
+    height: 30rem;
+  }
+
+  .ctgDesc,
+  .discDesc {
+    font-size: 1.125rem;
+  }
+
+  .discPrice {
+    font-size: 2rem;
+  }
+
+  .discTitle {
+    font-size: 2.5rem;
+  }
+
+  .ctgBottom {
+    gap: calc(1rem + 5vw);
+  }
+
+  .ctgTitle {
+    padding: 6vh 0;
+
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+
+  }
+
+}

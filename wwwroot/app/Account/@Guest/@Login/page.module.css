@@ -44,7 +44,7 @@
   font-size: 18px;
   font-family: var(--font-marcellus);
   font-weight: 700;
-  background-image: url('/images/titleGold.png');
+  background-image: url('/images/ribbonGold.png');
   background-size: contain;
   border-radius: 6px;
 }
