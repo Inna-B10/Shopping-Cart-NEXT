@@ -20,7 +20,6 @@ export default function SubCatCart({ src, cat_name, color }) {
 	const subCatClass = color === 'gold' ? styles.subCatGold : styles.subCatSilver
 	const imgClass = color === 'gold' ? styles.imgGold : styles.imgSilver
 	const ribbonClass = color === 'gold' ? styles.ribbonGold : styles.ribbonSilver
-
 	return (
 		<div className={subCatClass}>
 			<figure className={imgClass}>

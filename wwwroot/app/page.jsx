@@ -179,14 +179,52 @@ export default function Home() {
 				<h2 className={styles.galleryTitle}>Outlet</h2>
 				<div className={styles.gallery}>Gallery</div>
 			</section>
-			<section id='sets' className={`${styles.ctgWrap} flex column`}>
+			<section className={`${styles.ctgWrap} flex column`}>
+				<h2
+					className={`${styles.ctgTitle} ${styles.ctgTitleTriple} ${cinzel.variable}`}>
+					Brooches, pendants, anklets
+				</h2>
+				<div className={`flex ${styles.triple}`}>
+					<p className={`${styles.ctgDesc} ${styles.ctgDescTriple}`}>
+						{/* Exquisite jewelry, made from shimmering gold and icy silver, crafted
+						with love and talent. Adorn your moments with the glamour of
+						LuxGleam.  */}
+						Accentuate your style with our curated collections designed for
+						every occasion. Click to explore and add a touch of LuxGlam elegance
+						to your life.
+					</p>
+					<div className={`flex ${styles.tripleLeft}`}>
+						<SubCatCart
+							src={'/media/5/anklets.png'}
+							cat_name='Anklets'
+							color='gold'
+						/>
+					</div>
+					<div className={`flex ${styles.tripleMiddle}`}>
+						<SubCatCart
+							src={'/media/6/brooches.png'}
+							cat_name='Brooches'
+							color='gold'
+						/>
+					</div>
+					<div className={`flex ${styles.tripleRight}`}>
+						<SubCatCart
+							src={'/media/7/pendants.png'}
+							cat_name='Pendants'
+							color='gold'
+						/>
+					</div>
+				</div>
+			</section>
+
+			{/* <section id='sets' className={`${styles.ctgWrap} flex column`}>
 				<div className={styles.ctgUpper}>
 					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>
 						Brooches, pendants, anklets
 					</h2>
 				</div>
-				<div className='flex'>
-					<div className='flex column'>
+				<div className={`flex ${styles.triple}`}>
+					<div className={`flex column ${styles.left}`}>
 						<p className={styles.ctgDesc}>
 							Exquisite jewelry, made from shimmering gold and icy silver,
 							crafted with love and talent. Adorn your moments with the glamour
@@ -208,13 +246,16 @@ export default function Home() {
 						</div>
 					</div>
 
-					<SubCatCart
-						src={'/media/7/pendants.png'}
-						cat_name='Pendants'
-						color='gold'
-					/>
+					<div className={styles.right}>
+						<SubCatCart
+							src={'/media/7/pendants.png'}
+							cat_name='Pendants'
+							color='gold'
+							lastCat='lastCat'
+						/>
+					</div>
 				</div>
-			</section>
+			</section> */}
 			<section id='contact'>
 				<h2>Contact</h2>
 			</section>

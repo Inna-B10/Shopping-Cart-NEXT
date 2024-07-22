@@ -72,10 +72,10 @@
   padding: 4vh 0;
   text-transform: uppercase;
   font-family: var(--font-cinzel);
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 120%;
-  letter-spacing: 5px;
+  letter-spacing: 3px;
   color: #A10909;
 }
 
@@ -104,9 +104,12 @@
   background-image: url('/images/discount25.jpg');
 }
 
-.discLeft {
+.discLeft,
+.discRight {
   width: 50%;
+}
 
+.discLeft {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -132,8 +135,6 @@
 .discRight {
   padding: 2rem;
   gap: 1.25rem;
-  width: 50%;
-
   justify-content: center;
   color: #fff;
   text-align: center;
@@ -149,6 +150,46 @@
   font-size: 1rem;
 }
 
+.triple {
+  position: relative;
+  justify-content: space-evenly;
+}
+
+.triple,
+.ctgTitleTriple {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.ctgDescTriple {
+  width: 65vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.tripleLeft,
+.tripleMiddle,
+.tripleRight {
+  width: 30%;
+  justify-content: center;
+}
+
+.tripleLeft {
+  align-items: end;
+  margin-top: 25vh;
+}
+
+.tripleMiddle {
+  align-items: center;
+  margin-top: 10vh;
+}
+
+.tripleRight {
+  align-items: start;
+  margin-top: 10vh;
+}
+
 @media only screen and (max-device-width: 480px) {
   .ctgWrap {
     padding: 0vh 0 6vh 0;
@@ -157,10 +198,11 @@
   .ctgTitle {
     padding: 3vh 0;
     text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
   }
 
   .ctgBottom {
-    flex-direction: column;
     width: 90%;
     gap: 2.5rem;
   }
@@ -169,21 +211,36 @@
     padding: 1.5rem;
   }
 
+  .ctgBottom,
+  .triple,
   .discountWrap {
     flex-direction: column;
-  }
-
-  .discLeft,
-  .discRight {
-    width: 100%;
   }
 
   .discLeft {
     height: 19rem;
   }
+
+  .ctgDescTriple,
+  .discLeft,
+  .discRight,
+  .tripleLeft,
+  .tripleMiddle,
+  .tripleRight {
+    width: 100%;
+  }
+
+  .tripleLeft {
+    margin-top: 5vh;
+  }
+
+  .ctgDescTriple {
+    position: relative;
+  }
 }
 
 @media only screen and (min-device-width: 481px) {
+
   .discLeft {
     min-height: 45vh;
   }
@@ -239,5 +296,10 @@
 
   .ctgTitle {
     padding: 6vh 0;
+
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+
   }
+
 }

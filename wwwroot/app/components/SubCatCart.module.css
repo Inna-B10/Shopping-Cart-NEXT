@@ -47,6 +47,10 @@
     text-align: center;
     line-height: 120%;
   }
+
+  .subCatGold {
+    width: 100%;
+  }
 }
 
 @media only screen and (min-device-width: 481px) {
