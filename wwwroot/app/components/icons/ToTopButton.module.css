@@ -1,0 +1,23 @@
+.goTopHidden {
+  display: none;
+}
+
+.goTop {
+  display: block;
+  position: fixed;
+  bottom: 1%;
+  right: 0.5%;
+  cursor: pointer;
+}
+
+.goTop > img {
+  width: calc(5vw + 1vw);
+  height: auto;
+
+  &:hover {
+    border-radius: 50%;
+    outline: 2px solid #A20909;
+    outline-offset: -5px;
+
+  }
+}

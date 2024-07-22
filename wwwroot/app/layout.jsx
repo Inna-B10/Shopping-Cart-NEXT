@@ -3,6 +3,7 @@
 import { Marcellus } from 'next/font/google'
 import { cookies } from 'next/headers'
 import PropTypes from 'prop-types'
+import ToTopButton from './components/icons/ToTopButton'
 import Footer from './components/markup/Footer'
 import Header from './components/markup/Header'
 import './globals.css'
@@ -48,6 +49,7 @@ export default function RootLayout({ children }) {
 					initialCartItems={cartItems}
 					initialFavorites={favItems}>
 					<Header />
+					<ToTopButton />
 					{children}
 					<Footer />
 				</UserProvider>
