@@ -1,6 +1,8 @@
 import { Prosto_One } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
+import IconNavBag from '../icons/IconNavBag'
+import IconNavFav from '../icons/IconNavFav'
 import IconUser from '../icons/IconUser'
 import CategoryMenu from './CategoryMenu'
 import styles from './NavBar.module.css'
@@ -40,24 +42,10 @@ export default function NavBar() {
 			</div>
 			<ul className={`${styles.userMenu} flex`}>
 				<li>
-					<Link href='/Favorites'>
-						<Image
-							src='../../images/icons/favUser.svg'
-							width={32}
-							height={32}
-							alt='Favorites icon'
-						/>
-					</Link>
+					<IconNavFav />
 				</li>
 				<li>
-					<Link href='/ShoppingCart'>
-						<Image
-							src='../../images/icons/bagUser.svg'
-							width={32}
-							height={32}
-							alt='Shopping bag icon'
-						/>
-					</Link>
+					<IconNavBag />
 				</li>
 				<li>
 					<IconUser />

@@ -16,6 +16,8 @@ namespace Shopping_Cart_NEXT.Models
         public string user_Lname { get; set; }
         public DateTime user_joindate { get; set; } = DateTime.Now;
         public int? user_address_id { get; set; }
+        public int? user_fav_count { get; set; } = 0;
+        public int? user_sc_count { get; set; } = 0;
 
     }
 }

@@ -27,6 +27,8 @@ export function UserProvider({
 	const [userData, setUserData] = useState(null)
 	const [cartItems, setCartItems] = useState(JSON.parse(initialCartItems) || [])
 	const [favItems, setFavItems] = useState(JSON.parse(initialFavorites) || [])
+	const [bagCount, setBagCount] = useState()
+	const [favCount, setFavCount] = useState()
 
 	useEffect(() => {
 		setUserId(
@@ -42,15 +44,19 @@ export function UserProvider({
 				try {
 					const data = await getUserData(userId)
 					setUserData(data)
+					setBagCount(data.user_sc_count)
+					setFavCount(data.user_fav_count)
 				} catch (error) {
 					console.error(error, AxiosError)
 				}
 			} else {
-				setUserData(null)
+				// setUserData(null)
+				setBagCount(cartItems.length)
+				setFavCount(favItems.length)
 			}
 		}
 		fetchUserData()
-	}, [userId])
+	}, [userId, cartItems, favItems])
 
 	const setCookie = (name, value, days) => {
 		document.cookie = `${name}=${value}; path=/; max-age=${
@@ -79,12 +85,17 @@ export function UserProvider({
 			console.error(error, AxiosError)
 		}
 	}
-
 	const setUserIdCookie = id => setItemCookies('userId', id, setUserId)
 	const setCartItemsCookie = items =>
 		setItemCookies('cartItems', items, setCartItems)
 	const setFavoritesCookie = items =>
 		setItemCookies('favItems', items, setFavItems)
+
+	const updateCount = (handle, setter) => {
+		setter(prev => (handle === 'add' ? prev + 1 : prev - 1))
+	}
+	const updateBagCount = handle => updateCount(handle, setBagCount)
+	const updateFavCount = handle => updateCount(handle, setFavCount)
 
 	return (
 		<UserContext.Provider
@@ -93,9 +104,13 @@ export function UserProvider({
 				userData,
 				cartItems,
 				favItems,
+				bagCount,
+				favCount,
 				setUserId: setUserIdCookie,
 				setCartItems: setCartItemsCookie,
 				setFavItems: setFavoritesCookie,
+				setBagCount: updateBagCount,
+				setFavCount: updateFavCount,
 			}}>
 			{children}
 		</UserContext.Provider>

@@ -30,7 +30,7 @@ export default function IconUser() {
 			)
 		} else {
 			// Extract first name and last name from userData
-			const { user_Fname, user_Lname } = userData[0]
+			const { user_Fname, user_Lname } = userData
 			// Generate initials
 			const initials = `${user_Fname.charAt(0)}${user_Lname.charAt(0)}`
 			setUserIcon(

@@ -12,7 +12,7 @@ IconShoppingCart.propTypes = {
 }
 
 export default function IconShoppingCart({ itemId, updateCart }) {
-	const { userId, cartItems, setCartItems } = useUser()
+	const { userId, cartItems, setCartItems, setBagCount } = useUser()
 	const [isInCart, setIsInCart] = useState(false)
 
 	useEffect(() => {
@@ -42,6 +42,7 @@ export default function IconShoppingCart({ itemId, updateCart }) {
 				)
 				if (response.data.statusCode === 200) {
 					setIsInCart(false)
+					setBagCount('remove')
 					if (updateCart) {
 						updateCart(prevData =>
 							prevData.filter(item => item.p_id !== prodId)
@@ -62,6 +63,7 @@ export default function IconShoppingCart({ itemId, updateCart }) {
 			const updatedCart = cartItems.filter(item => item.prodId !== prodId)
 			setCartItems(updatedCart)
 			setIsInCart(false)
+			setBagCount('remove')
 			alert('Item removed from cart')
 		}
 	}
@@ -74,6 +76,7 @@ export default function IconShoppingCart({ itemId, updateCart }) {
 				)
 				if (response.data.statusCode === 200) {
 					setIsInCart(true)
+					setBagCount('add')
 					//add cookie for logged in user
 					// const updatedCart = [...cartItems, { prodId: prodId }]
 					// setCartItems(updatedCart)
@@ -89,6 +92,7 @@ export default function IconShoppingCart({ itemId, updateCart }) {
 			const updatedCart = [...cartItems, { prodId: prodId }]
 			setCartItems(updatedCart)
 			setIsInCart(true)
+			setBagCount('add')
 			alert('Item added to cart')
 		}
 	}

@@ -12,7 +12,8 @@ export default async function getUserData(userId) {
 		)
 
 		if (response.status === 200) {
-			return response.data.listUsers
+			// console.log(response.data.listUsers[0])
+			return response.data.listUsers[0]
 		} else {
 			console.error(error, AxiosError)
 			return null

@@ -8,6 +8,7 @@
   bottom: 1%;
   right: 0.5%;
   cursor: pointer;
+  z-index: 10;
 }
 
 .goTop > img {
