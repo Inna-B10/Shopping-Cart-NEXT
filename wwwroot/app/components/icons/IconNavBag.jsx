@@ -9,7 +9,7 @@ export default function IconNavBag() {
 
 	return (
 		<div className={styles.icon}>
-			<Link href='/ShoppingCart'>
+			<Link href='/ShoppingCart' title='View shopping cart'>
 				<Image
 					src='../../images/icons/bagUser.svg'
 					width={32}

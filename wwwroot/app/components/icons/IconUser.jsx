@@ -43,7 +43,9 @@ export default function IconUser() {
 
 	return (
 		<>
-			<Link href='/Account'>{userIcon}</Link>
+			<Link href='/Account' className={styles.icon} title='Account'>
+				{userIcon}
+			</Link>
 		</>
 	)
 }

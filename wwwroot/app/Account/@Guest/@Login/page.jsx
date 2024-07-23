@@ -74,9 +74,6 @@ export default function LoginPage() {
 	const handleCloseModal = () => {
 		setModalShow(false)
 		if (isSuccess) {
-			// TODO
-			//*[ ] check cookies: if exist Favorites and/or ShoppingCart insert them into DB and delete from cookies
-			//*[ ]  change email input type
 			setIsSuccess(false)
 			setUserId(newUserId)
 			router.replace('/')
@@ -97,7 +94,7 @@ export default function LoginPage() {
 					required
 					// type='email'
 					type='text'
-					label='Email'
+					name='Email'
 					value={email}
 					onChange={e => setEmail(e.target.value)}
 				/>
@@ -107,7 +104,7 @@ export default function LoginPage() {
 				<input
 					required
 					type='password'
-					label='Password'
+					name='Password'
 					value={password}
 					onChange={e => setPassword(e.target.value)}
 				/>

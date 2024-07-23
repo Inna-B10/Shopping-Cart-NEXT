@@ -1,5 +1,9 @@
 .icon {
   position: relative;
+
+  & img {
+    vertical-align: -webkit-baseline-middle;
+  }
 }
 
 .badge {

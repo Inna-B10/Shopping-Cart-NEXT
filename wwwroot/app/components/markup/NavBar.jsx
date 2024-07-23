@@ -1,5 +1,4 @@
 import { Prosto_One } from 'next/font/google'
-import Image from 'next/image'
 import Link from 'next/link'
 import IconNavBag from '../icons/IconNavBag'
 import IconNavFav from '../icons/IconNavFav'
@@ -16,10 +15,12 @@ const prosto = Prosto_One({
 
 export default function NavBar() {
 	return (
-		<nav className={`${styles.navBar} ${prosto.variable}`}>
+		<nav className={`${styles.navBar} ${prosto.variable} flex`}>
 			<ul className={`${styles.siteMenu} flex`}>
 				<li>
-					<Link href='/'>Home</Link>
+					<Link href='/' title='Home'>
+						Home
+					</Link>
 				</li>
 				<li>
 					Categories
@@ -32,13 +33,7 @@ export default function NavBar() {
 				</li>
 			</ul>
 			<div className={styles.searchField}>
-				<input type='text' name='searchField' />
-				<Image
-					src={'../../images/icons/search.svg'}
-					width={24}
-					height={24}
-					alt='Search icon'
-				/>
+				<input type='text' name='searchField' aria-label='search' />
 			</div>
 			<ul className={`${styles.userMenu} flex`}>
 				<li>

@@ -1,3 +1,7 @@
+.icon img {
+  vertical-align: -webkit-baseline-middle;
+}
+
 .userInitials {
   justify-content: space-between;
   align-items: center;

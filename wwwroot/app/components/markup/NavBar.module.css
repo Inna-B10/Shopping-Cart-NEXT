@@ -1,20 +1,17 @@
 .navBar {
   width: 100%;
-  height: 3.2vw;
-  padding: 0.938rem 2.5rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2.5rem;
   background-color: #561b0b;
   color: #fff;
   font-family: var(--font-prosto);
-  font-size: 1.25rem;
+  font-size: calc(0.7rem + 0.8vw);
 }
 
-.siteMenu {
-  float: left;
-  line-height: 150%;
-}
-
+.siteMenu,
 .userMenu {
-  float: right;
+  align-items: center;
 }
 
 ul.userMenu,
@@ -23,9 +20,9 @@ ul.siteMenu {
 }
 
 ul.siteMenu > li:hover {
+  -webkit-text-decoration: underline 2px;
   text-decoration: underline 2px;
   text-underline-offset: 3px;
-  -webkit-text-decoration: underline 2px;
 }
 
 .siteMenu li {
@@ -51,14 +48,14 @@ ul.siteMenu > li:hover {
 .searchField {
   position: absolute;
   left: calc(50% - 10vw);
+  height: -webkit-fill-available;
 }
 
 .searchField input {
-  position: relative;
-  top: -5px;
+  position: absolute;
+  top: 1vw;
   width: 20vw;
-  padding-left: 2.188rem;
-  line-height: 200%;
+  padding: 0.4rem 2.5rem 0.4rem 1rem;
   border: none;
   border-radius: 2px;
 
@@ -69,12 +66,16 @@ ul.siteMenu > li:hover {
 }
 
 .searchField::before {
-  position: absolute;
-  top: 3px;
-  left: 3px;
+  position: relative;
+  top: 1.1vw;
   content: url('/images/icons/search.svg');
-  width: 1.5 rem;
-  height: 1.5 rem;
   display: block;
   z-index: 1;
 }
+
+/* @media only screen and (min-device-width: 1440) {
+  .searchField::before {
+    position: absolute;
+    top: 1.05vw;
+  }
+} */

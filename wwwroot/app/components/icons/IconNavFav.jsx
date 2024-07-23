@@ -9,7 +9,7 @@ export default function IconNavFav() {
 
 	return (
 		<div className={styles.icon}>
-			<Link href='/Favorites'>
+			<Link href='/Favorites' title='View favorites'>
 				<Image
 					src='../../images/icons/favUser.svg'
 					width={32}
