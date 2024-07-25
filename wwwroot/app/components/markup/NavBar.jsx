@@ -31,9 +31,22 @@ export default function NavBar() {
 				<li>
 					<Link href='/#contact'>Contact</Link>
 				</li>
+				{/* <li>
+					<IconHamburger />
+				</li> */}
 			</ul>
-			<div className={styles.searchField}>
+			{/* <div className={styles.searchField}>
 				<input type='text' name='searchField' aria-label='search' />
+			</div> */}
+			<div className={styles.logoImg}>
+				{/* <Image
+					className={styles.logoImg}
+					src='/images/logo.png'
+					priority={true}
+					width={382}
+					height={53}
+					alt='Logo'
+				/> */}
 			</div>
 			<ul className={`${styles.userMenu} flex`}>
 				<li>

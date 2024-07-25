@@ -45,7 +45,18 @@ ul.siteMenu > li:hover {
   }
 }
 
-.searchField {
+.logoImg {
+  width: 30%;
+  height: -webkit-fill-available;
+  position: absolute;
+  left: calc(50% - 113px);
+  background-image: url('/images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+/* .searchField {
   position: absolute;
   left: calc(50% - 10vw);
   height: -webkit-fill-available;
@@ -71,7 +82,7 @@ ul.siteMenu > li:hover {
   content: url('/images/icons/search.svg');
   display: block;
   z-index: 1;
-}
+} */
 
 /* @media only screen and (min-device-width: 1440) {
   .searchField::before {
