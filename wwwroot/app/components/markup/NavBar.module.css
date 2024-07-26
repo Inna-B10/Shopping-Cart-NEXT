@@ -2,6 +2,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   padding: 0.3rem 1rem;
   background-color: #561b0b;
   color: #fff;
@@ -26,6 +27,48 @@
 .logoImg {
   display: flex;
   justify-content: center;
+}
+
+.logoImg img {
+  width: 100%;
+  max-width: 382px;
+  height: auto;
+  vertical-align: -webkit-baseline-middle;
+}
+
+.searchField {
+  width: 100%;
+  position: relative;
+  min-width: 13rem;
+}
+
+.searchField input {
+  line-height: 100%;
+  width: 100%;
+  padding: 0.3rem 2rem 0.3rem 0.5rem;
+  border: none;
+  border-radius: 2px;
+
+  &:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+}
+
+.searchField::before {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url(/images/icons/search.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  right: 2px;
+  top: 3px;
+  content: '';
+  display: block;
+  transform: rotateY(180deg);
+  z-index: 1;
+  cursor: pointer;
 }
 
 ul.userMenu,
@@ -59,16 +102,35 @@ ul.siteMenu > li:hover {
   }
 }
 
-.logoImg img {
-  width: 100%;
-  max-width: 382px;
-  height: auto;
-  vertical-align: -webkit-baseline-middle;
-}
 
 .hamburgerIcon {
   display: none;
   position: relative;
+}
+
+@media only screen and (max-device-width: 479px) {
+  .logoImg {
+    display: none;
+  }
+
+  .searchField {
+    display: block;
+  }
+
+  .siteMenu,
+  .userMenu {
+    width: fit-content;
+  }
+}
+
+@media only screen and (min-device-width: 480px) {
+  .logoImg {
+    display: flex;
+  }
+
+  .searchField {
+    display: none;
+  }
 }
 
 @media only screen and (max-device-width: 919px) {
@@ -82,8 +144,12 @@ ul.siteMenu > li:hover {
 }
 
 @media only screen and (min-device-width: 1280px) {
+  .categoryMenu {
+    font-size: calc(0.7rem + 0.6vw);
+  }
+
   .navBar {
-    padding: 0.5rem 2.5rem;
+    padding: 0.3rem 2.5rem;
     font-size: calc(0.7rem + 0.8vw);
   }
 
@@ -93,10 +159,10 @@ ul.siteMenu > li:hover {
   }
 }
 
-@media only screen and (min-device-width: 1024px) {
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1279px) {
   .navBar {
     font-size: 18px;
-    padding: 0.5rem 1.5rem;
+    padding: 0.3rem 1.5rem;
   }
 
   ul.userMenu,

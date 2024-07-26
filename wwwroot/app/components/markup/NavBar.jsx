@@ -46,6 +46,9 @@ export default function NavBar() {
 					alt='Logo'
 				/>
 			</div>
+			<div className={styles.searchField}>
+				<input type='text' name='searchField' aria-label='search' />
+			</div>
 			<ul className={`${styles.userMenu} flex`}>
 				<li>
 					<IconNavFav />

@@ -19,12 +19,12 @@ export default function Home() {
 	return (
 		<main className={styles.main}>
 			<section className={styles.galleryWrap}>
-				<h2 className={styles.galleryTitle}>Latest Additions</h2>
+				<h3 className={styles.galleryTitle}>Latest Additions</h3>
 				<div className={styles.gallery}>Gallery</div>
 			</section>
 			<section id='rings' className={`${styles.ctgWrap} flex column`}>
 				<div className={styles.ctgUpper}>
-					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>Rings</h2>
+					<h1 className={`${styles.ctgTitle} ${cinzel.variable}`}>Rings</h1>
 					<p className={styles.ctgDesc}>
 						When choosing rings, it is essential to consider the distinct
 						qualities of gold and silver. Gold rings are known for their
@@ -57,7 +57,7 @@ export default function Home() {
 					</div>
 				</div>
 				<div className={`${styles.discRight} flex column`}>
-					<h3 className={styles.discTitle}>Sale</h3>
+					<h2 className={styles.discTitle}>Sale</h2>
 					<p className={styles.discDesc}>
 						Jewelry has the power to transform any outfit, and at LuxGleam, we
 						believe that every piece tells a story. Our collection features
@@ -71,7 +71,7 @@ export default function Home() {
 			</section>
 			<section id='earrings' className={`${styles.ctgWrap} flex column`}>
 				<div className={styles.ctgUpper}>
-					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>Earrings</h2>
+					<h1 className={`${styles.ctgTitle} ${cinzel.variable}`}>Earrings</h1>
 					<p className={styles.ctgDesc}>
 						Earrings are a perfect way to express your individuality and add a
 						touch of elegance to any outfit. Whether you prefer the classic glam
@@ -95,12 +95,12 @@ export default function Home() {
 				</div>
 			</section>
 			<section className={styles.galleryWrap}>
-				<h2 className={styles.galleryTitle}>Trendy</h2>
+				<h3 className={styles.galleryTitle}>Trendy</h3>
 				<div className={styles.gallery}>Gallery</div>
 			</section>
 			<section id='bracelets' className={`${styles.ctgWrap} flex column`}>
 				<div className={styles.ctgUpper}>
-					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>Bracelets</h2>
+					<h1 className={`${styles.ctgTitle} ${cinzel.variable}`}>Bracelets</h1>
 					<p className={styles.ctgDesc}>
 						Bracelets are more than just accessories; they are versatile pieces
 						that can elevate any look. At LuxGleam, our stunning array of gold
@@ -133,7 +133,7 @@ export default function Home() {
 					</div>
 				</div>
 				<div className={`${styles.discRight} flex column`}>
-					<h3 className={styles.discTitle}>Sale</h3>
+					<h2 className={styles.discTitle}>Sale</h2>
 					<p className={styles.discDesc}>
 						At LuxGleam, we understand that jewelry is not just a decoration; it
 						is an extension of who you are. Our carefully curated collection of
@@ -148,7 +148,7 @@ export default function Home() {
 			</section>
 			<section id='necklaces' className={`${styles.ctgWrap} flex column`}>
 				<div className={styles.ctgUpper}>
-					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>Necklaces</h2>
+					<h1 className={`${styles.ctgTitle} ${cinzel.variable}`}>Necklaces</h1>
 					<p className={styles.ctgDesc}>
 						A necklace has the power to transform an outfit and become a
 						cherished piece in your jewelry collection. LuxGleam’s selection of
@@ -173,14 +173,14 @@ export default function Home() {
 				</div>
 			</section>
 			<section className={styles.galleryWrap}>
-				<h2 className={styles.galleryTitle}>Outlet</h2>
+				<h3 className={styles.galleryTitle}>Outlet</h3>
 				<div className={styles.gallery}>Gallery</div>
 			</section>
 			<section className={`${styles.ctgWrap} flex column`}>
-				<h2
+				<h1
 					className={`${styles.ctgTitle} ${styles.ctgTitleTriple} ${cinzel.variable}`}>
 					Brooches, pendants, anklets
-				</h2>
+				</h1>
 				<div className={`flex ${styles.triple}`}>
 					<p className={`${styles.ctgDesc} ${styles.ctgDescTriple}`}>
 						{/* Exquisite jewelry, made from shimmering gold and icy silver, crafted
@@ -215,7 +215,7 @@ export default function Home() {
 				</div>
 			</section>
 			<section id='contact'>
-				<h2>Contact</h2>
+				<h3>Contact</h3>
 			</section>
 		</main>
 	)
