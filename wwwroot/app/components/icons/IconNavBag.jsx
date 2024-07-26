@@ -2,7 +2,7 @@
 import { useUser } from '@/app/UserContext'
 import Image from 'next/image'
 import Link from 'next/link'
-import styles from './IconNavBag.module.css'
+import styles from './IconNavUserMenu.module.css'
 
 export default function IconNavBag() {
 	const { bagCount } = useUser()
