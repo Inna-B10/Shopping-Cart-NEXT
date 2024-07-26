@@ -34,5 +34,61 @@
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
+}
 
+.hamMenu {
+  display: block;
+  position: absolute;
+  top: 1.7rem;
+  left: -1rem;
+  padding: 1rem 0.5rem 0.5rem;
+  background: linear-gradient(180deg, rgba(252, 250, 246, 0), #fcfaf6 6%);
+  border-radius: 0px 2px 2px 0;
+  border: 1px solid #270200;
+  border-top: none;
+  border-right: none;
+  font-size: 0.8rem;
+  color: #561b0b;
+  line-height: 120%;
+}
+
+.hamMenu li {
+  text-wrap: nowrap;
+  padding: 2px;
+}
+
+.hamMenu li a:hover {
+  text-decoration: underline;
+}
+
+.categoryMenu {
+  margin-left: 1rem;
+}
+
+.hamMenu::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  bottom: 0px;
+  right: -1px;
+  width: 1px;
+  border-radius: 2px;
+  background-color: #270200;
+}
+
+@media only screen and (min-device-width: 480px) {
+  .hamMenu {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-device-width: 767px) {
+  .hamburger span {
+    width: 1.2rem;
+    height: 0.15rem;
+  }
+
+  .hamburger span:nth-child(2) {
+    margin: 4px 0;
+  }
 }
