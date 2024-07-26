@@ -6,19 +6,40 @@
   display: block;
   position: fixed;
   bottom: 1%;
-  right: 0.5%;
+  right: 1%;
+  width: calc(10vw + 1vw);
+  height: calc(10vw + 1vw);
   cursor: pointer;
   z-index: 10;
-}
-
-.goTop > img {
-  width: calc(5vw + 1vw);
-  height: auto;
 
   &:hover {
     border-radius: 50%;
     outline: 2px solid #A20909;
-    outline-offset: -5px;
+    outline-offset: -1px;
 
+  }
+}
+
+.goTop > img {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (min-device-width: 920px) {
+  .goTop:hover {
+    outline-offset: calc(1px - 0.4vw);
+  }
+}
+
+@media only screen and (min-device-width: 768px) {
+  .goTop {
+    width: calc(5vw + 1vw);
+    height: calc(5vw + 1vw);
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  .goTop:hover {
+    outline: 1px solid #A20909;
   }
 }
