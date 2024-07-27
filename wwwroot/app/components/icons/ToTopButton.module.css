@@ -7,15 +7,15 @@
   position: fixed;
   bottom: 1%;
   right: 1%;
-  width: calc(10vw + 1vw);
-  height: calc(10vw + 1vw);
+  width: calc(3rem + 1vw);
+  height: calc(3rem + 1vw);
   cursor: pointer;
   z-index: 10;
 
   &:hover {
     border-radius: 50%;
     outline: 2px solid #A20909;
-    outline-offset: -1px;
+    outline-offset: -2px;
 
   }
 }
@@ -25,18 +25,18 @@
   height: auto;
 }
 
-@media only screen and (min-device-width: 920px) {
+/* @media only screen and (min-device-width: 920px) {
   .goTop:hover {
-    outline-offset: calc(1px - 0.4vw);
+    outline-offset: 3px;
   }
 }
 
-@media only screen and (min-device-width: 768px) {
+@media only screen and (min-device-width: 920px) {
   .goTop {
-    width: calc(5vw + 1vw);
-    height: calc(5vw + 1vw);
+    width: calc(3rem + 1vw);
+    height: calc(3rem + 1vw);
   }
-}
+} */
 
 @media only screen and (max-device-width: 480px) {
   .goTop:hover {

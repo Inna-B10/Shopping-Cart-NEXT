@@ -24,7 +24,7 @@ export default function ToTopButton() {
 			onClick={handleScrollUp}>
 			<Image
 				role='button'
-				src='./images/icons/toTop.svg'
+				src='/images/icons/toTop.svg'
 				width={30}
 				height={30}
 				alt='to top button'
