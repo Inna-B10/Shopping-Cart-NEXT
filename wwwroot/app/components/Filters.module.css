@@ -1,0 +1,16 @@
+.filtersWrap {
+  /* border: solid; */
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+
+  & input {
+    margin-right: 5px;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  .filtersWrap {
+    display: none;
+  }
+}
