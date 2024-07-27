@@ -24,7 +24,8 @@
 
 
 .formWrap input {
-  width: 20vw;
+  /* width: 100%; */
+  /* width: 20vw; */
   line-height: 150%;
   padding: 5px;
   margin-bottom: 10px;
@@ -37,8 +38,8 @@
 }
 
 .submitBtn {
-  width: 8vw;
-  padding: 10px 15px;
+  width: fit-content;
+  padding: 10px 20px;
   margin: 10px 0;
   color: #561b0b;
   font-size: 18px;
@@ -60,7 +61,7 @@
 
 @media only screen and (max-device-width: 480px) {
   .formWrap input {
-    width: 80vw;
-    padding: 20px;
+    /* width: 80vw; */
+    /* padding: 20px; */
   }
 }

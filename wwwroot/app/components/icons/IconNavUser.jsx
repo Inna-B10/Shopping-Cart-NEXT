@@ -4,7 +4,7 @@ import { Cinzel_Decorative } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import styles from './IconUser.module.css'
+import styles from './IconNavUserMenu.module.css'
 
 const cinzel = Cinzel_Decorative({
 	weight: ['400', '700'],
@@ -30,7 +30,7 @@ export default function IconUser() {
 			)
 		} else {
 			// Extract first name and last name from userData
-			const { user_Fname, user_Lname } = userData[0]
+			const { user_Fname, user_Lname } = userData
 			// Generate initials
 			const initials = `${user_Fname.charAt(0)}${user_Lname.charAt(0)}`
 			setUserIcon(
@@ -42,8 +42,10 @@ export default function IconUser() {
 	}, [userId, userData])
 
 	return (
-		<>
-			<Link href='/Account'>{userIcon}</Link>
-		</>
+		<div className={styles.icon}>
+			<Link href='/Account' title='Account'>
+				{userIcon}
+			</Link>
+		</div>
 	)
 }

@@ -36,6 +36,7 @@
 - [x] favorites page
 - [x] check if category exists
 - [x] button toTop
+- [x] display badge on icons Bag и Favorites in user menu
 - [ ] home page
   - [x] subCategories
   - [x] text
@@ -47,7 +48,6 @@
 - [ ] user info page
 - [ ] product details page
 - [ ] change alert messages to modal
-- [ ] display badge on icons Bag и Favorites in user menu
 
 - [ ] ?в куках для гостя хранить количество товара(доступно только в корзине)
 - [ ] ?display only products with quantity>0 or display "out of stock"

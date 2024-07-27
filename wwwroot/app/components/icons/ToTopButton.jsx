@@ -7,7 +7,7 @@ export default function ToTopButton() {
 	const [showToTop, setShowToTop] = useState(false)
 
 	const handleVisibleButton = () => {
-		setShowToTop(window.scrollY > 400)
+		setShowToTop(window.scrollY > 300)
 	}
 
 	const handleScrollUp = () => {
@@ -24,7 +24,7 @@ export default function ToTopButton() {
 			onClick={handleScrollUp}>
 			<Image
 				role='button'
-				src='./images/icons/toTop.svg'
+				src='/images/icons/toTop.svg'
 				width={30}
 				height={30}
 				alt='to top button'

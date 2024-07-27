@@ -23,8 +23,8 @@ export default function UserInfo() {
 			<h2>UserInfo</h2>
 			<p>Current User id: {userId}</p>
 
-			<p>first name: {userData[0].user_Fname}</p>
-			<p>last name: {userData[0].user_Lname}</p>
+			<p>first name: {userData.user_Fname}</p>
+			<p>last name: {userData.user_Lname}</p>
 
 			<button type='submit' onClick={handleLogout}>
 				Log ut

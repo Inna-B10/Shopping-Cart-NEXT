@@ -1,3 +1,5 @@
+import Filters from '@/app/components/Filters'
+import SortBy from '@/app/components/SortBy'
 import { Cinzel_Decorative } from 'next/font/google'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
@@ -41,13 +43,17 @@ export default async function Products({ params }) {
 	return (
 		<>
 			<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
-			<div className={styles.filters}>
-				<Image
-					src='../../../images/icons/filters.svg'
-					width={38}
-					height={38}
-					alt='Filters icon'
-				/>
+			<div className={styles.filterSort}>
+				<div className={styles.filters}>
+					<Image
+						src='../../../images/icons/filters.svg'
+						width={38}
+						height={38}
+						alt='Filters icon'
+					/>
+					<Filters />
+				</div>
+				<SortBy />
 			</div>
 			<div className={`${styles.galleryWrapper} flex`}>
 				{initialData && initialData.length > 0 ? (
@@ -61,7 +67,6 @@ export default async function Products({ params }) {
 							: 'No items in this category'}
 					</p>
 				)}
-				<div className='clear'></div>
 			</div>
 		</>
 	)

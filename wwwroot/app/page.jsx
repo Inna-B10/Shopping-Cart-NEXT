@@ -19,12 +19,12 @@ export default function Home() {
 	return (
 		<main className={styles.main}>
 			<section className={styles.galleryWrap}>
-				<h2 className={styles.galleryTitle}>Latest Additions</h2>
+				<h3 className={styles.galleryTitle}>Latest Additions</h3>
 				<div className={styles.gallery}>Gallery</div>
 			</section>
 			<section id='rings' className={`${styles.ctgWrap} flex column`}>
 				<div className={styles.ctgUpper}>
-					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>Rings</h2>
+					<h1 className={`${styles.ctgTitle} ${cinzel.variable}`}>Rings</h1>
 					<p className={styles.ctgDesc}>
 						When choosing rings, it is essential to consider the distinct
 						qualities of gold and silver. Gold rings are known for their
@@ -57,10 +57,8 @@ export default function Home() {
 					</div>
 				</div>
 				<div className={`${styles.discRight} flex column`}>
-					<h3 className={styles.discTitle}>Sale</h3>
+					<h2 className={styles.discTitle}>Sale</h2>
 					<p className={styles.discDesc}>
-						{/* Please take the time to browse through our selection of high-quality
-						jewelry, now available at a considerable 15% discount. */}
 						Jewelry has the power to transform any outfit, and at LuxGleam, we
 						believe that every piece tells a story. Our collection features
 						stunning bijouterie that cater to diverse tastes and styles,
@@ -73,7 +71,7 @@ export default function Home() {
 			</section>
 			<section id='earrings' className={`${styles.ctgWrap} flex column`}>
 				<div className={styles.ctgUpper}>
-					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>Earrings</h2>
+					<h1 className={`${styles.ctgTitle} ${cinzel.variable}`}>Earrings</h1>
 					<p className={styles.ctgDesc}>
 						Earrings are a perfect way to express your individuality and add a
 						touch of elegance to any outfit. Whether you prefer the classic glam
@@ -97,12 +95,12 @@ export default function Home() {
 				</div>
 			</section>
 			<section className={styles.galleryWrap}>
-				<h2 className={styles.galleryTitle}>Trendy</h2>
+				<h3 className={styles.galleryTitle}>Trendy</h3>
 				<div className={styles.gallery}>Gallery</div>
 			</section>
 			<section id='bracelets' className={`${styles.ctgWrap} flex column`}>
 				<div className={styles.ctgUpper}>
-					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>Bracelets</h2>
+					<h1 className={`${styles.ctgTitle} ${cinzel.variable}`}>Bracelets</h1>
 					<p className={styles.ctgDesc}>
 						Bracelets are more than just accessories; they are versatile pieces
 						that can elevate any look. At LuxGleam, our stunning array of gold
@@ -135,9 +133,8 @@ export default function Home() {
 					</div>
 				</div>
 				<div className={`${styles.discRight} flex column`}>
-					<h3 className={styles.discTitle}>Sale</h3>
+					<h2 className={styles.discTitle}>Sale</h2>
 					<p className={styles.discDesc}>
-						{/* Check out our amazing collection of gorgeous jewelry and get a sweet deal of 25% off! */}
 						At LuxGleam, we understand that jewelry is not just a decoration; it
 						is an extension of who you are. Our carefully curated collection of
 						accessories ensures that you can find pieces that resonate with your
@@ -151,7 +148,7 @@ export default function Home() {
 			</section>
 			<section id='necklaces' className={`${styles.ctgWrap} flex column`}>
 				<div className={styles.ctgUpper}>
-					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>Necklaces</h2>
+					<h1 className={`${styles.ctgTitle} ${cinzel.variable}`}>Necklaces</h1>
 					<p className={styles.ctgDesc}>
 						A necklace has the power to transform an outfit and become a
 						cherished piece in your jewelry collection. LuxGleam’s selection of
@@ -176,22 +173,23 @@ export default function Home() {
 				</div>
 			</section>
 			<section className={styles.galleryWrap}>
-				<h2 className={styles.galleryTitle}>Outlet</h2>
+				<h3 className={styles.galleryTitle}>Outlet</h3>
 				<div className={styles.gallery}>Gallery</div>
 			</section>
 			<section className={`${styles.ctgWrap} flex column`}>
-				<h2
+				<h1
 					className={`${styles.ctgTitle} ${styles.ctgTitleTriple} ${cinzel.variable}`}>
 					Brooches, pendants, anklets
-				</h2>
+				</h1>
 				<div className={`flex ${styles.triple}`}>
 					<p className={`${styles.ctgDesc} ${styles.ctgDescTriple}`}>
 						{/* Exquisite jewelry, made from shimmering gold and icy silver, crafted
 						with love and talent. Adorn your moments with the glamour of
 						LuxGleam.  */}
-						Accentuate your style with our curated collections designed for
-						every occasion. Click to explore and add a touch of LuxGlam elegance
-						to your life.
+						Accentuate your look with our carefully curated collections,
+						designed for every occasion. Small accessories can completely
+						transform an outfit and showcase your personal style. Click to
+						explore and add a touch of LuxGlam charm to your life.
 					</p>
 					<div className={`flex ${styles.tripleLeft}`}>
 						<SubCatCart
@@ -216,48 +214,8 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
-			{/* <section id='sets' className={`${styles.ctgWrap} flex column`}>
-				<div className={styles.ctgUpper}>
-					<h2 className={`${styles.ctgTitle} ${cinzel.variable}`}>
-						Brooches, pendants, anklets
-					</h2>
-				</div>
-				<div className={`flex ${styles.triple}`}>
-					<div className={`flex column ${styles.left}`}>
-						<p className={styles.ctgDesc}>
-							Exquisite jewelry, made from shimmering gold and icy silver,
-							crafted with love and talent. Adorn your moments with the glamour
-							of LuxGleam. Accentuate your style with our curated collections
-							designed for every occasion. Click to explore and add a touch of
-							LuxGlam elegance to your life.
-						</p>
-						<div className={`${styles.ctgBottom} flex`}>
-							<SubCatCart
-								src={'/media/5/anklets.png'}
-								cat_name='Anklets'
-								color='silver'
-							/>
-							<SubCatCart
-								src={'/media/6/brooches.png'}
-								cat_name='Brooches'
-								color='gold'
-							/>
-						</div>
-					</div>
-
-					<div className={styles.right}>
-						<SubCatCart
-							src={'/media/7/pendants.png'}
-							cat_name='Pendants'
-							color='gold'
-							lastCat='lastCat'
-						/>
-					</div>
-				</div>
-			</section> */}
 			<section id='contact'>
-				<h2>Contact</h2>
+				<h3>Contact</h3>
 			</section>
 		</main>
 	)

@@ -1,16 +1,13 @@
-.catLinks {
-  padding: 1rem 0.5rem;
-  font-size: 1.125rem;
-  color: #561b0b;
-  line-height: 120%;
-}
-
 .catLinks li {
   text-wrap: nowrap;
-  padding: 5px;
+  padding: 2px;
 }
 
-.catLinks li:hover:nth-child(odd) {
+.catLinks li:hover {
+  text-decoration: underline;
+}
+
+/* .catLinks li:hover:nth-child(odd) {
   text-decoration: underline;
   color: #D0AF51;
   text-shadow: 1px 1px 0px #977924;
@@ -20,4 +17,4 @@
   text-decoration: underline;
   color: #829B9B;
   text-shadow: 1px 1px 0px #00000093;
-}
+} */

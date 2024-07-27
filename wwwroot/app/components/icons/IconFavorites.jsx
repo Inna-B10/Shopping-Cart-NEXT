@@ -12,7 +12,7 @@ IconFavorites.propTypes = {
 }
 
 export default function IconFavorites({ itemId, updateFavList }) {
-	const { userId, favItems, setFavItems } = useUser()
+	const { userId, favItems, setFavItems, setFavCount } = useUser()
 	const [isInFav, setIsInFav] = useState(false)
 
 	useEffect(() => {
@@ -42,6 +42,7 @@ export default function IconFavorites({ itemId, updateFavList }) {
 				)
 				if (response.data.statusCode === 200) {
 					setIsInFav(false)
+					setFavCount('remove')
 					if (updateFavList) {
 						updateFavList(prevData =>
 							prevData.filter(item => item.p_id !== prodId)
@@ -62,6 +63,7 @@ export default function IconFavorites({ itemId, updateFavList }) {
 			const updatedFavList = favItems.filter(item => item.prodId !== prodId)
 			setFavItems(updatedFavList)
 			setIsInFav(false)
+			setFavCount('remove')
 			alert('Item removed')
 		}
 	}
@@ -74,6 +76,7 @@ export default function IconFavorites({ itemId, updateFavList }) {
 				)
 				if (response.data.statusCode === 200) {
 					setIsInFav(true)
+					setFavCount('add')
 					// add cookie for logged in user
 					// const updatedFavList = [...favItems, { prodId: prodId }]
 					// setFavItems(updatedFavList)
@@ -89,6 +92,7 @@ export default function IconFavorites({ itemId, updateFavList }) {
 			const updatedFavList = [...favItems, { prodId: prodId }]
 			setFavItems(updatedFavList)
 			setIsInFav(true)
+			setFavCount('add')
 			alert('Item added')
 		}
 	}

@@ -139,7 +139,7 @@ CREATE INDEX idx_fav_user_id ON Favorites(fav_user_id);
 CREATE INDEX idx_fav_prod_id ON Favorites(fav_prod_id);
 
 -----------------------------------------------------------------
--- ВТОРИЧНЫЕ КЛЮЧИ
+-- FOREIGN KEYS
 ALTER TABLE Products
 ADD CONSTRAINT FK_prod_cat_id FOREIGN KEY (prod_cat_id) REFERENCES Categories(cat_id);
 

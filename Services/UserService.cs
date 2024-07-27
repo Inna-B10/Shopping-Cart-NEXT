@@ -19,7 +19,14 @@ namespace Shopping_Cart_NEXT.Services
         public List<Users> GetUserData(int userId)
         {
             DataTable dt = new DataTable();
-            string sql = "SELECT * FROM Users WHERE user_id = @UserId;";
+            string sql = @"SELECT u.*,
+                                  COUNT(DISTINCT f.fav_id) AS fav_count,
+                                  COUNT(DISTINCT sc.sc_id) AS sc_count
+                        FROM Users u
+                        LEFT JOIN Favorites f ON u.user_id = f.fav_user_id
+                        LEFT JOIN ShoppingCarts sc ON u.user_id = sc.sc_user_id
+                        WHERE u.user_id = @UserId
+                        GROUP BY u.user_id,user_level,user_email,user_password,user_Fname,user_Lname, user_joindate,user_activationkey,user_address_id;";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -48,6 +55,11 @@ namespace Shopping_Cart_NEXT.Services
                     user_email = Convert.ToString(row["user_email"]),
                     user_Fname = Convert.ToString(row["user_Fname"]),
                     user_Lname = Convert.ToString(row["user_Lname"]),
+                    user_joindate = Convert.ToDateTime(row["user_joindate"]),
+                    user_address_id = row["user_address_id"] != DBNull.Value ? Convert.ToInt32(row["user_address_id"]) : null,
+                    user_fav_count = dt.Columns.Contains("fav_count") ? Convert.ToInt32(row["fav_count"]) : 0,
+                    user_sc_count = dt.Columns.Contains("sc_count") ? Convert.ToInt32(row["sc_count"]) : 0,
+
                 };
                 users.Add(user);
             }
