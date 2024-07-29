@@ -14,7 +14,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   padding: 0.5rem 1rem;
 }
 
