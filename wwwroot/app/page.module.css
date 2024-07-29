@@ -177,17 +177,17 @@
 
 .tripleLeft {
   align-items: end;
-  margin-top: 25vh;
+  margin-top: 30vh;
 }
 
 .tripleMiddle {
   align-items: center;
-  margin-top: 10vh;
+  margin-top: 15vh;
 }
 
 .tripleRight {
   align-items: start;
-  margin-top: 10vh;
+  margin-top: 15vh;
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -232,6 +232,29 @@
 
   .tripleLeft {
     margin-top: 5vh;
+  }
+
+  .ctgDescTriple {
+    position: relative;
+  }
+}
+
+@media only screen and (max-device-width: 640px) {
+  .triple {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem
+  }
+
+  .tripleLeft,
+  .tripleMiddle,
+  .tripleRight {
+    width: 70vw;
+    margin-top: 0;
+  }
+
+  .ctgDescTriple {
+    width: 100%;
   }
 
   .ctgDescTriple {

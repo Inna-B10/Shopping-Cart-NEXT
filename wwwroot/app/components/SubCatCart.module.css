@@ -18,6 +18,7 @@
 .imgSilver > img {
   width: 100%;
   height: auto;
+  max-width: 500px;
 }
 
 .imgSilver {
@@ -28,6 +29,13 @@
 .imgGold {
   border: 1px solid #E5C77F;
   border-bottom: none;
+}
+
+.imgGold,
+.imgSilver {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ribbonSilver {
