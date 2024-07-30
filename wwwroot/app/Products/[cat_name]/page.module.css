@@ -6,21 +6,29 @@
   font-family: var(--font-cinzel);
   color: #561b0b;
   text-align: center;
-  margin-top: 2.5rem;
+  margin: 2.5rem auto 3rem;
 }
 
 .filterSort {
   /* border: solid; */
-  width: 100%;
+  margin: 0 2.5rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 0.5rem 1rem;
+  align-items: flex-end;
+  gap: 2rem;
+  color: #561b0b;
 }
 
 .filters {
-  /* border: solid; */
-  /* padding: 2.5rem; */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: calc(1rem + 0.5vw);
+  cursor: pointer;
+}
+
+.filtersGroup {
+  margin: 0 2.5rem 1rem 5.5rem;
 }
 
 .galleryWrapper {
@@ -39,14 +47,14 @@
     letter-spacing: 2px;
   }
 
-  .filters {
-    /* padding: 1rem 2rem; */
+  /* .filters {
+    padding: 1rem 2rem;
 
     & img {
       width: 24px;
       height: auto;
     }
-  }
+  } */
 }
 
 @media only screen and (min-device-width: 1024px) {
