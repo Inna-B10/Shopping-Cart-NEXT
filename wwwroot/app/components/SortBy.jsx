@@ -15,6 +15,7 @@ const options = [
 export default function SortBy() {
 	const [isExpanded, setIsExpanded] = useState(false)
 	const [selectedItem, setSelectedItem] = useState({ value: '', label: '' })
+	console.log(isExpanded)
 
 	const handleToggleChange = () => {
 		setIsExpanded(!isExpanded)
@@ -29,32 +30,6 @@ export default function SortBy() {
 	}
 	return (
 		<div className={styles.select}>
-			{/* <ul className={isExpanded ? styles.expanded : ''}>
-				<li className={styles.selectOption}>
-					<input type='radio' id='dateZA' value='dateZA' />
-					<label htmlFor='dateZA'>Date &#9661;</label>
-				</li>
-				<li className={styles.selectOption}>
-					<input type='radio' id='dateAZ' value='dateAZ' />
-					<label htmlFor='dateAZ'>Date &#9651;</label>
-				</li>
-				<li className={styles.selectOption}>
-					<input type='radio' id='nameZA' value='nameZA' />
-					<label htmlFor='nameZA'>Name Z-A</label>
-				</li>
-				<li className={styles.selectOption}>
-					<input type='radio' id='nameAZ' value='nameAZ' />
-					<label htmlFor='nameAZ'>Name A-Z</label>
-				</li>
-				<li className={styles.selectOption}>
-					<input type='radio' id='priceZA' value='priceZA' />
-					<label htmlFor='priceZA'>Price &#9661;</label>
-				</li>
-				<li className={styles.selectOption}>
-					<input type='radio' id='priceAZ' value='priceAZ' />
-					<label htmlFor='priceAZ'>Price &#9651;</label>
-				</li>
-			</ul> */}
 			<ul className={isExpanded ? styles.expanded : ''}>
 				{options.map(option => (
 					<li key={option.id} className={styles.selectOption}>
@@ -69,13 +44,19 @@ export default function SortBy() {
 					</li>
 				))}
 			</ul>
-			<input
+			{/* <input
 				type='checkbox'
 				id='toggle'
 				className={styles.toggle}
 				onChange={handleToggleChange}
 			/>
-			<label htmlFor='toggle'>{selectedItem.label || 'Sort by'}</label>
+			<label htmlFor='toggle'>{selectedItem.label || 'Sort by'}</label> */}
+			<div
+				id='toggle'
+				className={isExpanded ? styles.toggleChecked : styles.toggle}
+				onClick={handleToggleChange}>
+				{selectedItem.label || 'Sort by'}
+			</div>
 		</div>
 	)
 }

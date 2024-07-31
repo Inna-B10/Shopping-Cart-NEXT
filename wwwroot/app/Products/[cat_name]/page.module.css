@@ -6,12 +6,12 @@
   font-family: var(--font-cinzel);
   color: #561b0b;
   text-align: center;
-  margin: 2.5rem auto 3rem;
+  margin: calc(1rem + 3vw) auto calc(1rem + 5vw);
 }
 
 .filterSort {
   /* border: solid; */
-  margin: 0 2.5rem;
+  margin: 0 2.5rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;

@@ -1,6 +1,7 @@
 import Filters from '@/app/components/Filters'
 import SortBy from '@/app/components/SortBy'
 import { Cinzel_Decorative } from 'next/font/google'
+import Image from 'next/image'
 import PropTypes from 'prop-types'
 import ProductCart from '../../components/ProductCart'
 import { fetchData } from '../../lib/fetchData'
@@ -43,19 +44,19 @@ export default async function Products({ params }) {
 		<>
 			<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
 
-			{/* <div className={styles.filtersGroup}>
+			<div className={styles.filtersGroup}>
 				<Filters />
-			</div> */}
+			</div>
 			<div className={styles.filterSort}>
 				<div className={styles.filters}>
-					{/* <Image
+					<Image
 						src='../../../images/icons/filters.svg'
 						width={38}
 						height={38}
 						alt='Filters icon'
 					/>{' '}
-					More filters */}
-					<Filters />
+					More filters
+					{/* <Filters /> */}
 				</div>
 				<SortBy />
 			</div>
