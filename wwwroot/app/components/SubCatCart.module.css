@@ -86,6 +86,7 @@
   .subCatSilver,
   .subCatGold {
     width: 30vw;
+    max-width: 500px;
     height: auto;
   }
 }

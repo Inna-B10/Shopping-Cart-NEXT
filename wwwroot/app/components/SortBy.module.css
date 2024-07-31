@@ -1,15 +1,105 @@
-.selectWrap select {
-  padding: 5px;
-  line-height: 200%;
-  font-size: 1rem;
-  width: 100%;
-  border-radius: 0px;
-  /* border-style: none; */
+/*  https: //codepen.io/onediv/pen/AYyWov 
+    fake stylized select full CSS          */
+
+.select {
+  position: relative;
+  height: 2rem;
 }
 
-.selectWrap option {
-  padding: 10px 5px;
-  line-height: 200%;
-  font-size: 1rem;
-  border-radius: 0px;
+.select input {
+  position: absolute;
+  left: -9999px;
+}
+
+.toggleChecked,
+.toggle {
+  width: calc(6rem + 4vw);
+  height: 2em;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  font-size: calc(0.8rem + 0.5vw);
+  border: 2px solid #561B0B;
+  border-radius: 2px;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  transition: all 200ms linear;
+  cursor: pointer;
+}
+
+.toggleChecked::after,
+.toggle::after {
+  content: "";
+  position: absolute;
+  top: calc(8px + 0.2vw);
+  right: calc(11px + 0.1vw);
+  width: calc(9px + 0.2vw);
+  height: calc(9px + 0.2vw);
+  border: 1px solid #561b0b;
+  border-radius: 30% 0 30% 100%;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+.toggleChecked::after {
+  top: calc(10px + 0.15vw);
+  transform: rotate(315deg);
+  -webkit-transform: rotate(315deg);
+}
+
+.toggleChecked {
+  border-radius: 0 0 2px 2px;
+}
+
+.select ul {
+  position: absolute;
+  bottom: 1.9rem;
+  left: 0px;
+  width: calc(6rem + 4vw);
+  margin: 0;
+  padding: 0;
+  font-size: calc(0.8rem + 0.5vw);
+  text-wrap: nowrap;
+  white-space: nowrap;
+  background: #fcfaf6;
+  border: 1px solid #561B0B;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.selectOption label {
+  display: block;
+  padding: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.44);
+  cursor: pointer;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+.selectOption label:hover {
+  background: #F2DA76;
+}
+
+.selectOption label:active {
+  background: #fff;
+  outline: none;
+}
+
+@media only screen and (min-device-width: 1024px) {
+  .toggleChecked::after {
+    top: calc(15px + 0.1vw);
+  }
 }

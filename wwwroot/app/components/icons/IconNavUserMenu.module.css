@@ -1,11 +1,11 @@
 .icon {
   position: relative;
+}
 
-  & img {
-    vertical-align: -webkit-baseline-middle;
-    width: 100%;
-    height: auto;
-  }
+.icon img {
+  vertical-align: -webkit-baseline-middle;
+  width: 100%;
+  height: auto;
 }
 
 .badge {

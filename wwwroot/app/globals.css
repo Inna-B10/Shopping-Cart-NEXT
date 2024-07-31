@@ -47,9 +47,9 @@ sup {
 
 .notFound {
   text-align: center;
+}
 
-  & > p {
-    line-height: 250%;
-    font-size: large;
-  }
+.notFound > p {
+  line-height: 250%;
+  font-size: large;
 }
