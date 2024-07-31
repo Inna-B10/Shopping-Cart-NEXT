@@ -106,25 +106,8 @@
 }
 
 
-@media only screen and (max-device-width: 480px) {
-  .filtersWrap {
-    display: none;
-  }
-}
-
-
 @media only screen and (min-device-width: 1122px) {
   .wrapper {
     flex-direction: row;
   }
-
-  /* 
-
-  .isStone > span:nth-of-type(2) {
-    margin-right: 10px;
-  }
-
-  .filtersInnerWrap:nth-of-type(2) {
-    margin-left: 10px;
-  } */
 }

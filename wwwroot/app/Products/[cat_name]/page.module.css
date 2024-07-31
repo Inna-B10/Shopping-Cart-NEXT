@@ -1,16 +1,20 @@
 .catName {
+  margin: calc(1rem + 3vw) auto calc(1rem + 5vw);
+  font-family: var(--font-cinzel);
   font-size: 2rem;
   letter-spacing: 0.2rem;
   line-height: 120%;
-  text-transform: uppercase;
-  font-family: var(--font-cinzel);
-  color: #561b0b;
   text-align: center;
-  margin: calc(1rem + 3vw) auto calc(1rem + 5vw);
+  text-transform: uppercase;
+  color: #561b0b;
+}
+
+.filtersPopup {
+  display: none;
+  margin: 0 2.5rem 1rem 5.5rem;
 }
 
 .filterSort {
-  /* border: solid; */
   margin: 0 2.5rem 1rem;
   display: flex;
   justify-content: space-between;
@@ -24,11 +28,15 @@
   align-items: center;
   gap: 10px;
   font-size: calc(1rem + 0.5vw);
-  /* cursor: pointer; */
+}
+
+.filtersMore {
+  display: none;
+  font-size: calc(0.8rem + 0.5vw);
 }
 
 .filtersGroup {
-  margin: 0 2.5rem 1rem 5.5rem;
+  display: block;
 }
 
 .galleryWrapper > p {
@@ -45,6 +53,17 @@
   .catName {
     font-size: 1.8rem;
     letter-spacing: 2px;
+  }
+
+  .filtersPopup,
+  .filtersMore {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .filtersGroup {
+    display: none;
   }
 }
 

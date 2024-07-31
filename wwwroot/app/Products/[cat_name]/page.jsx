@@ -44,19 +44,24 @@ export default async function Products({ params }) {
 		<>
 			<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
 
-			<div className={styles.filtersGroup}>
+			<div className={styles.filtersPopup}>
 				<Filters />
 			</div>
 			<div className={styles.filterSort}>
 				<div className={styles.filters}>
-					<Image
-						src='../../../images/icons/filters.svg'
-						width={38}
-						height={38}
-						alt='Filters icon'
-					/>{' '}
-					More filters
-					{/* <Filters /> */}
+					<span className={styles.filtersMore}>
+						<Image
+							src='../../../images/icons/filters.svg'
+							width={24}
+							height={24}
+							alt='Filters icon'
+						/>{' '}
+						More filters
+					</span>
+					<span className={styles.filtersGroup}>
+						{/* //! //FIXME double ID!!! filtersPopup*/}
+						<Filters />
+					</span>
 				</div>
 				<SortBy />
 			</div>
