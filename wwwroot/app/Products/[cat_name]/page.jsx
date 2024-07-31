@@ -1,10 +1,12 @@
+'use client'
 import Filters from '@/app/components/Filters'
 import SortBy from '@/app/components/SortBy'
+import axios, { AxiosError } from 'axios'
 import { Cinzel_Decorative } from 'next/font/google'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
 import ProductCart from '../../components/ProductCart'
-import { fetchData } from '../../lib/fetchData'
 import styles from './page.module.css'
 
 const cinzel = Cinzel_Decorative({
@@ -20,7 +22,9 @@ Products.propTypes = {
 	}),
 }
 
-export default async function Products({ params }) {
+export default function Products({ params }) {
+	const [initialData, setInitialData] = useState()
+
 	let { cat_name } = params
 	let queryName
 	if (cat_name && cat_name.includes('Discount-')) {
@@ -30,15 +34,21 @@ export default async function Products({ params }) {
 	} else {
 		queryName = cat_name
 	}
-	let initialData = []
-	try {
-		const data = await fetchData(
-			`http://localhost:5176/Shop/Products?cat_name=${queryName}`
-		)
-		initialData = data.listProducts
-	} catch (error) {
-		console.error('Failed to fetch products list data:', error)
-	}
+
+	useEffect(() => {
+		const getData = async () => {
+			try {
+				const response = await axios.get(
+					'http://localhost:5176/Shop/Products?cat_name=' + queryName
+				)
+				setInitialData(response.data.listProducts)
+			} catch (error) {
+				console.error(error, AxiosError)
+				return null
+			}
+		}
+		getData()
+	}, [queryName])
 
 	return (
 		<>
