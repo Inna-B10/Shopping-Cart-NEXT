@@ -1,14 +1,6 @@
 'use client'
-import { Prosto_One } from 'next/font/google'
 import { useState } from 'react'
 import styles from './SortBy.module.css'
-
-const prosto = Prosto_One({
-	weight: ['400'],
-	subsets: ['latin'],
-	variable: '--font-prosto',
-	display: 'swap',
-})
 
 /* 🠙  🠛   ▼  ▲  ˅  ˄  ⇩  ⇧  ᐁ  ᐃ*/
 const options = [
@@ -22,7 +14,7 @@ const options = [
 
 export default function SortBy() {
 	const [isExpanded, setIsExpanded] = useState(false)
-	const [selectedItem, setSelectedItem] = useState('')
+	const [selectedItem, setSelectedItem] = useState({ value: '', label: '' })
 
 	const handleToggleChange = () => {
 		setIsExpanded(!isExpanded)
@@ -36,7 +28,7 @@ export default function SortBy() {
 		setIsExpanded(false)
 	}
 	return (
-		<div className={`${styles.select} ${prosto.variable}`}>
+		<div className={styles.select}>
 			{/* <ul className={isExpanded ? styles.expanded : ''}>
 				<li className={styles.selectOption}>
 					<input type='radio' id='dateZA' value='dateZA' />

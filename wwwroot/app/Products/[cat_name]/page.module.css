@@ -31,14 +31,14 @@
   margin: 0 2.5rem 1rem 5.5rem;
 }
 
+.galleryWrapper > p {
+  margin: 0 auto;
+  font-size: x-large;
+}
+
 .galleryWrapper {
   padding: 1.25rem 1.875rem;
   gap: 3.75rem 1.875rem;
-
-  & > p {
-    margin: 0 auto;
-    font-size: x-large;
-  }
 }
 
 @media only screen and (max-device-width: 640px) {
@@ -46,15 +46,6 @@
     font-size: 1.8rem;
     letter-spacing: 2px;
   }
-
-  /* .filters {
-    padding: 1rem 2rem;
-
-    & img {
-      width: 24px;
-      height: auto;
-    }
-  } */
 }
 
 @media only screen and (min-device-width: 1024px) {

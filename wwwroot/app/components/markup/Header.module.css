@@ -20,11 +20,11 @@
   padding: 0.3rem 2rem 0.3rem 0.5rem;
   border: none;
   border-radius: 2px;
+}
 
-  &:focus {
-    outline: 2px solid #fff;
-    outline-offset: 2px;
-  }
+.searchField input:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .searchField::before {
