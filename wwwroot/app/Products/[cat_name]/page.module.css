@@ -24,7 +24,7 @@
   align-items: center;
   gap: 10px;
   font-size: calc(1rem + 0.5vw);
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .filtersGroup {
