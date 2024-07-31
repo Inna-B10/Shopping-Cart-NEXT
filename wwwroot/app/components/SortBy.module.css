@@ -1,3 +1,6 @@
+/*  https: //codepen.io/onediv/pen/AYyWov 
+    fake stylized select full CSS          */
+
 .select {
   position: relative;
   height: 2rem;
@@ -23,6 +26,7 @@
   -ms-transition: all 200ms linear;
   -o-transition: all 200ms linear;
   transition: all 200ms linear;
+  cursor: pointer;
 }
 
 .toggleChecked::after,
@@ -59,7 +63,6 @@
   bottom: 1.9rem;
   left: 0px;
   width: calc(6rem + 4vw);
-  max-height: 0px;
   margin: 0;
   padding: 0;
   font-size: calc(0.8rem + 0.5vw);
@@ -71,10 +74,6 @@
   border-radius: 2px 2px 0 0;
   z-index: 100;
   overflow: hidden;
-}
-
-.select ul.expanded {
-  max-height: 1000px;
 }
 
 .selectOption label {
@@ -99,14 +98,8 @@
   outline: none;
 }
 
-.selectOption input:checked + label {
-  text-indent: 5px;
-  background: #F2DA76;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.09), 0 -1px 2px 0 rgba(0, 0, 0, 0.09);
-}
-
 @media only screen and (min-device-width: 1024px) {
-  .toggle:checked + label::after {
+  .toggleChecked::after {
     top: calc(15px + 0.1vw);
   }
 }
