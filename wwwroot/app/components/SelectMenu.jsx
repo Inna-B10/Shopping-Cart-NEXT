@@ -14,11 +14,13 @@ const DropdownIndicator = props => {
 				width={24}
 				height={24}
 				alt='filters icon'
-				label='Emoji'
-				primaryColor={colourOptions[2].color}
 			/>
 		</components.DropdownIndicator>
 	)
+}
+const customComponents = {
+	...animatedComponents,
+	DropdownIndicator,
 }
 
 export default function SelectMenu() {
@@ -36,25 +38,25 @@ export default function SelectMenu() {
 		<Select
 			name='filters'
 			closeMenuOnSelect={false}
-			components={`{${animatedComponents}${DropdownIndicator}`}
+			components={customComponents}
 			defaultValue={[options[0]]}
-			isClearable={true}
+			isClearable={false}
 			isSearchable={false}
 			placeholder='Select filter(s)'
 			// styles={{ container: base => ({ ...base, marginBottom: 76 }) }}
 			isMulti
 			options={options}
-			//unstyled
+			// unstyled
 			classNamePrefix='react-select'
 			className={styles.filtersContainer}
 			classNames={{
 				control: state =>
 					state.isFocused
 						? state.menuIsOpen
-							? styles.menuOpen
+							? styles.controlListOpen
 							: styles.controlFocused
 						: styles.control,
-				menu: state => styles.menu,
+				menu: state => styles.list,
 				valueContainer: state => styles.valueContainer,
 				multiValue: state => styles.multiValue,
 				multiValueRemove: state => styles.multiValueRemove,

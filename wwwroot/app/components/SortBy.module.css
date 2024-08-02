@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   padding: 5px;
-  font-size: calc(0.8rem + 0.5vw);
+  font-size: calc(0.8rem + 0.3vw);
   border: 2px solid #561B0B;
   border-radius: 2px;
   -webkit-transition: all 200ms linear;
@@ -33,7 +33,7 @@
 .toggle::after {
   content: "";
   position: absolute;
-  top: calc(8px + 0.2vw);
+  top: calc(5px + 0.2vw);
   right: calc(11px + 0.1vw);
   width: calc(9px + 0.2vw);
   height: calc(9px + 0.2vw);
@@ -65,7 +65,7 @@
   width: calc(6rem + 4vw);
   margin: 0;
   padding: 0;
-  font-size: calc(0.8rem + 0.5vw);
+  font-size: calc(0.8rem + 0.3vw);
   text-wrap: nowrap;
   white-space: nowrap;
   background: #fcfaf6;
@@ -100,6 +100,6 @@
 
 @media only screen and (min-device-width: 1024px) {
   .toggleChecked::after {
-    top: calc(15px + 0.1vw);
+    top: calc(10px + 0.1vw);
   }
 }
