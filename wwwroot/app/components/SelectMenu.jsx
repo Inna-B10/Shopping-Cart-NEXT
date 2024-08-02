@@ -1,9 +1,25 @@
 'use client'
-import Select from 'react-select'
+import Image from 'next/image'
+import Select, { components } from 'react-select'
 import makeAnimated from 'react-select/animated'
 import styles from './SelectMenu.module.css'
 
 const animatedComponents = makeAnimated()
+
+const DropdownIndicator = props => {
+	return (
+		<components.DropdownIndicator {...props}>
+			<Image
+				src={'../images/icons/filters.svg'}
+				width={24}
+				height={24}
+				alt='filters icon'
+				label='Emoji'
+				primaryColor={colourOptions[2].color}
+			/>
+		</components.DropdownIndicator>
+	)
+}
 
 export default function SelectMenu() {
 	const options = [
@@ -20,7 +36,7 @@ export default function SelectMenu() {
 		<Select
 			name='filters'
 			closeMenuOnSelect={false}
-			components={animatedComponents}
+			components={`{${animatedComponents}${DropdownIndicator}`}
 			defaultValue={[options[0]]}
 			isClearable={true}
 			isSearchable={false}
