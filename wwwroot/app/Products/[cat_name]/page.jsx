@@ -1,9 +1,10 @@
 'use client'
-import Filters from '@/app/components/Filters'
+// import Filters from '@/app/components/Filters'
 import SortBy from '@/app/components/SortBy'
 import axios, { AxiosError } from 'axios'
 import { Cinzel_Decorative } from 'next/font/google'
-import Image from 'next/image'
+// import Image from 'next/image'
+import SelectMenu from '@/app/components/SelectMenu'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import ProductCart from '../../components/ProductCart'
@@ -95,11 +96,12 @@ export default function Products({ params }) {
 		<>
 			<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
 
-			<div className={styles.filtersPopup}>
+			{/* <div className={styles.filtersPopup}>
 				<Filters />
-			</div>
+			</div> */}
 			<div className={styles.filterSort}>
-				<div className={styles.filters}>
+				<SelectMenu />
+				{/* <div className={styles.filters}>
 					<span className={styles.filtersMore}>
 						<Image
 							src='../../../images/icons/filters.svg'
@@ -110,10 +112,10 @@ export default function Products({ params }) {
 						More filters
 					</span>
 					<span className={styles.filtersGroup}>
-						{/* //! //FIXME double ID!!! filtersPopup*/}
+						//! //FIXME double ID!!! filtersPopup
 						<Filters />
 					</span>
-				</div>
+				</div> */}
 				<SortBy
 					selectedOption={selectedOption}
 					setSelectedOption={setSelectedOption}
