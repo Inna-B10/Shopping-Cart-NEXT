@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import Select, { components } from 'react-select'
 import makeAnimated from 'react-select/animated'
-import styles from './SelectMenu.module.css'
+import styles from './FiltersMenu.module.css'
 
 const animatedComponents = makeAnimated()
 
@@ -23,7 +23,7 @@ const customComponents = {
 	DropdownIndicator,
 }
 
-export default function SelectMenu() {
+export default function FiltersMenu() {
 	const options = [
 		{ value: 'gold', label: 'Gold' },
 		{ value: 'silver', label: 'Silver' },
@@ -45,7 +45,6 @@ export default function SelectMenu() {
 			placeholder='Select filter(s)'
 			isMulti
 			options={options}
-			// unstyled
 			className={styles.filtersContainer}
 			classNames={{
 				control: state =>

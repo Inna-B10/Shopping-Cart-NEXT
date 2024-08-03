@@ -1,13 +1,11 @@
 'use client'
-// import Filters from '@/app/components/Filters'
-import SortBy from '@/app/components/SortBy'
+import FiltersMenu from '@/app/components/FiltersMenu'
 import axios, { AxiosError } from 'axios'
 import { Cinzel_Decorative } from 'next/font/google'
-// import Image from 'next/image'
-import SelectMenu from '@/app/components/SelectMenu'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import ProductCart from '../../components/ProductCart'
+import SortByMenu from './../../components/SortByMenu'
 import styles from './page.module.css'
 
 const cinzel = Cinzel_Decorative({
@@ -16,12 +14,12 @@ const cinzel = Cinzel_Decorative({
 	variable: '--font-cinzel',
 	display: 'swap',
 })
-/* 🠙  🠛   ▼  ▲  ˅  ˄  ⇩  ⇧  ᐁ  ᐃ*/
+
 const options = [
 	{ id: 'dateAZ', value: 'dateAZ', label: 'Date 🠙' },
 	{ id: 'dateZA', value: 'dateZA', label: 'Date 🠛' },
-	{ id: 'nameAZ', value: 'nameAZ', label: 'Name A-Z' },
-	{ id: 'nameZA', value: 'nameZA', label: 'Name Z-A' },
+	{ id: 'nameAZ', value: 'nameAZ', label: 'Name 🠙' },
+	{ id: 'nameZA', value: 'nameZA', label: 'Name 🠛' },
 	{ id: 'priceAZ', value: 'priceAZ', label: 'Price 🠙' },
 	{ id: 'priceZA', value: 'priceZA', label: 'Price 🠛' },
 ]
@@ -95,28 +93,9 @@ export default function Products({ params }) {
 	return (
 		<>
 			<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
-
-			{/* <div className={styles.filtersPopup}>
-				<Filters />
-			</div> */}
 			<div className={styles.filterSort}>
-				<SelectMenu />
-				{/* <div className={styles.filters}>
-					<span className={styles.filtersMore}>
-						<Image
-							src='../../../images/icons/filters.svg'
-							width={24}
-							height={24}
-							alt='Filters icon'
-						/>{' '}
-						More filters
-					</span>
-					<span className={styles.filtersGroup}>
-						//! //FIXME double ID!!! filtersPopup
-						<Filters />
-					</span>
-				</div> */}
-				<SortBy
+				<FiltersMenu />
+				<SortByMenu
 					selectedOption={selectedOption}
 					setSelectedOption={setSelectedOption}
 					options={options}
