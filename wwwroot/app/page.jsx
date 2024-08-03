@@ -1,4 +1,5 @@
 import { Cinzel_Decorative, El_Messiri } from 'next/font/google'
+import Link from 'next/link'
 import SubCatCart from './components/SubCatCart'
 import styles from './page.module.css'
 
@@ -38,16 +39,20 @@ export default function Home() {
 					</p>
 				</div>
 				<div className={`${styles.ctgBottom} flex`}>
-					<SubCatCart
-						src={'/media/1/silver.png'}
-						cat_name='Silver rings'
-						color='silver'
-					/>
-					<SubCatCart
-						src={'/media/1/gold.png'}
-						cat_name='Gold rings'
-						color='gold'
-					/>
+					<Link href='/Products/Rings?filter=silver'>
+						<SubCatCart
+							src={'/media/1/silver.png'}
+							cat_name='Silver rings'
+							color='silver'
+						/>
+					</Link>
+					<Link href='/Products/Rings?filter=gold'>
+						<SubCatCart
+							src={'/media/1/gold.png'}
+							cat_name='Gold rings'
+							color='gold'
+						/>
+					</Link>
 				</div>
 			</section>
 			<section className={`${styles.discountWrap} flex`}>
@@ -82,16 +87,20 @@ export default function Home() {
 					</p>
 				</div>
 				<div className={`${styles.ctgBottom} flex`}>
-					<SubCatCart
-						src={'/media/2/silver.png'}
-						cat_name='Silver earrings'
-						color='silver'
-					/>
-					<SubCatCart
-						src={'/media/2/gold.png'}
-						cat_name='Gold earrings'
-						color='gold'
-					/>
+					<Link href='/Products/Earrings?filter=silver'>
+						<SubCatCart
+							src={'/media/2/silver.png'}
+							cat_name='Silver earrings'
+							color='silver'
+						/>
+					</Link>
+					<Link href='/Products/Earrings?filter=gold'>
+						<SubCatCart
+							src={'/media/2/gold.png'}
+							cat_name='Gold earrings'
+							color='gold'
+						/>
+					</Link>
 				</div>
 			</section>
 			<section className={styles.galleryWrap}>
@@ -114,16 +123,20 @@ export default function Home() {
 					</p>
 				</div>
 				<div className={`${styles.ctgBottom} flex`}>
-					<SubCatCart
-						src={'/media/3/silver.png'}
-						cat_name='Silver bracelets'
-						color='silver'
-					/>
-					<SubCatCart
-						src={'/media/3/gold.png'}
-						cat_name='Gold bracelets'
-						color='gold'
-					/>
+					<Link href='/Products/Bracelets?filter=silver'>
+						<SubCatCart
+							src={'/media/3/silver.png'}
+							cat_name='Silver bracelets'
+							color='silver'
+						/>
+					</Link>
+					<Link href='/Products/Bracelets?filter=gold'>
+						<SubCatCart
+							src={'/media/3/gold.png'}
+							cat_name='Gold bracelets'
+							color='gold'
+						/>
+					</Link>
 				</div>
 			</section>
 			<section className={`${styles.discountWrap} flex`}>
@@ -160,16 +173,20 @@ export default function Home() {
 					</p>
 				</div>
 				<div className={`${styles.ctgBottom} flex`}>
-					<SubCatCart
-						src={'/media/4/silver.png'}
-						cat_name='Silver necklaces'
-						color='silver'
-					/>
-					<SubCatCart
-						src={'/media/4/gold.png'}
-						cat_name='Gold necklaces'
-						color='gold'
-					/>
+					<Link href='/Products/Bracelets?filter=silver'>
+						<SubCatCart
+							src={'/media/4/silver.png'}
+							cat_name='Silver necklaces'
+							color='silver'
+						/>
+					</Link>
+					<Link href='/Products/Bracelets?filter=gold'>
+						<SubCatCart
+							src={'/media/4/gold.png'}
+							cat_name='Gold necklaces'
+							color='gold'
+						/>
+					</Link>
 				</div>
 			</section>
 			<section className={styles.galleryWrap}>
@@ -192,25 +209,31 @@ export default function Home() {
 						explore and add a touch of LuxGlam charm to your life.
 					</p>
 					<div className={`flex ${styles.tripleLeft}`}>
-						<SubCatCart
-							src={'/media/5/anklets.png'}
-							cat_name='Anklets'
-							color='gold'
-						/>
+						<Link href='/Products/Anklets'>
+							<SubCatCart
+								src={'/media/5/anklets.png'}
+								cat_name='Anklets'
+								color='gold'
+							/>
+						</Link>
 					</div>
 					<div className={`flex ${styles.tripleMiddle}`}>
-						<SubCatCart
-							src={'/media/6/brooches.png'}
-							cat_name='Brooches'
-							color='gold'
-						/>
+						<Link href='/Products/Brooches'>
+							<SubCatCart
+								src={'/media/6/brooches.png'}
+								cat_name='Brooches'
+								color='gold'
+							/>
+						</Link>
 					</div>
 					<div className={`flex ${styles.tripleRight}`}>
-						<SubCatCart
-							src={'/media/7/pendants.png'}
-							cat_name='Pendants'
-							color='gold'
-						/>
+						<Link href='/Products/Pendants'>
+							<SubCatCart
+								src={'/media/7/pendants.png'}
+								cat_name='Pendants'
+								color='gold'
+							/>
+						</Link>
 					</div>
 				</div>
 			</section>

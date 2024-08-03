@@ -41,9 +41,8 @@ export default function FiltersMenu({
 	return (
 		<Select
 			name='filters'
-			closeMenuOnSelect={false}
+			closeMenuOnSelect={true}
 			components={customComponents}
-			// defaultValue={[options[0]]}
 			isClearable={false}
 			isSearchable={false}
 			placeholder='Select filter(s)'

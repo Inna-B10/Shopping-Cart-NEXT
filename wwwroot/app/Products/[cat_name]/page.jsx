@@ -2,6 +2,7 @@
 import FiltersMenu from '@/app/components/FiltersMenu'
 import axios, { AxiosError } from 'axios'
 import { Cinzel_Decorative } from 'next/font/google'
+import { useSearchParams } from 'next/navigation'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import ProductCart from '../../components/ProductCart'
@@ -46,7 +47,6 @@ export default function Products({ params }) {
 	} else {
 		queryName = cat_name
 	}
-	console.log(queryName)
 
 	//GET PRODUCTS
 	useEffect(() => {
@@ -75,11 +75,29 @@ export default function Products({ params }) {
 		}
 	}, [initialData])
 
+	//GET filter from link/url
+	const searchParams = useSearchParams()
+	const filter = searchParams.get('filter')
+
+	//initial filter based on the url parameter (?filter=)
+	useEffect(() => {
+		if (filter) {
+			const initialFilter = [
+				{
+					value: filter,
+					label: filter.charAt(0).toUpperCase() + filter.slice(1),
+				},
+			]
+			setSelectedFilters(initialFilter)
+		}
+	}, [filter])
+
 	//SORT BY
 	useEffect(() => {
 		// Ensure initialData is an array before sorting
 		if (Array.isArray(initialData)) {
-			const newList = [...initialData].sort((a, b) => {
+			const data = sortedData.length > 0 ? sortedData : initialData
+			const newList = [...data].sort((a, b) => {
 				const priceA =
 					a.p_price_discounted > 0 ? a.p_price_discounted : a.p_price
 				const priceB =
