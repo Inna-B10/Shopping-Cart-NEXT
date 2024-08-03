@@ -31,9 +31,11 @@ Products.propTypes = {
 }
 
 export default function Products({ params }) {
-	const [selectedOption, setSelectedOption] = useState(options[1])
+	const [selectedSortBy, setSelectedSortBy] = useState(options[1])
 	const [initialData, setInitialData] = useState()
 	const [sortedData, setSortedData] = useState([])
+	const [selectedFilters, setSelectedFilters] = useState([])
+	const [tags, setTags] = useState([])
 
 	let { cat_name } = params
 	let queryName
@@ -44,7 +46,9 @@ export default function Products({ params }) {
 	} else {
 		queryName = cat_name
 	}
+	console.log(queryName)
 
+	//GET PRODUCTS
 	useEffect(() => {
 		const getProducts = async () => {
 			try {
@@ -60,6 +64,18 @@ export default function Products({ params }) {
 		getProducts()
 	}, [queryName])
 
+	//GET ALL TAGS/FILTERS
+	useEffect(() => {
+		if (initialData) {
+			const uniqueTags = new Set()
+			initialData.forEach(product => {
+				product.p_tags.split(',').forEach(tag => uniqueTags.add(tag.trim()))
+			})
+			setTags([...uniqueTags])
+		}
+	}, [initialData])
+
+	//SORT BY
 	useEffect(() => {
 		// Ensure initialData is an array before sorting
 		if (Array.isArray(initialData)) {
@@ -69,7 +85,7 @@ export default function Products({ params }) {
 				const priceB =
 					b.p_price_discounted > 0 ? b.p_price_discounted : b.p_price
 
-				switch (selectedOption.value) {
+				switch (selectedSortBy.value) {
 					case 'dateAZ':
 						return a.p_id - b.p_id
 					case 'dateZA':
@@ -88,24 +104,69 @@ export default function Products({ params }) {
 			})
 			setSortedData(newList)
 		}
-	}, [selectedOption, initialData])
+	}, [selectedSortBy, initialData])
+
+	// Функция фильтрации
+	const filterProducts = (products, filters) => {
+		return products.filter(product => {
+			let matchesTags = true
+			let matchesStone = true
+
+			if (filters.tags.length > 0) {
+				matchesTags = filters.tags.some(tag => {
+					const productTags = product.p_tags.split(',').map(t => t.trim())
+					return productTags.includes(tag)
+				})
+			}
+
+			if (filters.stone !== null) {
+				matchesStone = product.p_is_stone === filters.stone
+			}
+
+			return matchesTags && matchesStone
+		})
+	}
+
+	useEffect(() => {
+		if (initialData) {
+			const filteredData = filterProducts(initialData, {
+				tags: selectedFilters
+					.filter(f => f.value !== 'stone' && f.value !== 'noStone')
+					.map(f => f.value),
+				stone: selectedFilters.some(f => f.value === 'stone')
+					? true
+					: selectedFilters.some(f => f.value === 'noStone')
+					? false
+					: null,
+			})
+			setSortedData(filteredData)
+		}
+	}, [selectedFilters, initialData])
 
 	return (
 		<>
 			<h1 className={`${styles.catName} ${cinzel.variable}`}>{cat_name}</h1>
 			<div className={styles.filterSort}>
-				<FiltersMenu />
+				<FiltersMenu
+					selectedFilters={selectedFilters}
+					setSelectedFilters={setSelectedFilters}
+					options={tags}
+				/>
 				<SortByMenu
-					selectedOption={selectedOption}
-					setSelectedOption={setSelectedOption}
+					selectedSortBy={selectedSortBy}
+					setSelectedSortBy={setSelectedSortBy}
 					options={options}
 				/>
 			</div>
 			<div className={`${styles.galleryWrapper} flex`}>
 				{initialData && initialData.length > 0 ? (
-					sortedData.map((item, index) => (
-						<ProductCart key={index} index={index} item={item} />
-					))
+					sortedData.length > 0 ? (
+						sortedData.map((item, index) => (
+							<ProductCart key={index} index={index} item={item} />
+						))
+					) : (
+						<p>No product found matching your request</p>
+					)
 				) : (
 					<p>
 						{initialData

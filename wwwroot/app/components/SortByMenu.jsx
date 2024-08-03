@@ -3,12 +3,12 @@ import Select from 'react-select'
 import styles from './SortByMenu.module.css'
 
 SortByMenu.propTypes = {
-	selectedOption: PropTypes.shape({
+	selectedSortBy: PropTypes.shape({
 		id: PropTypes.string,
 		value: PropTypes.string,
 		label: PropTypes.string,
 	}).isRequired,
-	setSelectedOption: PropTypes.func.isRequired,
+	setSelectedSortBy: PropTypes.func.isRequired,
 	options: PropTypes.arrayOf(
 		PropTypes.shape({
 			id: PropTypes.string.isRequired,
@@ -19,12 +19,12 @@ SortByMenu.propTypes = {
 }
 
 export default function SortByMenu({
-	selectedOption,
-	setSelectedOption,
+	selectedSortBy,
+	setSelectedSortBy,
 	options,
 }) {
 	const handleOptionChange = e => {
-		setSelectedOption(e)
+		setSelectedSortBy(e)
 	}
 	return (
 		<Select

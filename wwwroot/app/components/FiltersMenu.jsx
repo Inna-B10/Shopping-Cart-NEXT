@@ -23,13 +23,17 @@ const customComponents = {
 	DropdownIndicator,
 }
 
-export default function FiltersMenu() {
-	const options = [
-		{ value: 'gold', label: 'Gold' },
-		{ value: 'silver', label: 'Silver' },
-		{ value: 'whiteGold', label: 'White gold' },
-		{ value: 'goldPlated_silver', label: 'Gold-plated silver' },
-		{ value: 'titanium', label: 'Titanium' },
+export default function FiltersMenu({
+	selectedFilters,
+	setSelectedFilters,
+	options,
+}) {
+	const handleChange = selectedOptions => {
+		setSelectedFilters(selectedOptions || [])
+	}
+
+	const filterOptions = [
+		...options.map(tag => ({ value: tag, label: tag })),
 		{ value: 'stone', label: 'With stone' },
 		{ value: 'noStone', label: 'Without stone' },
 	]
@@ -39,12 +43,14 @@ export default function FiltersMenu() {
 			name='filters'
 			closeMenuOnSelect={false}
 			components={customComponents}
-			defaultValue={[options[0]]}
+			// defaultValue={[options[0]]}
 			isClearable={false}
 			isSearchable={false}
 			placeholder='Select filter(s)'
 			isMulti
-			options={options}
+			value={selectedFilters}
+			onChange={handleChange}
+			options={filterOptions}
 			className={styles.filtersContainer}
 			classNames={{
 				control: state =>
@@ -64,11 +70,6 @@ export default function FiltersMenu() {
 				option: state =>
 					state.isFocused ? styles.optionFocused : styles.option,
 			}}
-			// 	option: (base, state) => ({
-			// 		...base,
-			// 		backgroundColor: state.isSelected ? 'blue' : 'white',
-			// 		color: state.isSelected ? 'white' : 'black',
-			// 	}),
 		/>
 	)
 }
