@@ -3,7 +3,10 @@
 
 .select {
   position: relative;
-  height: 2rem;
+  box-shadow: 0 0 0 1px hsl(13deg 77% 19% / 50%), 0 1px 11px hsl(13deg 77% 19% / 10%);
+  background: #fcfaf6;
+  border-radius: 2px;
+  /* height: 38px; */
 }
 
 .select input {
@@ -14,18 +17,17 @@
 .toggleChecked,
 .toggle {
   width: calc(6rem + 4vw);
-  height: 2em;
+  /* height: 2em; */
   display: flex;
   align-items: center;
   padding: 5px;
   font-size: calc(0.8rem + 0.3vw);
-  border: 2px solid #561B0B;
-  border-radius: 2px;
-  -webkit-transition: all 200ms linear;
+  /* border: 1px solid #561B0B; */
+  /* -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
   -ms-transition: all 200ms linear;
   -o-transition: all 200ms linear;
-  transition: all 200ms linear;
+  transition: all 200ms linear; */
   cursor: pointer;
 }
 
@@ -54,49 +56,57 @@
   -webkit-transform: rotate(315deg);
 }
 
+/* 
 .toggleChecked {
   border-radius: 0 0 2px 2px;
-}
+} */
 
 .select ul {
   position: absolute;
-  bottom: 1.9rem;
+  bottom: 116%;
   left: 0px;
   width: calc(6rem + 4vw);
   margin: 0;
-  padding: 0;
+  padding: 4px 0;
   font-size: calc(0.8rem + 0.3vw);
   text-wrap: nowrap;
   white-space: nowrap;
   background: #fcfaf6;
-  border: 1px solid #561B0B;
+  /* border: 1px solid #561B0B; */
   border-bottom: none;
-  border-radius: 2px 2px 0 0;
+  border-radius: 2px;
   z-index: 100;
   overflow: hidden;
+  box-shadow: 0 0 0 1px hsl(13deg 77% 19% / 50%), 0 -4px 11px hsl(13deg 77% 19% / 10%);
 }
 
 .selectOption label {
   display: block;
   padding: 5px;
+  margin: 0 4px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.44);
   cursor: pointer;
-  -webkit-transition: all 200ms linear;
+  /* -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
   -ms-transition: all 200ms linear;
   -o-transition: all 200ms linear;
-  transition: all 200ms linear;
+  transition: all 200ms linear; */
+}
+
+.select > ul > li:nth-last-of-type(1) label {
+  border: none;
 }
 
 .selectOption label:hover {
-  background: #F2DA76;
+  background: #270200;
+  color: #FFF;
 }
 
-.selectOption label:active {
+/* .selectOption label:active {
   background: #fff;
   outline: none;
-}
+} */
 
 @media only screen and (min-device-width: 1024px) {
   .toggleChecked::after {

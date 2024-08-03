@@ -43,11 +43,9 @@ export default function SelectMenu() {
 			isClearable={false}
 			isSearchable={false}
 			placeholder='Select filter(s)'
-			// styles={{ container: base => ({ ...base, marginBottom: 76 }) }}
 			isMulti
 			options={options}
 			// unstyled
-			classNamePrefix='react-select'
 			className={styles.filtersContainer}
 			classNames={{
 				control: state =>
@@ -67,26 +65,11 @@ export default function SelectMenu() {
 				option: state =>
 					state.isFocused ? styles.optionFocused : styles.option,
 			}}
-			// styles={{
-			// 	// control: (base, state) => ({
-			// 	// 	...base,
-			// 	// 	borderColor: state.isFocused ? 'red' : 'blue',
-			// 	// }),
 			// 	option: (base, state) => ({
 			// 		...base,
 			// 		backgroundColor: state.isSelected ? 'blue' : 'white',
 			// 		color: state.isSelected ? 'white' : 'black',
 			// 	}),
-			// 	multiValue: base => ({
-			// 		...base,
-			// 		backgroundColor: 'lightgrey',
-			// 		color: 'black',
-			// 	}),
-			// 	menu: base => ({
-			// 		...base,
-			// 		backgroundColor: 'lightyellow',
-			// 	}),
-			// }}
 		/>
 	)
 }

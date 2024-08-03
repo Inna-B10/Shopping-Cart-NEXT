@@ -60,6 +60,7 @@ div.controlFocused {
     color: #a10909;
   } */
   flex-direction: row-reverse;
+  align-items: flex-end;
 }
 
 div.controlFocused:hover {
@@ -99,10 +100,16 @@ div.valueContainer {
 div.valueContainer > div {
   cursor: pointer;
   width: fit-content !important;
+  font-size: calc(0.8rem + 0.3vw);
   /* line-height: 2.5; */
 }
 
 div.multiValue {
+  /* -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  transition: all 200ms linear; */
   width: fit-content;
   font-size: calc(0.8rem + 0.3vw);
   justify-content: space-between;
@@ -120,6 +127,7 @@ div.multiValue > div {
   color: #561b0b;
   /* line-height: 1.5rem; */
   padding-left: 6px;
+  font-size: calc(0.8rem + 0.3vw);
 }
 
 div.multiValueRemove:hover {
@@ -149,26 +157,36 @@ span.separatorFocused {
 div.dropdown {
   padding: 0px;
 
+  & img {
+    height: calc(28px + 0.3vw);
+    width: auto;
+  }
+
   /* &:hover {
     color: #a10909;
   } */
 }
 
 div.list {
-  left: 40px;
+  top: 110%;
+  left: calc(2.5rem + 0.3vw);
   background: #fcfaf6;
   /* max-width: 60vw; */
   /* width: 100%; */
   /* min-width: 30vw;*/
   margin: 0;
   text-wrap: nowrap;
+  border-radius: 2px;
   /* border: 1px solid #a10909; */
   /* border-top: none; */
   /* border-radius: 0 0 2px 2px; */
-  box-shadow: 0px 1px 0 1px hsla(0, 0%, 0%, 0.1), 0px 4px 11px 0px hsla(0, 0%, 0%, 0.1);
+  /* box-shadow: 0px 1px 0 1px hsla(0, 0%, 0%, 0.1), 0px 4px 11px 0px hsla(0, 0%, 0%, 0.1); */
+  box-shadow: 0 0 0 1px hsl(13deg 77% 19% / 50%), 0 4px 11px hsl(13deg 77% 19% / 10%);
 }
 
-div.option {
+div.option,
+div.optionFocused {
+  background: #fcfaf6;
   width: calc(100% - 8px);
   /* padding: 10px; */
   margin: 0 4px;
@@ -189,8 +207,9 @@ div.option:nth-last-of-type(1) {
   border: none;
 }
 
-div.optionFocused {
+div.optionFocused:hover {
   padding: 5px;
+  font-size: calc(0.8rem + 0.3vw);
   width: calc(100% - 8px);
   /* padding: 10px; */
   margin: 0 4px;
@@ -210,3 +229,28 @@ div.optionFocused:active {
   margin: 0 4px;
   color: #270200;
 } */
+
+@media only screen and (max-device-width: 480px) {
+  div.dropdown {
+    & img {
+      display: none;
+    }
+  }
+
+  div.list {
+    left: 0px
+  }
+
+  div.valueContainer {
+    padding: 5px 10px;
+    background-color: #fcfaf6;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px hsl(13deg 77% 19% / 50%), 0 4px 11px hsl(13deg 77% 19% / 10%);
+  }
+}
+
+@media only screen and (min-device-width: 480px) {
+  div.list {
+    width: fit-content;
+  }
+}
