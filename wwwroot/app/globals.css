@@ -6,6 +6,7 @@
 
 html,
 body {
+  min-width: 390px;
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -47,9 +48,9 @@ sup {
 
 .notFound {
   text-align: center;
+}
 
-  & > p {
-    line-height: 250%;
-    font-size: large;
-  }
+.notFound > p {
+  line-height: 250%;
+  font-size: large;
 }

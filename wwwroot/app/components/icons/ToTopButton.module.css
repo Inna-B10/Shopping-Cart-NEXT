@@ -11,13 +11,12 @@
   height: calc(3rem + 1vw);
   cursor: pointer;
   z-index: 10;
+}
 
-  &:hover {
-    border-radius: 50%;
-    outline: 2px solid #A20909;
-    outline-offset: -2px;
-
-  }
+.goTop:hover {
+  border-radius: 50%;
+  outline: 2px solid #A20909;
+  outline-offset: -2px;
 }
 
 .goTop > img {

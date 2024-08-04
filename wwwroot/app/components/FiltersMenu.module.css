@@ -1,0 +1,150 @@
+.filtersContainer {
+  width: 60vw;
+}
+
+div.indicatorsContainer,
+div.control,
+div.controlFocused,
+div.controlListOpen {
+  align-items: flex-end;
+}
+
+div.control,
+div.controlFocused,
+div.controlListOpen {
+  flex-direction: row-reverse;
+}
+
+div.controlFocused,
+div.controlListOpen {
+  box-shadow: none;
+}
+
+div.valueContainer {
+  display: flex;
+  flex-flow: wrap;
+  padding: 0 0 0 10px;
+  text-wrap: nowrap;
+}
+
+div.valueContainer > div {
+  width: fit-content !important;
+}
+
+div.multiValue {
+  width: fit-content;
+  justify-content: space-between;
+  box-shadow: 0 0 0 1px hsl(13deg 77% 19% / 50%), 0 4px 11px hsl(13deg 77% 19% / 10%);
+}
+
+div.multiValue > div {
+  padding-left: 6px;
+  color: #561b0b;
+}
+
+div.multiValueRemove:hover {
+  color: #fff;
+  background-color: #561B0B;
+  border-radius: 0;
+}
+
+span.separator,
+span.separatorFocused {
+  display: none;
+}
+
+div.dropdown {
+  padding: 0px;
+
+  & img {
+    width: auto;
+    height: calc(28px + 0.3vw);
+  }
+}
+
+div.list {
+  top: 110%;
+  left: calc(2.5rem + 0.3vw);
+  margin: 0;
+  text-wrap: nowrap;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px hsl(13deg 77% 19% / 50%), 0 4px 11px hsl(13deg 77% 19% / 10%);
+}
+
+div.valueContainer > div,
+div.multiValue,
+div.multiValue > div,
+div.option,
+div.optionFocused,
+div.optionFocused:hover {
+  font-size: calc(0.8rem + 0.3vw);
+}
+
+div.option,
+div.optionFocused {
+  color: #270200;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.44);
+}
+
+div.control,
+div.control:hover,
+div.controlFocused,
+div.controlFocused:hover,
+div.controlListOpen,
+div.optionFocused:nth-last-of-type(1),
+div.option:nth-last-of-type(1) {
+  border: none;
+}
+
+div.option,
+div.optionFocused,
+div.optionFocused:hover {
+  width: calc(100% - 8px);
+  margin: 0 4px;
+  padding: 5px;
+}
+
+div.valueContainer > div,
+div.indicatorsContainer,
+div.optionFocused:hover {
+  cursor: pointer;
+}
+
+div.optionFocused:hover,
+div.optionFocused:active {
+  color: #fff;
+  background-color: #270200;
+}
+
+div.list,
+div.multiValue,
+div.option,
+div.optionFocused {
+  background-color: #fcfaf6;
+}
+
+@media only screen and (max-device-width: 480px) {
+  div.dropdown {
+    & img {
+      display: none;
+    }
+  }
+
+  div.list {
+    left: 0px
+  }
+
+  div.valueContainer {
+    padding: 5px 10px;
+    background-color: #fcfaf6;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px hsl(13deg 77% 19% / 50%), 0 4px 11px hsl(13deg 77% 19% / 10%);
+  }
+}
+
+@media only screen and (min-device-width: 480px) {
+  div.list {
+    width: fit-content;
+  }
+}

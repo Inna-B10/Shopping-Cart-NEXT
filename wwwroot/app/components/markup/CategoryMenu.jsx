@@ -1,8 +1,8 @@
 'use client'
+import axios, { AxiosError } from 'axios'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
-import { fetchData } from '../../lib/fetchData'
 import styles from './CategoryMenu.module.css'
 
 CategoryMenu.propTypes = {
@@ -16,12 +16,15 @@ export default function CategoryMenu({ closeMenu }) {
 	useEffect(() => {
 		const fetchCategories = async () => {
 			try {
-				const data = await fetchData('http://localhost:5176/Shop/Categories', {
-					next: { revalidate: 60 },
-				})
-				setCategories(data.listCategories || [])
+				const response = await axios.get(
+					'http://localhost:5176/Shop/Categories',
+					{
+						next: { revalidate: 60 },
+					}
+				)
+				setCategories(response.data.listCategories || [])
 			} catch (error) {
-				console.error('Error fetching categories:', error)
+				console.error(error, AxiosError)
 				// setError(error)
 				return null
 			}

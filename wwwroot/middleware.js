@@ -21,15 +21,18 @@ export default async function middleware(request) {
 	// Fetch categories
 	const validCategories = await fetchCategories()
 
-	// Parse URL and check for category existence
+	// Parse URL and check for category/label existence
 	const url = new URL(request.url)
 	const pathSegments = url.pathname.split('/')
 
 	if (pathSegments[1] === 'Products' && pathSegments[2]) {
 		const category = decodeURIComponent(pathSegments[2])
+		const cleanedCategory = category.startsWith('Discount-')
+			? category.replace('Discount-', '') + '%'
+			: category
 
 		// If category does not exist, redirect to home
-		if (!validCategories.includes(category)) {
+		if (!validCategories.includes(cleanedCategory)) {
 			return NextResponse.redirect(new URL('/', request.url))
 		}
 	}
