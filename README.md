@@ -43,6 +43,7 @@
 - [x] button toTop
 - [x] display badge on icons Bag and Favorites in user menu
 - [x] SortBy function
+- [x] filters function
 - [ ] home page
   - [x] subCategories
   - [x] text
@@ -60,7 +61,6 @@
 - [ ] @media
 - [ ] links
 - [ ] ?search function
-- [ ] filters function
 
 #### orders/ShoppingCart:
 
