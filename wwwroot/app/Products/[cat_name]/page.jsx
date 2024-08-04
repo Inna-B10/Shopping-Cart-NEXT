@@ -40,10 +40,10 @@ export default function Products({ params }) {
 
 	let { cat_name } = params
 	let queryName
-	if (cat_name && cat_name.includes('Discount-')) {
+	if (cat_name && cat_name.startsWith('Discount-')) {
 		const nameArr = cat_name.split('-')
 		queryName = nameArr[1] + '%'
-		cat_name = cat_name + '%'
+		cat_name = cat_name.replace('-', ' ') + '%'
 	} else {
 		queryName = cat_name
 	}
