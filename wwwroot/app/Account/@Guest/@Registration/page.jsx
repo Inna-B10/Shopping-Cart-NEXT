@@ -24,10 +24,10 @@ export default function Registration() {
 			const response = await axios.post(
 				'http://localhost:5176/Users/Registration',
 				{
-					user_email: email,
-					user_password: password,
-					user_Fname: firstName,
-					user_Lname: lastName,
+					UserEmail: email,
+					UserPasswordHash: password,
+					UserFname: firstName,
+					UserLname: lastName,
 				}
 			)
 			if (response.data.statusCode === 201) {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Shopping_Cart_NEXT.Models;
 using Shopping_Cart_NEXT.Services;
@@ -21,7 +22,7 @@ namespace Shopping_Cart_NEXT.Controllers
             _configuration = configuration;
             _userService = userService;
         }
-//-------------------------------------Login------------------------------------------------------------------------
+
         [EnableCors("MyPolicy")]
         [HttpPost]
         [Route("GetUserData")]
@@ -45,24 +46,25 @@ namespace Shopping_Cart_NEXT.Controllers
             }
             return response;
         }
-
+//-------------------------------------Registration------------------------------------------------------------------
         [EnableCors("MyPolicy")]
         [HttpPost]
         [Route("Registration")]
-        public async Task<IActionResult> Registration(Users user)
+        public async Task<IActionResult> Registration([FromBody] UserRegistrationRequest request)
         {
             {
-                var response = await _userService.RegistrationAsync(user.user_email, user.user_password,user.user_Fname,user.user_Lname);
+                var response = await _userService.RegistrationAsync(request.UserEmail, request.UserPasswordHash, request.UserFname, request.UserLname);
                 return StatusCode(response.StatusCode, response);
             }
         }
+//-------------------------------------Login------------------------------------------------------------------------
         [EnableCors("MyPolicy")]
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> Login(string userEmail, string userPassword)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             {
-                var response = await _userService.LoginAsync(userEmail, userPassword);
+                var response = await _userService.LoginAsync(request.UserEmail, request.UserPassword);
                 return StatusCode(response.StatusCode, response);
             }
         }
@@ -172,5 +174,22 @@ namespace Shopping_Cart_NEXT.Controllers
             }
 
         }
+    }
+
+    // Класс для регистрации, используется для привязки данных из запроса
+    public class UserRegistrationRequest
+    {
+        public string UserEmail { get; set; }
+        public string UserPasswordHash { get; set; }
+        public string UserFname { get; set; }
+        public string UserLname { get; set; }
+    }
+
+
+    // Класс для входа, используется для привязки данных из запроса
+    public class LoginRequest
+    {
+        public string UserEmail { get; set; }
+        public string UserPassword { get; set; }
     }
 }

@@ -3,6 +3,8 @@ using Shopping_Cart_NEXT.Models;
 using Shopping_Cart_NEXT.Services.Interfaces;
 using System.Data;
 using System.Data.SqlClient;
+using BCrypt.Net;
+
 
 namespace Shopping_Cart_NEXT.Services
 {
@@ -70,8 +72,8 @@ namespace Shopping_Cart_NEXT.Services
         {
             Response response = new Response();
             if (userEmail != null && userPassword != null)
-            { 
-                string sql = "SELECT user_id FROM Users WHERE user_email = @User_email AND user_password = @User_password";
+            {
+                string sql = "SELECT user_id, user_password FROM Users WHERE user_email = @User_email";
                 try
                 {
                     using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -79,28 +81,41 @@ namespace Shopping_Cart_NEXT.Services
                         using (SqlCommand cmd = new SqlCommand(sql, connection))
                         {
                             cmd.Parameters.AddWithValue("@User_email", userEmail);
-                            cmd.Parameters.AddWithValue("@User_password", userPassword);
 
                             await connection.OpenAsync();
-                            var userIdObject = await cmd.ExecuteScalarAsync();
-                            await connection.CloseAsync();
-                            if (userIdObject != null && int.TryParse(userIdObject.ToString(), out int userId))
+                            using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                             {
-                                response.StatusCode = 200;
-                                response.StatusMessage = "Login successful";
-                                response.UserId = userId;
-                            }
-                            else
-                            {
-                                response.StatusCode = 204;
-                                response.StatusMessage = "Wrong email and/or password";
+                                if (await reader.ReadAsync())
+                                {
+                                    int userId = reader.GetInt32(0);
+                                    string hashedPassword = reader.GetString(1);
+
+                                    // Verify the provided password against the stored hash
+                                    if (BC.Verify(userPassword, hashedPassword))
+                                    {
+                                        response.StatusCode = 200;
+                                        response.StatusMessage = "Login successful";
+                                        response.UserId = userId;
+                                    }
+                                    else
+                                    {
+                                        response.StatusCode = 204;
+                                        response.StatusMessage = "Wrong email and/or password";
+                                    }
+                                }
+                                else
+                                {
+                                    response.StatusCode = 204;
+                                    response.StatusMessage = "User not found";
+                                }
                             }
                         }
                     }
                 }
-                   
+
                 catch (Exception ex)
                 {
+                Console.WriteLine("Exception occurred: " + ex.Message);
                 response.StatusCode = 500;
                 response.StatusMessage = "Error: " + ex.Message;
                 }
@@ -131,7 +146,6 @@ namespace Shopping_Cart_NEXT.Services
 
                             await connection.OpenAsync();
                             object result = await cmd.ExecuteScalarAsync();
-                            await connection.CloseAsync();
                             if (result != null)
                             {
                                 response.StatusCode = 200;
@@ -177,6 +191,9 @@ namespace Shopping_Cart_NEXT.Services
 
                 else if (emailCheckResponse.StatusCode == 204)
                 {
+                    // Hash the password before storing it
+                    string hashedPassword = BC.EnhancedHashPassword(userPassword);
+
                     string sql = @"
                 DECLARE @NewUserIdTable TABLE (user_id INT);
 
@@ -194,7 +211,7 @@ namespace Shopping_Cart_NEXT.Services
                             using (SqlCommand cmd = new SqlCommand(sql, connection))
                             {
                                 cmd.Parameters.AddWithValue("@User_email", userEmail);
-                                cmd.Parameters.AddWithValue("@User_password", userPassword);
+                                cmd.Parameters.AddWithValue("@User_password", hashedPassword);
                                 cmd.Parameters.AddWithValue("@User_Fname", userFname);
                                 cmd.Parameters.AddWithValue("@User_Lname", userLname);
 

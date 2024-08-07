@@ -20,9 +20,10 @@ export default function LoginPage() {
 		event.preventDefault()
 
 		try {
-			const response = await axios.post(
-				`http://localhost:5176/Users/Login?userEmail=${email}&userPassword=${password}`
-			)
+			const response = await axios.post('http://localhost:5176/Users/Login', {
+				UserEmail: email,
+				UserPassword: password,
+			})
 			if (response.data.statusCode === 200) {
 				setNewUserId(response.data.userId)
 				setModalShow(true)
@@ -45,7 +46,7 @@ export default function LoginPage() {
 						Please try again.
 					</h3>
 				)
-				console.error('Error 204:', AxiosError)
+				//console.error('Error 204:', AxiosError)
 			} else {
 				setEmail('')
 				setPassword('')
@@ -60,6 +61,8 @@ export default function LoginPage() {
 				console.error(error, AxiosError)
 			}
 		} catch (error) {
+			setEmail('')
+			setPassword('')
 			setModalShow(true)
 			setModalText(
 				<h3>
