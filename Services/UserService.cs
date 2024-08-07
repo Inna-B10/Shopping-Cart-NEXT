@@ -91,7 +91,7 @@ namespace Shopping_Cart_NEXT.Services
                                     string hashedPassword = reader.GetString(1);
 
                                     // Verify the provided password against the stored hash
-                                    if (BC.Verify(userPassword, hashedPassword))
+                                    if (BC.EnhancedVerify(userPassword, hashedPassword))
                                     {
                                         response.StatusCode = 200;
                                         response.StatusMessage = "Login successful";
@@ -192,7 +192,7 @@ namespace Shopping_Cart_NEXT.Services
                 else if (emailCheckResponse.StatusCode == 204)
                 {
                     // Hash the password before storing it
-                    string hashedPassword = BC.EnhancedHashPassword(userPassword);
+                    string hashedPassword = BC.EnhancedHashPassword(userPassword, 13);
 
                     string sql = @"
                 DECLARE @NewUserIdTable TABLE (user_id INT);
