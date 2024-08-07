@@ -50,7 +50,7 @@ namespace Shopping_Cart_NEXT.Services
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string sql = "SELECT * FROM Products;";
+                string sql = "SELECT * FROM Products order by prod_id DESC;";
                 connection.Close();
                 using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {
@@ -71,7 +71,7 @@ namespace Shopping_Cart_NEXT.Services
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string sql = "SELECT p.*, c.cat_name FROM Products p INNER JOIN Categories c ON p.prod_cat_id = c.cat_id WHERE c.cat_name = @CategoryName or p.prod_label = @CategoryName;";
+                string sql = "SELECT p.*, c.cat_name FROM Products p INNER JOIN Categories c ON p.prod_cat_id = c.cat_id WHERE c.cat_name = @CategoryName or p.prod_label = @CategoryName order by prod_id DESC;";
                 connection.Close();
                 using (SqlCommand cmd = new SqlCommand(sql, connection))
                 {

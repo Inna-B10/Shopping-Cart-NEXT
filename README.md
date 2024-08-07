@@ -17,6 +17,7 @@
 - npm install axios
 - npm install cookie
 - npm install prop-types
+- npm i --save react-select
 
 ## TO DO
 
@@ -47,7 +48,7 @@
 - [ ] home page
   - [x] subCategories
   - [x] text
-  - [ ] add category desc into DB (new column)
+  - [x] add category desc into DB (new column)
   - [ ] contact form
   - [ ] ?gallery on main page
 - [ ] navBar CSS @media
