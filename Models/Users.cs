@@ -9,7 +9,7 @@ namespace Shopping_Cart_NEXT.Models
         [Required]
         public string user_email { get; set; }
         [Required]
-        public string user_password { get; set; }
+        public string user_password_hash { get; set; }
         [Required]
         public string user_Fname { get; set; }
         [Required]

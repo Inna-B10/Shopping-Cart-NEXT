@@ -1,9 +1,5 @@
 # LuxGleam - jewelry e-shop
 
-### C#: .NET 8.0 (ASP.NET Core Web API)
-
-### DB: SQL Server
-
 ### NEXT.JS :
 
 - This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
@@ -12,21 +8,28 @@
 
 - Used app routing
 
-### Installed
+      - npm install axios
+      - npm install cookie
+      - npm install prop-types
+      - npm i --save react-select
 
-- npm install axios
-- npm install cookie
-- npm install prop-types
+### C#: .NET 8.0 (ASP.NET Core Web API)
+
+          - Swashbuckle.AspNetCore
+          - System.Data.SqlClient
+          - BCrypt.Net-Next
+
+### DB: SQL Server
 
 ## TO DO
 
 #### email/forms:
 
 - [ ] change email input type
-- [ ] add validation of email and password user's input
+- [ ] add validation of email and user's input
 - [ ] create confirmation email with link for new user
 - [ ] add "Reset password" function
-- [ ] coding userPassword with MD5 or scrypt/bcrypt
+- [x] create userPassword hash with BCrypt, Argon2 or PBKDF2
 
 #### after registration/login:
 
@@ -47,7 +50,7 @@
 - [ ] home page
   - [x] subCategories
   - [x] text
-  - [ ] add category desc into DB (new column)
+  - [x] add category desc into DB (new column)
   - [ ] contact form
   - [ ] ?gallery on main page
 - [ ] navBar CSS @media
@@ -56,7 +59,7 @@
 - [ ] user info page
 - [ ] product details page
 - [ ] change alert messages to modal
-- [ ] ?в куках для гостя хранить количество товара(доступно только в корзине)
+- [ ] ?в куках для гостя хранить количество товара (доступно только в корзине)
 - [ ] ?display only products with quantity>0 or display "out of stock"
 - [ ] @media
 - [ ] links

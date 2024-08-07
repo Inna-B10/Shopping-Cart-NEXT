@@ -6,6 +6,7 @@ use ShopDb
 CREATE TABLE Categories (
   cat_id INT IDENTITY(1,1),
   cat_name NVARCHAR(255) NOT NULL,
+  cat_desc NVARCHAR(MAX) NULL,
 
   CONSTRAINT PK_cat_id PRIMARY KEY (cat_id),
   CONSTRAINT UQ_cat_name UNIQUE (cat_name)
@@ -161,8 +162,48 @@ ADD CONSTRAINT FK_fav_prod_id FOREIGN KEY (fav_prod_id) REFERENCES Products(prod
 ---------------------------------------------------------------------------------------
 --ВСТАВКА ЗНАЧЕНИЙ В БД
 --insert categories name
-insert into Categories (cat_name)
-values ('Rings'),('Earrings'), ('Necklaces'),('Bracelets'),('Anklets'),('Brooches'),('Pendants'),('Sets');
+insert into Categories (cat_name, cat_desc)
+values ('Rings','When choosing rings, it is essential to consider the distinct
+						qualities of gold and silver. Gold rings are known for their
+						timeless elegance, durability, and rich hues, making them a
+						sophisticated choice suitable for any occasion and a lasting
+						investment in style. Silver rings, with their sleek and modern
+						design, offer a contemporary appeal for a casual yet chic look,
+						perfect for both daily wear and special occasions. At LuxGleam, we
+						offer an exquisite selection of both, ensuring you find the perfect
+						ring to suit your individual style.'),
+('Earrings','Earrings are a perfect way to express your individuality and add a
+						touch of elegance to any outfit. Whether you prefer the classic glam
+						of gold or the trendy allure of silver, LuxGleam offers a variety of
+						designs to suit every taste. From delicate studs to statement hoops,
+						our earrings are crafted to enhance your natural beauty and reflect
+						your personal style.'),
+('Necklaces', 'A necklace has the power to transform an outfit and become a
+						cherished piece in your jewelry collection. LuxGleam’s selection of
+						gold and silver necklaces includes everything from elegant pendants
+						and sophisticated chains to eye-catching statement pieces. Whether
+						you’re drawn to the classic beauty of gold or the sleek
+						sophistication of silver, our necklaces are designed to reflect your
+						unique style and personality.'),
+('Bracelets', 'Bracelets are more than just accessories; they are versatile pieces
+						that can elevate any look. At LuxGleam, our stunning array of gold
+						and silver bracelets allows you to make a unique statement. Gold
+						bracelets exude luxury and timelessness, making them perfect for
+						formal occasions or adding a touch of elegance to everyday wear. On
+						the other hand, silver bracelets offer a contemporary vibe and
+						versatility, seamlessly fitting into both casual and chic ensembles.
+						Explore our collection to discover the bracelet that perfectly
+						complements your unique style.'),
+('Anklets', 'Accentuate your look with our carefully curated collections,
+						designed for every occasion. Small accessories can completely
+						transform an outfit and showcase your personal style. Click to
+						explore and add a touch of LuxGlam charm to your life.'),
+('Brooches', null),
+('Pendants', null),
+('Sets', null);
+
+--insert categories description
+
 
 --insert products
 insert into Products(prod_name, prod_cat_id,prod_price,prod_price_discounted,prod_desc_short,prod_desc_full,prod_article_num,prod_tags,prod_is_stone,prod_label,prod_quantity)
@@ -198,7 +239,7 @@ WHERE c.cat_name = 'new' or p.prod_label = 'new';
 insert into ShoppingCarts(sc_user_id,sc_prod_id)
 values(1,1);
 
---test to get items from ShoppingCarts whis user_id
+--test to get items from ShoppingCarts with user_id
 select p.*, sc.sc_prod_quantity 
 from Products p
 inner join
@@ -214,7 +255,7 @@ DROP COLUMN prod_size;
 ALTER TABLE Products
 ADD prod_quantity INT NOT NULL DEFAULT 0;
 
-select * from Products
+select * from Products order by prod_id DESC
 select * from Users
 select * from ShoppingCarts
 select * from Categories
@@ -222,6 +263,8 @@ select * from Favorites
 select * from UsersAddress
 
 drop table Users
+
+TRUNCATE TABLE Products;
 
 delete from Users where user_id>2
 
@@ -248,3 +291,4 @@ DROP CONSTRAINT FK_fav_user_id;
 
 ALTER TABLE Favorites
 DROP CONSTRAINT FK_fav_prod_id;
+
