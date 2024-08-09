@@ -25,8 +25,8 @@
 
 #### email/forms:
 
-- [ ] change email input type
-- [ ] add validation of email and user's input
+- [x] change email input type
+- [x] add validation of email and user's input
 - [ ] create confirmation email with link for new user
 - [ ] add "Reset password" function
 - [x] create userPassword hash with BCrypt, Argon2 or PBKDF2
