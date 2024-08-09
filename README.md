@@ -12,12 +12,14 @@
       - npm install cookie
       - npm install prop-types
       - npm i --save react-select
+      - npm install joi
 
 ### C#: .NET 8.0 (ASP.NET Core Web API)
 
           - Swashbuckle.AspNetCore
           - System.Data.SqlClient
           - BCrypt.Net-Next
+          - FluentValidation.AspNetCore
 
 ### DB: SQL Server
 

@@ -1,6 +1,5 @@
 ﻿using Shopping_Cart_NEXT.Models;
 using Shopping_Cart_NEXT.Services.Interfaces;
-using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 

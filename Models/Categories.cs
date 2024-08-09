@@ -2,6 +2,7 @@
 {
     public class Categories
     {
-        public string? cat_name { get; set; }
+        public string cat_name { get; set; }
+        public string? cat_desc { get; set; }
     }
 }

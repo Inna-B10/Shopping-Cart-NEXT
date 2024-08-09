@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Shopping_Cart_NEXT.Models;
-using Shopping_Cart_NEXT.Services;
 using Shopping_Cart_NEXT.Services.Interfaces;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace Shopping_Cart_NEXT.Controllers
 {
@@ -50,7 +46,7 @@ namespace Shopping_Cart_NEXT.Controllers
         [EnableCors("MyPolicy")]
         [HttpPost]
         [Route("Registration")]
-        public async Task<IActionResult> Registration([FromBody] UserRegistrationRequest request)
+        public async Task<IActionResult> Registration([FromBody] RegistrationRequest request)
         {
             {
                 var response = await _userService.RegistrationAsync(request.UserEmail, request.UserPasswordHash, request.UserFname, request.UserLname);
@@ -133,7 +129,7 @@ namespace Shopping_Cart_NEXT.Controllers
         [EnableCors("MyPolicy")]
         [HttpPost]
         [Route("AddProduct")]
-        public async Task<IActionResult> AddProduct(int userId, int prodId, string table = null)
+        public async Task<IActionResult> AddProduct(int userId, int prodId, string table)
         {
             if (table == null || userId == -1)
             {
@@ -154,7 +150,7 @@ namespace Shopping_Cart_NEXT.Controllers
         [EnableCors("MyPolicy")]
         [HttpPost]
         [Route("RemoveProduct")]
-        public async Task<IActionResult> RemoveProduct(int userId, int prodId, string table = null)
+        public async Task<IActionResult> RemoveProduct(int userId, int prodId, string table)
         {
             if (table == null || userId == -1)
             {
@@ -177,7 +173,7 @@ namespace Shopping_Cart_NEXT.Controllers
     }
 
     // Класс для регистрации, используется для привязки данных из запроса
-    public class UserRegistrationRequest
+    public class RegistrationRequest
     {
         public string UserEmail { get; set; }
         public string UserPasswordHash { get; set; }
