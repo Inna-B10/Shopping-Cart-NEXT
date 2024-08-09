@@ -1,9 +1,8 @@
 
 using Shopping_Cart_NEXT.Services.Interfaces;
 using Shopping_Cart_NEXT.Services;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 namespace Shopping_Cart_App
 {
@@ -33,11 +32,15 @@ namespace Shopping_Cart_App
             builder.Services.AddControllers();
             builder.Services.AddRazorPages();
 
-            // Register the ProductService and its interface
+            // Register FluentValidation
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
+            // Register the Service and its interface
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IUserService, UserService>();
-
+           
             // Add Swagger for API documentation
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
