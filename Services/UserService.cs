@@ -1,9 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using Shopping_Cart_NEXT.Models;
+﻿using Shopping_Cart_NEXT.Models;
 using Shopping_Cart_NEXT.Services.Interfaces;
 using System.Data;
 using System.Data.SqlClient;
-using BCrypt.Net;
 
 
 namespace Shopping_Cart_NEXT.Services

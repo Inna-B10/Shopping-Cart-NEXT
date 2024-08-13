@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shopping_Cart_NEXT.Models;
-using Shopping_Cart_NEXT.Services;
 using Shopping_Cart_NEXT.Services.Interfaces;
-using System.Data;
-using System.Data.SqlClient;
 
 
 namespace Shopping_Cart_NEXT.Controllers

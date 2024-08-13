@@ -2,6 +2,7 @@
 import Modal from '@/app/components/Modal'
 import { useUser } from '@/app/UserContext'
 import axios, { AxiosError } from 'axios'
+import Joi from 'joi'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import styles from './page.module.css'
@@ -18,8 +19,76 @@ export default function Registration() {
 	const [modalShow, setModalShow] = useState(false)
 	const [newUserId, setNewUserId] = useState(null)
 
+	const schema = Joi.object({
+		firstName: Joi.string()
+			.min(2)
+			.pattern(/^[A-Za-z-\s]+$/)
+			.required()
+			.messages({
+				'string.min': 'First name must be at least 2 characters long.',
+				'string.pattern.base':
+					'First name can only contain Latin letters, hyphens and spaces.',
+				'string.empty': 'First name is required.',
+			}),
+		lastName: Joi.string()
+			.min(2)
+			.pattern(/^[A-Za-z-\s]+$/)
+			.required()
+			.messages({
+				'string.min': 'Last name must be at least 2 characters long.',
+				'string.pattern.base':
+					'Last name can only contain Latin letters, hyphens and spaces.',
+				'string.empty': 'Last name is required.',
+			}),
+		email: Joi.string()
+			.pattern(/^[^\s@]+@[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/)
+			.required()
+			.messages({
+				'string.pattern.base':
+					'Email must be a valid email address with a domain consisting only of Latin letters, numbers, or hyphens',
+				'string.empty': 'Email is required.',
+			}),
+		password: Joi.string()
+			.min(8)
+			.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*(\d|[\W_])).+$/)
+			.required()
+			.messages({
+				'string.min': 'Password must be at least 8 characters long.',
+				'string.pattern.base':
+					'The password must contain at least one capital Latin letter, one small Latin letter, and either a number or a special symbol.',
+				'string.empty': 'Password is required.',
+			}),
+	})
+
 	const handleRegister = async event => {
 		event.preventDefault()
+		console.log(email, password)
+
+		const { error } = schema.validate(
+			{
+				firstName,
+				lastName,
+				email,
+				password,
+			},
+			{ abortEarly: false }
+		)
+		if (error) {
+			//console.log(error.details[0].message)
+			setModalShow(true)
+			setModalText(
+				<>
+					<h3>Validation Error</h3>
+					<ul>
+						{error.details.map((err, index) => (
+							<li key={index}>{err.message}</li>
+						))}
+					</ul>
+				</>
+			)
+			return
+		}
+
 		try {
 			const response = await axios.post(
 				'http://localhost:5176/Users/Registration',
@@ -79,9 +148,6 @@ export default function Registration() {
 	const handleCloseModal = () => {
 		setModalShow(false)
 		if (isSuccess) {
-			// TODO
-			//*[ ] check cookies: if exist Favorites and/or ShoppingCart insert them into DB and delete from cookies
-			//*[ ]  change email input type
 			setIsSuccess(false)
 			setUserId(newUserId)
 			router.replace('/')
@@ -102,8 +168,7 @@ export default function Registration() {
 				</span>
 				<input
 					required
-					// type='email'
-					type='text'
+					type='email'
 					label='Email'
 					value={email}
 					onChange={e => setEmail(e.target.value)}

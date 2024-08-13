@@ -1,6 +1,7 @@
 'use client'
 import { useUser } from '@/app/UserContext'
 import axios, { AxiosError } from 'axios'
+import Joi from 'joi'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import Modal from '../../../components/Modal'
@@ -16,8 +17,36 @@ export default function LoginPage() {
 	const [modalShow, setModalShow] = useState(false)
 	const [newUserId, setNewUserId] = useState(null)
 
+	const schema = Joi.object({
+		email: Joi.string()
+			.email({ tlds: { allow: false } })
+			.required()
+			.messages({
+				'string.email': 'Invalid email format.',
+				'string.empty': 'Email is required.',
+			}),
+		password: Joi.string().min(8).required().messages({
+			'string.min': 'Password must be at least 8 characters long.',
+			'string.empty': 'Password is required.',
+		}),
+	})
+
+	const validateInputs = () => {
+		const { error } = schema.validate({ email, password })
+		if (error) {
+			setModalText(<h3>{error.details[0].message}</h3>)
+			setModalShow(true)
+			return false
+		}
+		return true
+	}
+
 	const handleLogin = async event => {
 		event.preventDefault()
+
+		if (!validateInputs()) {
+			return
+		}
 
 		try {
 			const response = await axios.post('http://localhost:5176/Users/Login', {
@@ -95,8 +124,7 @@ export default function LoginPage() {
 				</span>
 				<input
 					required
-					// type='email'
-					type='text'
+					type='email'
 					name='Email'
 					value={email}
 					onChange={e => setEmail(e.target.value)}
