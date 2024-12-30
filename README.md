@@ -1,4 +1,6 @@
-# LuxGleam - jewelry e-shop
+# Project name: LuxGleam
+### Goal:
+jewelry e-shop
 
 ### NEXT.JS :
 
