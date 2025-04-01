@@ -91,7 +91,7 @@ GO
 
  --Indexes for Users
 CREATE INDEX idx_user_email ON Users(user_email);
-CREATE INDEX idx_user_phone ON Users(user_phone);
+--CREATE INDEX idx_user_phone ON Users(user_phone);
 
 
 --create table UsersAddress
@@ -160,8 +160,8 @@ ALTER TABLE Favorites
 ADD CONSTRAINT FK_fav_prod_id FOREIGN KEY (fav_prod_id) REFERENCES Products(prod_id);
 
 ---------------------------------------------------------------------------------------
---ВСТАВКА ЗНАЧЕНИЙ В БД
---insert categories name
+--INSERT VALUES INTO THE DATABASE
+--insert categories name and description
 insert into Categories (cat_name, cat_desc)
 values ('Rings','When choosing rings, it is essential to consider the distinct
 						qualities of gold and silver. Gold rings are known for their
@@ -202,9 +202,6 @@ values ('Rings','When choosing rings, it is essential to consider the distinct
 ('Pendants', null),
 ('Sets', null);
 
---insert categories description
-
-
 --insert products
 insert into Products(prod_name, prod_cat_id,prod_price,prod_price_discounted,prod_desc_short,prod_desc_full,prod_article_num,prod_tags,prod_is_stone,prod_label,prod_quantity)
 values('Clara', 1,4998,4248,'Diamantring i 375 hvitt gull 0,11 ct',
@@ -218,7 +215,7 @@ values('Nora', 1,3499,'Diamantring i 375 gult gull 0,09 ct',
 
 --insert default user "admin"
 insert into Users (user_level,user_email,user_password,user_Fname,user_Lname)
-values(9,'admin','admin','admin','admin');
+values(9,'admin@admin.com','$2a$13$qNBcI0tspwTjADUH8/.HIO8Hc2szh88dk21mNwHoEHtCC2hlTGq9K','admin','admin');
 
 ------------------------------------------------------------------------------------------------------
 --TEST QUERIES
@@ -245,50 +242,4 @@ from Products p
 inner join
 ShoppingCarts sc on p.prod_id = sc.sc_prod_id
 where sc.sc_user_id = 1
-
------------------------------------------------------------------------------------------
-
-
-ALTER TABLE Products
-DROP COLUMN prod_size;
-
-ALTER TABLE Products
-ADD prod_quantity INT NOT NULL DEFAULT 0;
-
-select * from Products order by prod_id DESC
-select * from Users
-select * from ShoppingCarts
-select * from Categories
-select * from Favorites
-select * from UsersAddress
-
-drop table Users
-
-TRUNCATE TABLE Products;
-
-delete from Users where user_id>2
-
-SELECT * FROM Products WHERE prod_id IN (2,1)
-
-SELECT p.*, c.cat_name FROM Products p INNER JOIN Categories c ON p.prod_cat_id = c.cat_id WHERE c.cat_name = "Silver-earrings";
-
--------------------------------------------------------------------------------
-
-ALTER TABLE Products
-DROP CONSTRAINT FK_prod_cat_id;
-
-ALTER TABLE UsersAddress
-DROP CONSTRAINT FK_UsersAddress_user_id;
-
-ALTER TABLE ShoppingCarts
-DROP CONSTRAINT FK_sc_user_id;
-
-ALTER TABLE ShoppingCarts
-DROP CONSTRAINT FK_sc_prod_id;
-
-ALTER TABLE Favorites
-DROP CONSTRAINT FK_fav_user_id;
-
-ALTER TABLE Favorites
-DROP CONSTRAINT FK_fav_prod_id;
 
