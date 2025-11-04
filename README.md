@@ -1,56 +1,89 @@
 # Project name: LuxGleam
-### Goal:
-jewelry e-shop
 
-### NEXT.JS :
+### Project Goal:
 
-- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+The goal of this project is to integrate a `Next.js` frontend with a `C#` backend and a `SQL Server` database, making all parts work together smoothly.
+This is my first experience working with multiple languages and a full-scale database — a step up from my earlier projects that used `React` or `Next.js` with public APIs or JSON files.
 
-- Used [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize a custom Google Font.
+### Project Status:
 
-- Used app routing
+Development was paused after realizing that several architectural and security aspects could be improved. Some features could have been implemented differently or delegated to external libraries.
+Although the core integration works — all three layers communicate successfully — the project will not be continued in its current form.
+Still, it was an excellent learning experience and a valuable step forward in understanding backend integration and system design.
 
-      - npm install axios
-      - npm install cookie
-      - npm install prop-types
-      - npm i --save react-select
-      - npm install joi
+<br />
 
-### C#: .NET 8.0 (ASP.NET Core Web API)
+[<img src="preview.png" height="250" align="right"/>](preview.png)
 
-          - Swashbuckle.AspNetCore
-          - System.Data.SqlClient
-          - BCrypt.Net-Next
-          - FluentValidation.AspNetCore
+<details style="border:1px solid #d4d4d4; border-radius:2px; padding:1rem;">
+<summary><h3 style="display:inline; padding-left:6px;">🧩 Tech Stack<h3></summary>
 
-### DB: SQL Server
+### **🖥️ Frontend:**
 
-## TO DO
+![next](https://img.shields.io/badge/next_14.2.5-424242?logo=nextdotjs)
+![react](https://img.shields.io/badge/react_18-424242?logo=react&logoColor=61DAFB)
+![react-dom](https://img.shields.io/badge/react_dom_18-424242?logo=react&logoColor=61DAFB)
+![react-select](https://img.shields.io/badge/react_select_5.8.0-424242)
+![axios](https://img.shields.io/badge/axios_1.7.2-424242)
+![cookie](https://img.shields.io/badge/cookie_0.6.0-424242)
+![joi](https://img.shields.io/badge/joi_17.13.3-424242)
+![prop-types](https://img.shields.io/badge/prop_types_15.8.1-424242)
+![eslint](https://img.shields.io/badge/eslint_8-424242)
+![eslint-config-next](https://img.shields.io/badge/eslint_config_next_14.2.4-424242)
+
+<details style="border:1px solid #d4d4d4; border-radius:2px; padding:1rem;">
+<summary><h4 style="display:inline; padding-left:6px;">Dependencies frontend:<h4></summary>
+
+```bash
+npm install axios
+npm install cookie
+npm install prop-types
+npm i --save react-select
+npm install joi
+```
+
+</details>
+
+### **⚙️ Backend: C# / .NET** (ASP.NET Core Web API)
+
+![C%23](https://img.shields.io/badge/C%23_7.3-424242?logo=https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/csharp.svg&logoColor=white)
+![.NET](https://img.shields.io/badge/.NET_8.0-424242)
+![Swashbuckle.AspNetCore](https://img.shields.io/badge/Swashbuckle.AspNetCore_6.5.0-424242)
+![System.Data.SqlClient](https://img.shields.io/badge/System.Data.SqlClient_4.8.3-424242)
+![BCrypt.Net-Next](https://img.shields.io/badge/BCrypt.Net--Next_4.0.2-424242)
+![FluentValidation.AspNetCore](https://img.shields.io/badge/FluentValidation.AspNetCore_11.6.0-424242)
+
+<details style="border:1px solid #d4d4d4; border-radius:2px; padding:1rem;">
+<summary><h4 style="display:inline; padding-left:6px;">Dependencies backend:<h4></summary>
+
+```bash
+Swashbuckle.AspNetCore
+System.Data.SqlClient
+BCrypt.Net-Next
+FluentValidation.AspNetCore
+```
+
+</details>
+
+### **🛢 DB: SQL Server**
+
+</details>
+
+<br />
+
+### 📋 TODO:
 
 #### email/forms:
 
-- [x] change email input type
-- [x] add validation of email and user's input
 - [ ] create confirmation email with link for new user
 - [ ] add "Reset password" function
-- [x] create userPassword hash with BCrypt, Argon2 or PBKDF2
 
-#### after registration/login:
+#### after registration/login
 
-- [x] changing of the UserIcon to user's initials
-- [x] changing of the FavoritesIcon, ShoppingCartIcon in ProductCart (depends on userId)
 - [ ] check cookies, if exist Favorites and/or ShoppingCart ask to insert them to DB and delete from cookies
 
 #### global:
 
-- [x] changing of the ShoppingCartIcon when add/delete item from SC (users + guests)
-- [x] changing of the FavoritesIcon when add/delete item from Fav.list (users + guests)
-- [x] favorites page
-- [x] check if category exists
-- [x] button toTop
-- [x] display badge on icons Bag and Favorites in user menu
-- [x] SortBy function
-- [x] filters function
 - [ ] home page
   - [x] subCategories
   - [x] text
@@ -84,3 +117,24 @@ jewelry e-shop
 - [ ] add new item/category
 - [ ] update exist item/category
 - [ ] view orders+++
+
+<br />
+
+<details style="border:1px solid #d4d4d4; border-radius:2px; padding:1rem;">
+<summary><h4 style="display:inline; padding-left:6px;">Done:<h4></summary>
+
+- [x] change email input type
+- [x] add validation of email and user's input
+- [x] create userPassword hash with BCrypt, Argon2 or PBKDF2
+- [x] changing of the UserIcon to user's initials
+- [x] changing of the FavoritesIcon, ShoppingCartIcon in ProductCart (depends on userId)
+- [x] changing of the ShoppingCartIcon when add/delete item from SC (users + guests)
+- [x] changing of the FavoritesIcon when add/delete item from Fav.list (users + guests)
+- [x] favorites page
+- [x] check if category exists
+- [x] button toTop
+- [x] display badge on icons Bag and Favorites in user menu
+- [x] SortBy function
+- [x] filters function
+
+</details>

@@ -3,6 +3,8 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+ShopDB-Test queries.sql
+
 # dotenv files
 .env
 
