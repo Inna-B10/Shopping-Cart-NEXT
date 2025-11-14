@@ -13,14 +13,15 @@ Still, it was an excellent learning experience and a valuable step forward in un
 
 <br />
 
-[<img src="preview.png" height="250" align="right"/>](preview.png)
+[<img src="preview.png" height="250" align="right" style="margin-left:20px" />](preview.png)
 
 ### 🧩 Tech Stack
 
 #### **🖥️ Frontend:**
 
-![Next.js](https://img.shields.io/badge/next_14.2.5-424242?logo=nextdotjs)
-![React](https://img.shields.io/badge/react_18-424242?logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js_14.2.5-424242?logo=nextdotjs)
+![React](https://img.shields.io/badge/React_18-424242?logo=react&logoColor=61DAFB)
+
 ![react-dom](https://img.shields.io/badge/react--dom_18-424242?logo=react&logoColor=61DAFB)
 ![react-select](https://img.shields.io/badge/react--select_5.8.0-424242)
 ![axios](https://img.shields.io/badge/axios_1.7.2-424242)
@@ -36,9 +37,11 @@ Still, it was an excellent learning experience and a valuable step forward in un
 ![BCrypt.Net-Next](https://img.shields.io/badge/BCrypt.Net--Next_4.0.2-424242)
 ![FluentValidation.AspNetCore](https://img.shields.io/badge/FluentValidation.AspNetCore_11.6.0-424242)
 
-<!-- end:tech-stack -->
-
 #### **🛢 DB: SQL Server**
+
+![SQL Server](https://img.shields.io/badge/SQL--Server_2019-424242?logo=microsoftsqlserver&logoColor=white)
+
+<!-- end:tech-stack -->
 
 <details style="border:1px solid #d4d4d4; border-radius:2px; padding:1rem;">
 <summary><h4 style="display:inline; padding-left:6px;">Dependencies</h4></summary>
@@ -62,9 +65,51 @@ BCrypt.Net-Next
 FluentValidation.AspNetCore
 ```
 
-## </details>
+</details>
+<br />
 
-## 📋 TODO:
+## 💎 Features Implemented
+
+### ✨ Frontend (Next.js + React)
+
+- SPA built with **Next.js App Router**
+- User interface for product categories, filters, and sorting
+- Dynamic **category menu** populated from database:
+  - Categories from `Categories` table
+  - Additional product labels like "Discount 15%", "New", etc. (`union all select prod_label from Products`)
+- Shopping cart and favorites handled via `axios` and `UserContext`
+- Guest support:
+  - Temporary storage of cart and favorites in **cookies**
+  - Synchronization upon login
+
+### 🛂 Authentication & User Management
+
+- **Registration and login implemented without external services**
+- Forms validated with **Joi**:
+  - Email, password, first name, last name
+  - Password strength enforced
+- **Sessions stored in HTTP-only cookies** for security
+- Server-side registration and login handled via C# Web API:
+  - Passwords hashed securely with `BCrypt.Net-Next`
+- Support for **guest users** with temporary ID (`userId = -1`)
+
+### 🛒 Shopping Cart & Favorites
+
+- Add and remove products from the cart
+- Favorites and cart synchronized with server upon login
+  -Guest users’ data stored in cookies, enabling local interaction
+
+### 🗄️ Backend (C#, .NET, SQL Server)
+
+- APIs for managing users, products, cart, and favorites
+- Model validation using `FluentValidation.AspNetCore`
+- **SQL Server** used to store categories, products, users, cart, and favorites
+- Server manages authentication and cookies, with no reliance on external services
+
+---
+
+<details style="border:1px solid #d4d4d4; border-radius:2px; padding:1rem;">
+<summary><h4 style="display:inline; padding-left:6px;">📋 TODO</h4></summary>
 
 #### email/forms:
 
@@ -110,11 +155,9 @@ FluentValidation.AspNetCore
 - [ ] add new item/category
 - [ ] update exist item/category
 - [ ] view orders+++
-
-<br />
-
+</details>
 <details style="border:1px solid #d4d4d4; border-radius:2px; padding:1rem;">
-<summary><h4 style="display:inline; padding-left:6px;">Done:<h4></summary>
+<summary><h4 style="display:inline; padding-left:6px;">✅ Done</h4></summary>
 
 - [x] change email input type
 - [x] add validation of email and user's input
